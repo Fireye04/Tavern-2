@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxi3561e8a1de"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="1_6xolo"]
+[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_0h0gn"]
+[ext_resource type="Resource" uid="uid://7kqb6y5p7pc7" path="res://Dialogue/Rejection.dialogue" id="2_18oql"]
 [ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="2_pl5fb"]
-[ext_resource type="Script" path="res://Scripts/PlayerInteraction.cs" id="3_r8e30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4hab"]
 size = Vector2(133, 130)
@@ -11,7 +11,8 @@ size = Vector2(133, 130)
 size = Vector2(286, 266)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_6xolo")
+script = ExtResource("1_0h0gn")
+rejectionText = ExtResource("2_18oql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pl5fb")
@@ -22,12 +23,11 @@ shape = SubResource("RectangleShape2D_o4hab")
 
 [node name="InteractionRange" type="Area2D" parent="."]
 position = Vector2(-1.75, -0.25)
-script = ExtResource("3_r8e30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
 position = Vector2(-0.25, -0.75)
 shape = SubResource("RectangleShape2D_eqj4r")
 
-[connection signal="body_entered" from="InteractionRange" to="InteractionRange" method="_on_body_entered"]
-[connection signal="body_exited" from="InteractionRange" to="InteractionRange" method="_on_body_exited"]
+[connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]
+[connection signal="body_exited" from="InteractionRange" to="." method="_on_interaction_range_body_exited"]
 [connection signal="ready" from="InteractionRange" to="InteractionRange" method="_on_ready"]
