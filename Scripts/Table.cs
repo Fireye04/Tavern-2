@@ -1,12 +1,11 @@
 using Godot;
 using System;
 
-public partial class NPC : CharacterBody2D, IInteractable {
+public partial class Table : StaticBody2D, IInteractable {
     public void interact() {
-        GD.Print("Heyyy");
+        GD.Print("I AM A TABLE");
     }
     public bool canInteract() {
         return true;
     }
 }
-

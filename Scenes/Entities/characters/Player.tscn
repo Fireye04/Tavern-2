@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://vfv74xn7l4uk"]
+[gd_scene load_steps=6 format=3 uid="uid://dxi3561e8a1de"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="1_6xolo"]
 [ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="2_pl5fb"]
@@ -30,3 +30,4 @@ shape = SubResource("RectangleShape2D_eqj4r")
 
 [connection signal="body_entered" from="InteractionRange" to="InteractionRange" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionRange" to="InteractionRange" method="_on_body_exited"]
+[connection signal="ready" from="InteractionRange" to="InteractionRange" method="_on_ready"]

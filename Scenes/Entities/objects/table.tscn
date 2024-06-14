@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bukwus8ib5akw"]
+
+[ext_resource type="Script" path="res://Scripts/Table.cs" id="1_5rmnu"]
+[ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="1_6jpbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeqt0"]
+size = Vector2(131, 131)
+
+[node name="Table" type="StaticBody2D"]
+script = ExtResource("1_5rmnu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_eeqt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.999999, 0.569811, 0.447836, 1)
+texture = ExtResource("1_6jpbs")
