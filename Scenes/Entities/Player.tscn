@@ -29,3 +29,4 @@ position = Vector2(-0.25, -0.75)
 shape = SubResource("RectangleShape2D_eqj4r")
 
 [connection signal="body_entered" from="InteractionRange" to="InteractionRange" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionRange" to="InteractionRange" method="_on_body_exited"]
