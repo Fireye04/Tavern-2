@@ -1,0 +1,11 @@
+~ start
+
+NPC: [[Hi|Hello|Howdy]], this is some dialogue.
+NPC: Here are some choices.
+- First one
+	NPC: You picked the first one.
+- Second one
+	NPC: You picked the second one.
+NPC: For more information see the online documentation.
+
+=> END

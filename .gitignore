@@ -40,6 +40,7 @@ mono_crash.*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+.editorconfig
 
 # Local History for Visual Studio Code
 .history/

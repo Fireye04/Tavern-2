@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=5 format=3 uid="uid://7nsgc6grdx1x"]
 
-[ext_resource type="PackedScene" uid="uid://vfv74xn7l4uk" path="res://Scenes/Entities/Player.tscn" id="1_ty017"]
+[ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
+[ext_resource type="PackedScene" uid="uid://byogek3g0xwba" path="res://Scenes/Entities/characters/NPC.tscn" id="2_ikmrh"]
+[ext_resource type="Resource" uid="uid://debsmp6aqfqx6" path="res://Dialogue/NPC.dialogue" id="3_6ibhw"]
+[ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ty017")]
 position = Vector2(461, 280)
+
+[node name="Npc" parent="." instance=ExtResource("2_ikmrh")]
+position = Vector2(156, 209)
+_dialogue = ExtResource("3_6ibhw")
+
+[node name="Table" parent="." instance=ExtResource("3_uooeq")]
+position = Vector2(308, 64)
