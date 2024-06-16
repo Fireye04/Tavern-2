@@ -1,18 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=8 format=3 uid="uid://7nsgc6grdx1x"]
 
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_h0icv"]
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
 [ext_resource type="PackedScene" uid="uid://byogek3g0xwba" path="res://Scenes/Entities/characters/NPC.tscn" id="2_ikmrh"]
-[ext_resource type="Resource" uid="uid://debsmp6aqfqx6" path="res://Dialogue/NPC.dialogue" id="3_6ibhw"]
+[ext_resource type="Resource" uid="uid://debsmp6aqfqx6" path="res://Dialogue/NPC1.dialogue" id="3_6ibhw"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
+[ext_resource type="PackedScene" uid="uid://dsoevoe7btql5" path="res://Scenes/UI/control.tscn" id="5_ghui2"]
+[ext_resource type="Script" path="res://Scripts/dayLabel.cs" id="7_1l12w"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_h0icv")
 
 [node name="Player" parent="." instance=ExtResource("1_ty017")]
 position = Vector2(461, 280)
 
 [node name="Npc" parent="." instance=ExtResource("2_ikmrh")]
-position = Vector2(156, 209)
+position = Vector2(173, 201)
 _dialogue = ExtResource("3_6ibhw")
 
 [node name="Table" parent="." instance=ExtResource("3_uooeq")]
 position = Vector2(308, 64)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 31)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.625
+offset_top = -55.145
+offset_right = -34.625
+offset_bottom = -24.145
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Control" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_ghui2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 75.0
+offset_bottom = 40.0
+
+[node name="dayLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Day x"
+fit_content = true
+script = ExtResource("7_1l12w")
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Control" to="." method="_on_control_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Control" to="CanvasLayer/HBoxContainer2/dayLabel" method="_on_control_pressed"]
