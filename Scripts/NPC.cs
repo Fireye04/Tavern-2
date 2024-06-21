@@ -2,21 +2,22 @@ using DialogueManagerRuntime;
 using Godot;
 using System;
 
-public abstract class NPC : IInteractable {
+public partial class NPC : CharacterBody2D, IInteractable {
+	[Export]
+	public Resource Stats;
+	private NPC_Resource npc_Resource;
+
+	public override void _Ready() {
+		npc_Resource = (NPC_Resource)Stats;
+	}
+
+	public bool canInteract() {
+		return npc_Resource.Can_interact;
+	}
+
+	public void interact() {
+		DialogueManager.ShowExampleDialogueBalloon(npc_Resource.Dialogue, "start");
+	}
 
 
-    private Resource _dialogue;
-
-    private bool can_interact;
-
-    public string Name;
-    public int Rep;
-
-
-    public bool canInteract() {
-        return can_interact;
-    }
-
-    public abstract void interact();
 }
-

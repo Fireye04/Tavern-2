@@ -2,20 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_h0icv"]
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
-[ext_resource type="PackedScene" uid="uid://byogek3g0xwba" path="res://Scenes/Entities/characters/NPC.tscn" id="2_ikmrh"]
-[ext_resource type="Resource" uid="uid://debsmp6aqfqx6" path="res://Dialogue/NPC1.dialogue" id="3_6ibhw"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
+[ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="5_2i0im"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="6_etjsq"]
+[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra Silverwind.tres" id="6_vhch7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h0icv")
 
 [node name="Player" parent="." instance=ExtResource("1_ty017")]
 position = Vector2(461, 280)
-
-[node name="Npc" parent="." instance=ExtResource("2_ikmrh")]
-position = Vector2(173, 201)
-_dialogue = ExtResource("3_6ibhw")
 
 [node name="Table" parent="." instance=ExtResource("3_uooeq")]
 position = Vector2(308, 64)
@@ -27,3 +23,6 @@ offset_left = 3.0
 offset_top = -3.0
 offset_right = 3.0
 offset_bottom = -3.0
+
+[node name="NPC" parent="." instance=ExtResource("5_2i0im")]
+Stats = ExtResource("6_vhch7")
