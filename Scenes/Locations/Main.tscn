@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
 [ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="5_2i0im"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="6_etjsq"]
-[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra Silverwind.tres" id="6_vhch7"]
+[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="6_vhch7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h0icv")

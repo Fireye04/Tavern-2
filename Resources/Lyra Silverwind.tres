@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dpaxse5xa3ww5"]
-
-[ext_resource type="Script" path="res://Resources/NPC_Resource.cs" id="1_73tdt"]
-
-[resource]
-script = ExtResource("1_73tdt")
-Can_interact = true
-Name = "Lyra Silverwind"
-Rep = 1
