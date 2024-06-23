@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btxkxtmyodia0"]
+
+[ext_resource type="Script" path="res://Scripts/Lyra.cs" id="1_u3872"]
+
+[node name="Lyra" type="Node2D"]
+script = ExtResource("1_u3872")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://dpaxse5xa3ww5"]
 
 [ext_resource type="Script" path="res://Resources/NPC_Resource.cs" id="1_73tdt"]
+[ext_resource type="PackedScene" uid="uid://btxkxtmyodia0" path="res://Scenes/Entities/characters/lyra.tscn" id="1_255p5"]
 [ext_resource type="Resource" uid="uid://debsmp6aqfqx6" path="res://Dialogue/LyraSilverwind.dialogue" id="1_t8pog"]
-[ext_resource type="Script" path="res://Scripts/Lyra.cs" id="2_u0u1r"]
 
 [resource]
 script = ExtResource("1_73tdt")
@@ -10,4 +10,4 @@ Dialogue = ExtResource("1_t8pog")
 Can_interact = true
 Name = "Lyra Silverwind"
 Rep = 1
-Source = ExtResource("2_u0u1r")
+DSource = ExtResource("1_255p5")

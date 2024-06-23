@@ -17,15 +17,15 @@ public partial class NPC_Resource : Resource {
 	public int Rep { get; set; }
 
 	[Export]
-	public Resource D_Source { get; set; }
+	public PackedScene DSource { get; set; }
 
 	public NPC_Resource() : this(null, false, null, 0, null) { }
 
-	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, Resource source) {
+	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source) {
 		Dialogue = dialogue;
 		Can_interact = can_interact;
 		Name = name;
 		Rep = rep;
-		D_Source = source;
+		DSource = source;
 	}
 }

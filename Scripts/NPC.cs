@@ -12,7 +12,9 @@ public partial class NPC : CharacterBody2D, IInteractable {
 	public override void _Ready() {
 		npc_Resource = (NPC_Resource)Stats;
 
-		iSource = (IDialogueSource)npc_Resource.D_Source;
+		var newNode = npc_Resource.DSource.Instantiate();
+
+		iSource = (IDialogueSource)newNode;
 
 
 	}
@@ -22,8 +24,8 @@ public partial class NPC : CharacterBody2D, IInteractable {
 	}
 
 	public void interact() {
-		string loc = iSource.getConversation();
-		DialogueManager.ShowExampleDialogueBalloon(npc_Resource.Dialogue, loc);
+		DialogueManager.ShowExampleDialogueBalloon(npc_Resource.Dialogue, iSource.getConversation());
+
 	}
 
 
