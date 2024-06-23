@@ -7,8 +7,6 @@ public partial class Main : Node2D {
 	private void _on_control_pressed() {
 		daysPassed += 1;
 	}
-
-
 }
 
 

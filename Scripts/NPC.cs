@@ -5,7 +5,11 @@ using System;
 public partial class NPC : CharacterBody2D, IInteractable {
 	[Export]
 	public Resource Stats;
-	private NPC_Resource npc_Resource;
+
+	[Export]
+	public barter bItem;
+
+	public NPC_Resource npc_Resource;
 
 	private IDialogueSource iSource;
 
@@ -13,10 +17,10 @@ public partial class NPC : CharacterBody2D, IInteractable {
 		npc_Resource = (NPC_Resource)Stats;
 
 		var newNode = npc_Resource.DSource.Instantiate();
+		var bSource = (IBarter)newNode;
+		bSource.setUI(bItem);
 
 		iSource = (IDialogueSource)newNode;
-
-
 	}
 
 	public bool canInteract() {

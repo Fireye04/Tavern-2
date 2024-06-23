@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=9 format=3 uid="uid://7nsgc6grdx1x"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_h0icv"]
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
 [ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="5_2i0im"]
+[ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="5_fskgp"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="6_etjsq"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="6_vhch7"]
+[ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="7_udqj1"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h0icv")
@@ -24,6 +26,14 @@ offset_top = -3.0
 offset_right = 3.0
 offset_bottom = -3.0
 
-[node name="NPC" parent="." instance=ExtResource("5_2i0im")]
+[node name="Barter" parent="CanvasLayer" instance=ExtResource("5_fskgp")]
+
+[node name="NPC" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("5_2i0im")]
 position = Vector2(758, 294)
 Stats = ExtResource("6_vhch7")
+bItem = NodePath("../CanvasLayer/Barter")
+
+[node name="NPC2" parent="." instance=ExtResource("5_2i0im")]
+modulate = Color(1, 0.556863, 1, 1)
+position = Vector2(598, 474)
+Stats = ExtResource("7_udqj1")

@@ -86,7 +86,7 @@ public partial class PlayerController : CharacterBody2D {
 					DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
 				}
 			} else {
-				GD.Print("None in Ranga");
+				GD.Print("None in Range");
 			}
 		}
 
