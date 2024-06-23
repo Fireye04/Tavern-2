@@ -1,5 +1,12 @@
-~ start
+~ convo1
 
-Lyra: I am {{npc_Resource.Name}}
+Lyra: Hello. I am {{npc_Resource.Name}}. It is good to meet you.
+
+
+=> END
+
+~ catchall
+
+Lyra: I hope to see you around.
 
 => END
