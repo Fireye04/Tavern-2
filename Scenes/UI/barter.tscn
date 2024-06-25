@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/barter.cs" id="1_i8sdp"]
 
-[node name="Barter" type="Control" node_paths=PackedStringArray("goldLabel", "repLabel")]
+[node name="Barter" type="Control" node_paths=PackedStringArray("goldLabel", "repLabel", "offer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_i8sdp")
 goldLabel = NodePath("HBoxContainer/VBoxContainer/gold")
 repLabel = NodePath("HBoxContainer/VBoxContainer/rep")
+offer = NodePath("HBoxContainer2/LineEdit")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -40,3 +41,20 @@ layout_mode = 2
 text = "rep: thing"
 fit_content = true
 autowrap_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5
+offset_right = 33.5
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer2"]
+visible = false
+layout_mode = 2
+placeholder_text = "Offer"
+
+[connection signal="text_submitted" from="HBoxContainer2/LineEdit" to="." method="_on_line_edit_text_submitted"]

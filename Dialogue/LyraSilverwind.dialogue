@@ -4,7 +4,6 @@ Lyra: Hello. I am {{npc_Resource.Name}}. It is good to meet you.
 - Goodbye
 	Lyra: Adieu
 - Barter with me
-	do barter()
 	=> startDeal
 
 => END
@@ -15,7 +14,6 @@ Lyra: I hope to see you around.
 - Goodbye
 	Lyra: Adieu
 - Me: Barter with me
-	do barter()
 	=> startDeal
 	
 => END
@@ -24,8 +22,9 @@ Lyra: I hope to see you around.
 
 Lyra: I sell fine wines and ale. What is it you wish to purchase?
 - Wine
-	do deal("Wine")
+	do deal("wine")
 - Ale
-	do deal("Ale")
+	do deal("ale")
+Lyra: make me an offer...
 	
 => END

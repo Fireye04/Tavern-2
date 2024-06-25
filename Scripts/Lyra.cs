@@ -5,6 +5,7 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 
 	public static barter barterItem { get; set; }
 
+
 	private int convoCount = 0;
 
 	private NPC_Resource npc_Resource;
@@ -15,16 +16,12 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 
 	}
 
-	public void barter() {
-		var bitch = npc_Resource.Rep.ToString();
-		if (barterItem != null) {
-			barterItem.startStuff(bitch);
-		}
 
-	}
 
 	public void deal(string resource) {
-		GD.Print(resource);
+		barterItem.startStuff(npc_Resource);
+		var value = barterItem.resourceVals[resource.ToLower()];
+		GD.Print(value);
 	}
 
 	public string getConversation() {
