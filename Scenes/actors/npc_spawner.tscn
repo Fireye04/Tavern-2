@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca7yfnkuixc7c"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_8sweg"]
+script/source = "using Godot;
+using System;
+
+public partial class NPCSpawner : Node2D {
+	[Export]
+	
+}
+"
+
+[node name="NPC Spawner" type="Node2D"]
+script = SubResource("CSharpScript_8sweg")

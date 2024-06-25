@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://debsmp6aqfqx6"
+path="res://.godot/imported/LyraSilverwind.dialogue-418b8c1fdc522e991035783d503ea3ce.tres"
+
+[deps]
+
+source_file="res://Dialogue/LyraSilverwind.dialogue"
+dest_files=["res://.godot/imported/LyraSilverwind.dialogue-418b8c1fdc522e991035783d503ea3ce.tres"]
+
+[params]
+
+defaults=true

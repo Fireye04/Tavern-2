@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Table : StaticBody2D, IInteractable {
+public partial class Table : StaticBody2D {
 	public void interact() {
 		GD.Print("I AM A TABLE");
 	}

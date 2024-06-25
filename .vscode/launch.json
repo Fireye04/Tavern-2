@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "flatpak",
+      "preLaunchTask": "build",
+      "args": [
+        "run",
+        "org.godotengine.GodotSharp",
+        "--path",
+        "${workspaceRoot}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Launch Editor",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "flatpak",
+      "preLaunchTask": "build",
+      "args": [
+        "run",
+        "org.godotengine.GodotSharp",
+        "--path",
+        "${workspaceRoot}",
+        "--editor"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+  ]
+}
