@@ -21,7 +21,7 @@ public partial class barter : Control {
 	}
 
 	public void startStuff(string rep) {
-
+		repLabel.Visible = true;
 		repLabel.Text = "Rep: " + rep;
 
 	}

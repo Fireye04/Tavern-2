@@ -35,6 +35,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="rep" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "rep: thing"
 fit_content = true
