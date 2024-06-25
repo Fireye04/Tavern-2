@@ -20,12 +20,10 @@ public partial class barter : Control {
 		goldLabel.Text = "Gold: " + gold.ToString();
 	}
 
-	public void startDialogue(NPC_Resource resource) {
+	public void startStuff(string rep) {
 
-		repLabel.Text = "Rep: " + resource.Rep.ToString();
+		repLabel.Text = "Rep: " + rep;
+
 	}
 
-	public void fuckyou() {
-		GD.Print("fuck you");
-	}
 }

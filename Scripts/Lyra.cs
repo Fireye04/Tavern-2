@@ -3,7 +3,7 @@ using System;
 
 public partial class Lyra : Node, IDialogueSource, IBarter {
 
-    private barter barterItem;
+    public static barter barterItem { get; set; }
 
     private int convoCount = 0;
 
@@ -16,8 +16,11 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
     }
 
     public void barter() {
-        GD.Print(npc_Resource.Name);
-        barterItem.startDialogue(npc_Resource);
+        var bitch = npc_Resource.Rep.ToString();
+        if (barterItem != null) {
+            barterItem.startStuff(bitch);
+        }
+
     }
 
     public string getConversation() {
@@ -31,7 +34,7 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
     }
 
     public void setUI(barter bItem) {
+
         barterItem = bItem;
-        barterItem.fuckyou();
     }
 }

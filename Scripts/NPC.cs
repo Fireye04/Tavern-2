@@ -7,7 +7,7 @@ public partial class NPC : CharacterBody2D, IInteractable {
 	public Resource Stats;
 
 	[Export]
-	public barter bItem;
+	public barter bItem { get; set; }
 
 	public NPC_Resource npc_Resource;
 
@@ -17,8 +17,14 @@ public partial class NPC : CharacterBody2D, IInteractable {
 		npc_Resource = (NPC_Resource)Stats;
 
 		var newNode = npc_Resource.DSource.Instantiate();
+		AddChild(newNode);
+		// newNode.Owner = this;
+
 		var bSource = (IBarter)newNode;
+
 		bSource.setUI(bItem);
+
+
 
 		iSource = (IDialogueSource)newNode;
 	}
