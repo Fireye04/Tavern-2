@@ -1,10 +1,17 @@
 using Godot;
 using System;
+using DialogueManagerRuntime;
+using System.Threading.Tasks;
 
 public partial class Lyra : Node, IDialogueSource, IBarter {
 
 	public static barter barterItem { get; set; }
+
+	[Export]
 	public int happiness = 0;
+
+	[Export]
+	public LineEdit offerItem;
 
 	public static Tuple<string, int> item;
 
@@ -20,22 +27,35 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 
 
 
-	public async void deal(string resource) {
-		var offer = barterItem.startStuff(npc_Resource);
+	public async Task Deal(string resource) {
+		offerItem = barterItem.startStuff(npc_Resource);
+
 		var value = barterItem.resourceVals[resource.ToLower()];
 		item = new Tuple<string, int>(resource, value);
-		await ToSignal(offer, "text_submitted");
+		offerItem.GrabFocus();
+		await ToSignal(offerItem, "text_submitted");
 		try {
-			var resp = offer.Text;
+			var resp = offerItem.Text;
 			GD.Print(resp);
-			happiness = value - resp.ToInt();
+			happiness = resp.ToInt() - value;
 			GD.Print(happiness.ToString());
 		} catch (FormatException) {
-			offer.Text = "int only";
-			deal(resource);
+			offerItem.PlaceholderText = "int only";
+			await Deal(resource);
 		}
 
 	}
+
+	public void addRep(int val) {
+		npc_Resource.Rep += val;
+		barterItem.repUpdate(npc_Resource);
+	}
+
+	public void removeRep(int val) {
+		npc_Resource.Rep -= val;
+		barterItem.repUpdate(npc_Resource);
+	}
+
 
 	public string getConversation() {
 		convoCount += 1;

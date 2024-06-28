@@ -22,18 +22,19 @@ Lyra: I hope to see you around.
 
 Lyra: I sell fine wines and ale. What is it you wish to purchase?
 - Wine
-	do deal("wine")
+	do Deal("wine")
 - Ale
-	do deal("ale")
-Lyra: Very well, make your offer.
+	do Deal("ale")
 if happiness > 2
 	Lyra: Dear goodess! Deal!
-	set npc_Resource.Rep += 1
-elif 0 < happiness and happiness < 2
+	do addRep(1)
+elif 0 <= happiness and happiness <= 2
 	Lyra: Deal.
 elif -2 < happiness and happiness < 0
 	Lyra: Fine. 
-	set npc_Resource.Rep -= 1
+	do removeRep(1)
 else
 	Lyra: No deal.
+
+
 => END

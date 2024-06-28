@@ -4,6 +4,7 @@ using System;
 using System.Configuration.Assemblies;
 using System.Threading.Tasks.Dataflow;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 public partial class barter : Control {
 
@@ -42,22 +43,9 @@ public partial class barter : Control {
 		return offer;
 	}
 
-	// private void _on_line_edit_text_submitted(string new_text) {
-	// 	if (started) {
-	// 		try {
-	// 			GD.Print(new_text.ToInt() + 1);
-	// 		} catch {
-	// 			offer.AddThemeColorOverride("font_color", Color.Color8(255, 0, 0));
-	// 			wait(1);
-	// 			offer.RemoveThemeColorOverride("font_color");
-	// 		}
-
-	// 	}
-	// }
-
-	// private async void wait(int seconds) {
-	// 	await Task.Delay(TimeSpan.FromMilliseconds(seconds * 1000));
-	// }
+	public void repUpdate(NPC_Resource npcr) {
+		repLabel.Text = "Rep: " + npcr.Rep.ToString();
+	}
 
 }
 
