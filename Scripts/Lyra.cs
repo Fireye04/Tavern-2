@@ -4,7 +4,9 @@ using System;
 public partial class Lyra : Node, IDialogueSource, IBarter {
 
 	public static barter barterItem { get; set; }
+	public int happiness = 0;
 
+	public static Tuple<string, int> item;
 
 	private int convoCount = 0;
 
@@ -18,10 +20,21 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 
 
 
-	public void deal(string resource) {
-		barterItem.startStuff(npc_Resource);
+	public async void deal(string resource) {
+		var offer = barterItem.startStuff(npc_Resource);
 		var value = barterItem.resourceVals[resource.ToLower()];
-		GD.Print(value);
+		item = new Tuple<string, int>(resource, value);
+		await ToSignal(offer, "text_submitted");
+		try {
+			var resp = offer.Text;
+			GD.Print(resp);
+			happiness = value - resp.ToInt();
+			GD.Print(happiness.ToString());
+		} catch (FormatException) {
+			offer.Text = "int only";
+			deal(resource);
+		}
+
 	}
 
 	public string getConversation() {
