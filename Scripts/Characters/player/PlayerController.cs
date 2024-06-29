@@ -8,7 +8,10 @@ public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public int Speed { get; set; } = 400;
 
-	public PlayerInventory inventory;
+	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
+		{"wine", 0},
+		{"ale", 0}
+	};
 
 	private Godot.Vector2 _player_in = new();
 
@@ -22,7 +25,6 @@ public partial class PlayerController : CharacterBody2D {
 
 	private void _on_ready() {
 		player = (CharacterBody2D)GetParent();
-		inventory = (PlayerInventory)GetNode<Node>("Inventory");
 	}
 
 	private void _on_interaction_range_body_entered(Node2D body) {

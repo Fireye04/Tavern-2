@@ -43,6 +43,12 @@ public partial class barter : Control {
 		return offer;
 	}
 
+	public void endStuff() {
+		started = false;
+		repLabel.Visible = false;
+		offer.Visible = false;
+	}
+
 	public void repUpdate(NPC_Resource npcr) {
 		repLabel.Text = "Rep: " + npcr.Rep.ToString();
 	}

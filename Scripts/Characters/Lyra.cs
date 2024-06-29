@@ -2,6 +2,7 @@ using Godot;
 using System;
 using DialogueManagerRuntime;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 public partial class Lyra : Node, IDialogueSource, IBarter {
 
@@ -47,6 +48,15 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 			await Deal(resource);
 		}
 
+	}
+
+	public void transaction() {
+
+	}
+
+
+	public void endDeal() {
+		barterItem.endStuff();
 	}
 
 	public void addRep(int val) {
