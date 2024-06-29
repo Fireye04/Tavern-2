@@ -18,7 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Lyra="*res://Scripts/Lyra.cs"
+Lyra="*res://Scripts/Characters/Lyra.cs"
 
 [dialogue_manager]
 

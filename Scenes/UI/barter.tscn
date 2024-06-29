@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brywx0kdybbec"]
 
-[ext_resource type="Script" path="res://Scripts/barter.cs" id="1_i8sdp"]
+[ext_resource type="Script" path="res://Scripts/UI/barter.cs" id="1_pm8w2"]
 
 [node name="Barter" type="Control" node_paths=PackedStringArray("goldLabel", "repLabel", "offer")]
 layout_mode = 3
@@ -9,7 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8sdp")
+mouse_filter = 2
+script = ExtResource("1_pm8w2")
 goldLabel = NodePath("HBoxContainer/VBoxContainer/gold")
 repLabel = NodePath("HBoxContainer/VBoxContainer/rep")
 offer = NodePath("HBoxContainer2/LineEdit")
@@ -30,6 +31,7 @@ layout_mode = 2
 
 [node name="gold" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "gold: thing
 "
 fit_content = true
@@ -38,6 +40,7 @@ autowrap_mode = 0
 [node name="rep" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 text = "rep: thing"
 fit_content = true
 autowrap_mode = 0

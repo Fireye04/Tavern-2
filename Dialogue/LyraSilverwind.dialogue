@@ -19,12 +19,20 @@ Lyra: I hope to see you around.
 => END
 
 ~ startDeal
-
-Lyra: I sell fine wines and ale. What is it you wish to purchase?
+if not repeatedDeal
+	Lyra: I sell fine wines and ale. What is it you wish to purchase?
+else
+	Lyra: The wine or the ale?
 - Wine
 	do Deal("wine")
 - Ale
 	do Deal("ale")
+=> checks
+
+=> END
+
+~ checks
+
 if happiness > 2
 	Lyra: Dear goodess! Deal!
 	do addRep(1)
@@ -35,6 +43,10 @@ elif -2 < happiness and happiness < 0
 	do removeRep(1)
 else
 	Lyra: No deal.
-
-
+	- New Deal!
+		set repeatedDeal = true
+		=> startDeal
+	- Very well.
+Lyra: Pleasure doing business
+do endDeal()
 => END

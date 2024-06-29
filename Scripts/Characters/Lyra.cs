@@ -8,6 +8,9 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 	public static barter barterItem { get; set; }
 
 	[Export]
+	public bool repeatedDeal = false;
+
+	[Export]
 	public int happiness = 0;
 
 	[Export]

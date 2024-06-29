@@ -8,6 +8,8 @@ public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public int Speed { get; set; } = 400;
 
+	public PlayerInventory inventory;
+
 	private Godot.Vector2 _player_in = new();
 
 	private List<Node2D> interactablesInRange = new List<Node2D>();
@@ -20,6 +22,7 @@ public partial class PlayerController : CharacterBody2D {
 
 	private void _on_ready() {
 		player = (CharacterBody2D)GetParent();
+		inventory = (PlayerInventory)GetNode<Node>("Inventory");
 	}
 
 	private void _on_interaction_range_body_entered(Node2D body) {
