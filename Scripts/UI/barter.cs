@@ -13,8 +13,9 @@ public partial class barter : Control {
 		{"ale", 1}
 	};
 
+
 	[Export]
-	public int gold = 100;
+	public PlayerController pc;
 
 	public Node target;
 
@@ -30,8 +31,7 @@ public partial class barter : Control {
 	public static bool started = false;
 
 	public override void _Ready() {
-
-		goldLabel.Text = "Gold: " + gold.ToString();
+		goldLabel.Text = "Gold: " + pc.gold.ToString();
 	}
 
 	public LineEdit startStuff(NPC_Resource npcr) {
@@ -51,6 +51,10 @@ public partial class barter : Control {
 
 	public void repUpdate(NPC_Resource npcr) {
 		repLabel.Text = "Rep: " + npcr.Rep.ToString();
+	}
+
+	public void goldUpdate() {
+		goldLabel.Text = "Gold: " + pc.gold.ToString();
 	}
 
 }

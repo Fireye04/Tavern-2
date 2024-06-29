@@ -17,6 +17,8 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 	[Export]
 	public LineEdit offerItem;
 
+	private int offerAmount;
+
 	public static Tuple<string, int> item;
 
 	private int convoCount = 0;
@@ -32,6 +34,7 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 
 
 	public async Task Deal(string resource) {
+
 		offerItem = barterItem.startStuff(npc_Resource);
 
 		var value = barterItem.resourceVals[resource.ToLower()];
@@ -39,24 +42,43 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 		offerItem.GrabFocus();
 		await ToSignal(offerItem, "text_submitted");
 		try {
-			var resp = offerItem.Text;
-			GD.Print(resp);
-			happiness = resp.ToInt() - value;
-			GD.Print(happiness.ToString());
+			offerAmount = offerItem.Text.ToInt();
+			if (barterItem.pc.gold < offerAmount) {
+				offerItem.Text = "";
+				offerItem.PlaceholderText = "funds";
+				await Deal(resource);
+			}
+			happiness = offerAmount - value;
+			offerItem.Text = "";
+			offerItem.PlaceholderText = "Offer";
+
 		} catch (FormatException) {
+			offerItem.Text = "";
 			offerItem.PlaceholderText = "int only";
 			await Deal(resource);
+
 		}
 
 	}
 
 	public void transaction() {
-
+		removeGold(offerAmount);
+		barterItem.pc.inventory[item.Item1] += 1;
 	}
 
 
 	public void endDeal() {
 		barterItem.endStuff();
+	}
+
+	public void addGold(int val) {
+		barterItem.pc.gold -= val;
+		barterItem.goldUpdate();
+	}
+
+	public void removeGold(int val) {
+		barterItem.pc.gold -= val;
+		barterItem.goldUpdate();
 	}
 
 	public void addRep(int val) {

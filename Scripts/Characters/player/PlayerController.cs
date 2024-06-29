@@ -8,6 +8,9 @@ public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public int Speed { get; set; } = 400;
 
+	[Export]
+	public int gold = 100;
+
 	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
 		{"wine", 0},
 		{"ale", 0}

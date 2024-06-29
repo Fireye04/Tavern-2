@@ -13,7 +13,7 @@ Lyra: Hello. I am {{npc_Resource.Name}}. It is good to meet you.
 Lyra: I hope to see you around.
 - Goodbye
 	Lyra: Adieu
-- Me: Barter with me
+- Barter with me
 	=> startDeal
 	
 => END
@@ -23,30 +23,44 @@ if not repeatedDeal
 	Lyra: I sell fine wines and ale. What is it you wish to purchase?
 else
 	Lyra: The wine or the ale?
+	
 - Wine
 	do Deal("wine")
 - Ale
 	do Deal("ale")
+- Quit
+	if npc_Resource.Rep > 1
+		Lyra: Pleasure doing business
+	else 
+		Lyra: Very well.
+	=> END
 => checks
 
 => END
 
 ~ checks
 
-if happiness > 2
+if happiness > 1
 	Lyra: Dear goodess! Deal!
 	do addRep(1)
-elif 0 <= happiness and happiness <= 2
+	do transaction()
+elif 0 <= happiness and happiness <= 1
 	Lyra: Deal.
-elif -2 < happiness and happiness < 0
+	do transaction()
+elif -1 <= happiness and happiness < 0
 	Lyra: Fine. 
 	do removeRep(1)
+	do transaction()
 else
 	Lyra: No deal.
 	- New Deal!
 		set repeatedDeal = true
 		=> startDeal
 	- Very well.
-Lyra: Pleasure doing business
+if npc_Resource.Rep > 1
+	Lyra: Pleasure doing business
+else 
+	Lyra: Goodbye.
+
 do endDeal()
 => END
