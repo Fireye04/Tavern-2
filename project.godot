@@ -23,6 +23,7 @@ Lyra="*res://Scripts/Characters/Lyra.cs"
 [dialogue_manager]
 
 general/states=["Lyra"]
+general/uses_dotnet=true
 
 [dotnet]
 
