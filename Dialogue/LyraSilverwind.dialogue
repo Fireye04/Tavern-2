@@ -15,7 +15,7 @@ Lyra: I hope to see you around.
 	Lyra: Adieu
 - Barter with me
 	=> startDeal
-	
+
 => END
 
 ~ startDeal
@@ -23,7 +23,7 @@ if not repeatedDeal
 	Lyra: I sell fine wines and ale. What is it you wish to purchase?
 else
 	Lyra: The wine or the ale?
-	
+
 - Wine
 	do Deal("wine")
 - Ale
