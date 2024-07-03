@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=11 format=3 uid="uid://7nsgc6grdx1x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
 [ext_resource type="Resource" uid="uid://7kqb6y5p7pc7" path="res://Dialogue/Rejection.dialogue" id="2_4dc8l"]
@@ -8,13 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://c8pbmnyy4gike" path="res://Scenes/UI/inventory.tscn" id="6_48od1"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="6_etjsq"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="6_vhch7"]
+[ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="7_iigys"]
 [ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="7_udqj1"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("invUI") instance=ExtResource("1_ty017")]
+[node name="Player" parent="." node_paths=PackedStringArray("invUI", "menUI") instance=ExtResource("1_ty017")]
 position = Vector2(461, 280)
 invUI = NodePath("../CanvasLayer/Inventory")
+menUI = NodePath("../CanvasLayer/Menu")
 rejectionText = ExtResource("2_4dc8l")
 
 [node name="Table" parent="." instance=ExtResource("3_uooeq")]
@@ -29,6 +31,8 @@ follow_viewport_enabled = true
 pc = NodePath("../../Player")
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("6_48od1")]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("7_iigys")]
 
 [node name="NPC" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("5_2i0im")]
 position = Vector2(758, 294)

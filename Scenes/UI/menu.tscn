@@ -11,11 +11,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_77gwg")
-mList = NodePath("MarginContainer/mList")
+mList = NodePath("MarginContainer/MarginContainer/mList")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -31,14 +31,23 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0.377919, 0.377919, 0.377919, 1)
 
-[node name="mList" type="VBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="mList" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Menu Slot" parent="MarginContainer/mList" instance=ExtResource("2_tb10y")]
+[node name="Menu Slot" parent="MarginContainer/MarginContainer/mList" node_paths=PackedStringArray("menuItem") instance=ExtResource("2_tb10y")]
 layout_mode = 2
+menuItem = NodePath("../../../..")
 
-[node name="Menu Slot2" parent="MarginContainer/mList" instance=ExtResource("2_tb10y")]
+[node name="Menu Slot2" parent="MarginContainer/MarginContainer/mList" node_paths=PackedStringArray("menuItem") instance=ExtResource("2_tb10y")]
 layout_mode = 2
+menuItem = NodePath("../../../..")

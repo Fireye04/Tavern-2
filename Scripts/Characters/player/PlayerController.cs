@@ -14,7 +14,10 @@ public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public Inventory invUI;
 
-	public bool UIActive;
+	[Export]
+	public menu menUI;
+
+	public string UIActive = "";
 
 	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
 		{"wine", 0},
@@ -86,16 +89,26 @@ public partial class PlayerController : CharacterBody2D {
 	public override void _UnhandledInput(InputEvent @event) {
 
 		if (@event.IsActionPressed("inventory")) {
-			if (UIActive) {
+			if (UIActive == "inventory") {
 				invUI.deactivate();
-				UIActive = false;
-			} else {
+				UIActive = "";
+			} else if (UIActive == "") {
 				invUI.activate(inventory);
-				UIActive = true;
+				UIActive = "inventory";
 			}
 		}
 
-		if (!UIActive) {
+		if (@event.IsActionPressed("menu")) {
+			if (UIActive == "menu") {
+				menUI.deactivate();
+				UIActive = "";
+			} else {
+				menUI.activate();
+				UIActive = "menu";
+			}
+		}
+
+		if (UIActive == "") {
 			if (@event.IsActionPressed("interact")) {
 				Node2D target = find_nearest_interactable();
 
