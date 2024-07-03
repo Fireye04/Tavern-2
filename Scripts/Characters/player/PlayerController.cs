@@ -8,6 +8,22 @@ public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public int Speed { get; set; } = 400;
 
+	[Export]
+	public int gold = 100;
+
+	[Export]
+	public Inventory invUI;
+
+	[Export]
+	public menu menUI;
+
+	public string UIActive = "";
+
+	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
+		{"wine", 0},
+		{"ale", 0},
+	};
+
 	private Godot.Vector2 _player_in = new();
 
 	private List<Node2D> interactablesInRange = new List<Node2D>();
@@ -72,25 +88,48 @@ public partial class PlayerController : CharacterBody2D {
 
 	public override void _UnhandledInput(InputEvent @event) {
 
-		if (@event.IsActionPressed("interact")) {
-			Node2D target = find_nearest_interactable();
-
-			if (target != null) {
-
-				IInteractable iTarget = (IInteractable)target;
-				if (iTarget.canInteract()) {
-					iTarget.interact();
-					_player_in = new Godot.Vector2();
-					return;
-				} else {
-					DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
-				}
-			} else {
-				GD.Print("None in Range");
+		if (@event.IsActionPressed("inventory")) {
+			if (UIActive == "inventory") {
+				invUI.deactivate();
+				UIActive = "";
+			} else if (UIActive == "") {
+				invUI.activate(inventory);
+				UIActive = "inventory";
 			}
 		}
 
-		_player_in = Input.GetVector("left", "right", "up", "down");
+		if (@event.IsActionPressed("menu")) {
+			if (UIActive == "menu") {
+				menUI.deactivate();
+				UIActive = "";
+			} else {
+				menUI.activate();
+				UIActive = "menu";
+			}
+		}
+
+		if (UIActive == "") {
+			if (@event.IsActionPressed("interact")) {
+				Node2D target = find_nearest_interactable();
+
+				if (target != null) {
+
+					IInteractable iTarget = (IInteractable)target;
+					if (iTarget.canInteract()) {
+						iTarget.interact();
+						_player_in = new Godot.Vector2();
+						return;
+					} else {
+						DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
+					}
+				} else {
+					GD.Print("None in Range");
+				}
+			}
+
+
+			_player_in = Input.GetVector("left", "right", "up", "down");
+		}
 	}
 
 

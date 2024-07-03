@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnmk2u4es7k30"]
 
-[ext_resource type="Script" path="res://Scripts/DayUI.cs" id="1_e1av7"]
+[ext_resource type="Script" path="res://Scripts/UI/DayUI.cs" id="1_luysc"]
 [ext_resource type="PackedScene" uid="uid://dsoevoe7btql5" path="res://Scenes/UI/nextDay.tscn" id="1_yudtw"]
-[ext_resource type="Script" path="res://Scripts/dayLabel.cs" id="2_54vep"]
+[ext_resource type="Script" path="res://Scripts/UI/dayLabel.cs" id="3_eb4lt"]
 
 [node name="DayUI" type="Control"]
 layout_mode = 3
@@ -11,7 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_e1av7")
+mouse_filter = 2
+script = ExtResource("1_luysc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(100, 31)
@@ -41,8 +42,9 @@ offset_bottom = 40.0
 [node name="dayLabel" type="RichTextLabel" parent="HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Day 1"
 fit_content = true
-script = ExtResource("2_54vep")
+script = ExtResource("3_eb4lt")
 
 [connection signal="pressed" from="HBoxContainer/nextDay" to="HBoxContainer2/dayLabel" method="_on_next_day_pressed"]

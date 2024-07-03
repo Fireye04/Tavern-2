@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg5fn28qxtkr4"]
+
+[ext_resource type="Script" path="res://Scripts/UI/menu_slot.cs" id="1_gf40e"]
+
+[node name="Menu Slot" type="HBoxContainer" node_paths=PackedStringArray("optionb")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gf40e")
+optionb = NodePath("recipie")
+
+[node name="recipie" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+placeholder_text = "gold"
+
+[connection signal="item_focused" from="recipie" to="." method="_on_recipie_item_focused"]
+[connection signal="item_selected" from="recipie" to="." method="_on_recipie_item_selected"]
