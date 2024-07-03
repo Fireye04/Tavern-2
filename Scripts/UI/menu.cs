@@ -32,7 +32,7 @@ public partial class menu : Control {
 	}
 
 	public void updateRecipies(string prev, string cur) {
-
+		GD.Print(prev + " -> " + cur);
 		if (cur != "none") {
 			availableRecipies[cur] = false;
 		}
