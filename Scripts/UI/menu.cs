@@ -16,6 +16,10 @@ public partial class menu : Control {
 	public Dictionary<string, bool> availableRecipies = new Dictionary<string, bool>();
 
 
+	//for finalized recipies
+	public Dictionary<string, int> menuList = new Dictionary<string, int>();
+
+
 	public override void _Ready() {
 		foreach (var item in mList.GetChildren()) {
 			menuSlots.Add((menu_slot)item);
@@ -32,7 +36,6 @@ public partial class menu : Control {
 	}
 
 	public void updateRecipies(string prev, string cur) {
-		GD.Print(prev + " -> " + cur);
 		if (cur != "none") {
 			availableRecipies[cur] = false;
 		}
@@ -52,6 +55,14 @@ public partial class menu : Control {
 
 	public void deactivate() {
 		Visible = false;
+		foreach (var slot in menuSlots) {
+			if (slot.slotRecipie.Item1 != "none") {
+
+				menuList[slot.slotRecipie.Item1] = slot.finalValue();
+				GD.Print(slot.slotRecipie.Item1 + " - " + menuList[slot.slotRecipie.Item1]);
+			}
+
+		}
 	}
 
 
