@@ -4,8 +4,7 @@ using System.Numerics;
 using System.Collections.Generic;
 using DialogueManagerRuntime;
 
-public partial class PlayerController : CharacterBody2D
-{
+public partial class PlayerController : CharacterBody2D {
 	[Export]
 	public int Speed { get; set; } = 400;
 
@@ -14,6 +13,8 @@ public partial class PlayerController : CharacterBody2D
 
 	[Export]
 	public Inventory invUI;
+
+	public bool UIActive;
 
 	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
 		{"wine", 0},
@@ -30,26 +31,20 @@ public partial class PlayerController : CharacterBody2D
 	private Resource rejectionText;
 
 
-	private void _on_ready()
-	{
+	private void _on_ready() {
 		player = (CharacterBody2D)GetParent();
 	}
 
-	private void _on_interaction_range_body_entered(Node2D body)
-	{
-		if (body is IInteractable)
-		{
+	private void _on_interaction_range_body_entered(Node2D body) {
+		if (body is IInteractable) {
 			interactablesInRange.Add(body);
 
 		}
 	}
 
-	private void _on_interaction_range_body_exited(Node2D body)
-	{
-		if (body is IInteractable)
-		{
-			if (interactablesInRange.Contains(body))
-			{
+	private void _on_interaction_range_body_exited(Node2D body) {
+		if (body is IInteractable) {
+			if (interactablesInRange.Contains(body)) {
 				interactablesInRange.Remove(body);
 
 			}
@@ -57,32 +52,23 @@ public partial class PlayerController : CharacterBody2D
 	}
 
 
-	public Node2D find_nearest_interactable()
-	{
-		if (interactablesInRange.Count == 1)
-		{
+	public Node2D find_nearest_interactable() {
+		if (interactablesInRange.Count == 1) {
 			return interactablesInRange[0];
 
-		}
-		else if (interactablesInRange.Count > 1)
-		{
+		} else if (interactablesInRange.Count > 1) {
 
 			(Node2D, float) closest = default;
 
-			for (int i = 0; i < interactablesInRange.Count; i++)
-			{
+			for (int i = 0; i < interactablesInRange.Count; i++) {
 				Godot.Vector2 itemPos = interactablesInRange[i].GlobalPosition;
 
 				float distance = GlobalPosition.DistanceTo(itemPos);
 
-				if (closest.Item1 is null)
-				{
+				if (closest.Item1 is null) {
 					closest = (interactablesInRange[i], distance);
-				}
-				else
-				{
-					if (distance <= closest.Item2)
-					{
+				} else {
+					if (distance <= closest.Item2) {
 						closest = (interactablesInRange[i], distance);
 					}
 				}
@@ -90,53 +76,40 @@ public partial class PlayerController : CharacterBody2D
 
 			return closest.Item1;
 
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
 
 
 
-	public override void _UnhandledInput(InputEvent @event)
-	{
+	public override void _UnhandledInput(InputEvent @event) {
 
-		if (@event.IsActionPressed("inventory"))
-		{
-			if (invUI.isActive)
-			{
+		if (@event.IsActionPressed("inventory")) {
+			if (UIActive) {
 				invUI.deactivate();
-			}
-			else
-			{
+				UIActive = false;
+			} else {
 				invUI.activate(inventory);
+				UIActive = true;
 			}
 		}
 
-		if (!invUI.isActive)
-		{
-			if (@event.IsActionPressed("interact"))
-			{
+		if (!UIActive) {
+			if (@event.IsActionPressed("interact")) {
 				Node2D target = find_nearest_interactable();
 
-				if (target != null)
-				{
+				if (target != null) {
 
 					IInteractable iTarget = (IInteractable)target;
-					if (iTarget.canInteract())
-					{
+					if (iTarget.canInteract()) {
 						iTarget.interact();
 						_player_in = new Godot.Vector2();
 						return;
-					}
-					else
-					{
+					} else {
 						DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
 					}
-				}
-				else
-				{
+				} else {
 					GD.Print("None in Range");
 				}
 			}
@@ -148,8 +121,7 @@ public partial class PlayerController : CharacterBody2D
 
 
 
-	public override void _PhysicsProcess(double delta)
-	{
+	public override void _PhysicsProcess(double delta) {
 		Velocity = _player_in * Speed;
 		MoveAndSlide();
 	}

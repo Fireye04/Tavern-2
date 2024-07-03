@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg5fn28qxtkr4"]
+
+[ext_resource type="Script" path="res://Scripts/UI/menu_slot.cs" id="1_gf40e"]
+
+[node name="Menu Slot" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gf40e")
+
+[node name="recipie" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+placeholder_text = "gold"
