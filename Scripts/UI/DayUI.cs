@@ -13,6 +13,7 @@ public partial class DayUI : Control {
 
 	public void dayStart() {
 		dButton.Disabled = true;
+
 	}
 
 
