@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://fp1i7swpxc8x"]
+[gd_scene load_steps=6 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
+[ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="2_rguoj"]
+[ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="3_fw7qm"]
+[ext_resource type="PackedScene" uid="uid://c8pbmnyy4gike" path="res://Scenes/UI/inventory.tscn" id="4_yol5k"]
+[ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="5_tckeo"]
 
 [node name="Tavern" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_1tmq0")]
+[node name="Player" parent="." node_paths=PackedStringArray("invUI", "menUI") instance=ExtResource("1_1tmq0")]
 position = Vector2(149, 131)
+invUI = NodePath("../CanvasLayer/Inventory")
+menUI = NodePath("../CanvasLayer/Menu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DayUI" parent="CanvasLayer" instance=ExtResource("2_rguoj")]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("5_tckeo")]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_yol5k")]
+
+[node name="Barter" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("3_fw7qm")]
+pc = NodePath("../../Player")

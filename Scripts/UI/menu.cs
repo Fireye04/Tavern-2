@@ -60,6 +60,8 @@ public partial class menu : Control {
 
 				menuList[slot.slotRecipie.Item1] = slot.finalValue();
 				GD.Print(slot.slotRecipie.Item1 + " - " + menuList[slot.slotRecipie.Item1]);
+			} else {
+				slot.finalValue();
 			}
 
 		}

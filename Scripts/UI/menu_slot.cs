@@ -69,19 +69,19 @@ public partial class menu_slot : HBoxContainer {
 	private void _on_line_edit_text_submitted(string new_text) {
 		try {
 			slotRecipie = new Tuple<string, int>(slotRecipie.Item1, new_text.ToInt());
-			price.PlaceholderText = "gold";
 			price.ReleaseFocus();
 		} catch (FormatException) {
-			price.Text = "";
-			price.PlaceholderText = "int only";
+			price.Text = slotRecipie.Item2.ToString();
 			price.ReleaseFocus();
 		}
 	}
 
 	public int finalValue() {
 		try {
+			slotRecipie = new Tuple<string, int>(slotRecipie.Item1, price.Text.ToInt());
 			return price.Text.ToInt();
 		} catch (FormatException) {
+			price.Text = slotRecipie.Item2.ToString();
 			return slotRecipie.Item2;
 		}
 

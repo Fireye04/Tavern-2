@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=10 format=3 uid="uid://7nsgc6grdx1x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
-[ext_resource type="Resource" uid="uid://7kqb6y5p7pc7" path="res://Dialogue/Rejection.dialogue" id="2_4dc8l"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
 [ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="5_2i0im"]
 [ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="5_fskgp"]
@@ -17,7 +16,6 @@
 position = Vector2(461, 280)
 invUI = NodePath("../CanvasLayer/Inventory")
 menUI = NodePath("../CanvasLayer/Menu")
-rejectionText = ExtResource("2_4dc8l")
 
 [node name="Table" parent="." instance=ExtResource("3_uooeq")]
 position = Vector2(308, 64)
