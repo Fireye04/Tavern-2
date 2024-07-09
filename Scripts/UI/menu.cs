@@ -10,7 +10,8 @@ public partial class menu : Control {
 
 	public static List<string> recipies = new List<string> {
 		"wine",
-		"ale"
+		"ale",
+		"rum"
 	};
 
 	public Dictionary<string, bool> availableRecipies = new Dictionary<string, bool>();

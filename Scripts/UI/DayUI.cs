@@ -14,6 +14,11 @@ public partial class DayUI : Control {
 	public void dayStart() {
 		dButton.Disabled = true;
 
+		foreach (var table in GetTree().GetNodesInGroup("Tables")) {
+			var tab = (Table)table;
+			tab.spawnNpc();
+		}
+
 	}
 
 
