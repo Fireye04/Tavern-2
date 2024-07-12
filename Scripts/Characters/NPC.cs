@@ -4,20 +4,21 @@ using System;
 
 public partial class NPC : CharacterBody2D, IInteractable {
 
-	public NPC_Resource stats;
+	public static NPC_Resource stats;
+
+	public static barter bItem;
 
 	private IDialogueSource iSource;
 
-	public override void _Ready() {
+	public void init(NPC_Resource npc, barter b) {
+		stats = npc;
+		bItem = b;
 		var newNode = stats.DSource.Instantiate();
 		AddChild(newNode);
 
 		var bSource = (IBarter)newNode;
 
-		// bSource.setUI(bItem);
-
-
-
+		bSource.setUI(bItem);
 		iSource = (IDialogueSource)newNode;
 	}
 

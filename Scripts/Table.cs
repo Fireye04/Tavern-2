@@ -16,6 +16,11 @@ public partial class Table : StaticBody2D {
 	[Export]
 	public barter bItem { get; set; }
 
+	[Export]
+	public PackedScene pnpc;
+
+	public NPC npc;
+
 	public override void _Ready() {
 		npcList = new List<NPC_Resource>{
 			npc1,
@@ -34,5 +39,11 @@ public partial class Table : StaticBody2D {
 		}
 		var target = spawns[rand.Next(spawns.Count)];
 		GD.Print("spawning " + target.Name);
+		npc = (NPC)pnpc.Instantiate();
+		AddChild(npc);
+		npc.init(target, bItem);
+		npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
+
+
 	}
 }
