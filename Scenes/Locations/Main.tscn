@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=8 format=3 uid="uid://7nsgc6grdx1x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_ty017"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="3_uooeq"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="5_fskgp"]
 [ext_resource type="PackedScene" uid="uid://c8pbmnyy4gike" path="res://Scenes/UI/inventory.tscn" id="6_48od1"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="6_etjsq"]
-[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="6_vhch7"]
 [ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="7_iigys"]
-[ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="7_udqj1"]
 
 [node name="Main" type="Node2D"]
 
@@ -32,13 +30,9 @@ pc = NodePath("../../Player")
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("7_iigys")]
 
-[node name="NPC" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("5_2i0im")]
+[node name="NPC" parent="." instance=ExtResource("5_2i0im")]
 position = Vector2(758, 294)
-Stats = ExtResource("6_vhch7")
-bItem = NodePath("../CanvasLayer/Barter")
 
-[node name="NPC2" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("5_2i0im")]
+[node name="NPC2" parent="." instance=ExtResource("5_2i0im")]
 modulate = Color(1, 0.556863, 1, 1)
 position = Vector2(598, 474)
-Stats = ExtResource("7_udqj1")
-bItem = NodePath("../CanvasLayer/Barter")

@@ -4,7 +4,9 @@ using DialogueManagerRuntime;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-public partial class Lyra : Node, IDialogueSource, IBarter {
+public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
+
+	public int spawnChance = 1;
 
 	public static barter barterItem { get; set; }
 
@@ -105,5 +107,9 @@ public partial class Lyra : Node, IDialogueSource, IBarter {
 	public void setUI(barter bItem) {
 
 		barterItem = bItem;
+	}
+
+	public int getSpawnChance() {
+		return spawnChance;
 	}
 }

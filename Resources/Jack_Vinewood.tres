@@ -11,3 +11,4 @@ Can_interact = true
 Name = "Jack Vinewood"
 Rep = 1
 DSource = ExtResource("1_3qgrv")
+spawnChance = 2
