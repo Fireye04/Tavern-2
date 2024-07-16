@@ -4,7 +4,7 @@ using System;
 
 public partial class NPC : CharacterBody2D, IInteractable {
 
-	public static NPC_Resource stats;
+	public NPC_Resource stats;
 
 	public static barter bItem;
 
@@ -21,6 +21,7 @@ public partial class NPC : CharacterBody2D, IInteractable {
 		bSource.setUI(bItem);
 		iSource = (IDialogueSource)newNode;
 	}
+
 
 	public bool canInteract() {
 		return stats.Can_interact;

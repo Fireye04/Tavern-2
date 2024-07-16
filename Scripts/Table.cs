@@ -5,13 +5,7 @@ using System.Text;
 
 public partial class Table : StaticBody2D {
 
-	[Export]
-	public NPC_Resource npc1;
-
-	[Export]
-	public NPC_Resource npc2;
-
-	public List<NPC_Resource> npcList;
+	public static TableManager manager;
 
 	[Export]
 	public barter bItem { get; set; }
@@ -22,22 +16,24 @@ public partial class Table : StaticBody2D {
 	public NPC npc;
 
 	public override void _Ready() {
-		npcList = new List<NPC_Resource>{
-			npc1,
-			npc2
-		};
 
 	}
 
-	public void spawnNpc() {
+	public void setManager(TableManager man) {
+		manager = man;
+	}
+
+	public void spawnNpc(List<NPC_Resource> available) {
+
 		Random rand = new Random();
 		var spawns = new List<NPC_Resource>();
-		foreach (var npc in npcList) {
+		foreach (var npc in available) {
 			for (var i = 0; i < npc.spawnChance; i++) {
 				spawns.Add(npc);
 			}
 		}
 		var target = spawns[rand.Next(spawns.Count)];
+		manager.npcTaken(target);
 		GD.Print("spawning " + target.Name);
 		npc = (NPC)pnpc.Instantiate();
 		AddChild(npc);
