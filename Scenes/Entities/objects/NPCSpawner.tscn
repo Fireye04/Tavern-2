@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dccfbvid1tvqn"]
+
+[ext_resource type="Script" path="res://Scripts/objects/NPCSpawner.cs" id="1_xvfny"]
+[ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="2_whepe"]
+
+[node name="NPCSpawner" type="Node2D"]
+script = ExtResource("1_xvfny")
+pnpc = ExtResource("2_whepe")
