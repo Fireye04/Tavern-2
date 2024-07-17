@@ -1,7 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
-[ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="2_rguoj"]
 [ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="3_fw7qm"]
 [ext_resource type="PackedScene" uid="uid://c8pbmnyy4gike" path="res://Scenes/UI/inventory.tscn" id="4_yol5k"]
 [ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="5_tckeo"]
@@ -9,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/TableManager.cs" id="6_208rq"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="7_kn145"]
 [ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="8_aksfb"]
+[ext_resource type="PackedScene" uid="uid://dukvf553dglb8" path="res://Scenes/Entities/objects/door.tscn" id="9_528fo"]
 
 [node name="Tavern" type="Node2D"]
 
@@ -18,9 +18,6 @@ invUI = NodePath("../CanvasLayer/Inventory")
 menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DayUI" parent="CanvasLayer" node_paths=PackedStringArray("tm") instance=ExtResource("2_rguoj")]
-tm = NodePath("../../TableManager")
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("5_tckeo")]
 
@@ -41,3 +38,7 @@ bItem = NodePath("../../CanvasLayer/Barter")
 [node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
 position = Vector2(616, 367)
 bItem = NodePath("../../CanvasLayer/Barter")
+
+[node name="Door" parent="." instance=ExtResource("9_528fo")]
+position = Vector2(129, 617)
+targetPath = "res://Scenes/Locations/Main.tscn"
