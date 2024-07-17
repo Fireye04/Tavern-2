@@ -1,7 +1,9 @@
 using Godot;
 using System;
 
-public partial class Jack : Node, IDialogueSource, IBarter {
+public partial class Jack : Node, IDialogueSource, IBarter, INPC {
+
+	public int spawnChance = 1;
 
 	private int convoCount = 0;
 
@@ -35,5 +37,9 @@ public partial class Jack : Node, IDialogueSource, IBarter {
 
 	public void setUI(barter bItem) {
 		barterItem = bItem;
+	}
+
+	public int getSpawnChance() {
+		return spawnChance;
 	}
 }

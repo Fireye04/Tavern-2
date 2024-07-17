@@ -19,13 +19,17 @@ public partial class NPC_Resource : Resource {
 	[Export]
 	public PackedScene DSource { get; set; }
 
-	public NPC_Resource() : this(null, false, null, 0, null) { }
+	[Export]
+	public int spawnChance { get; set; }
 
-	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source) {
+	public NPC_Resource() : this(null, false, null, 0, null, 0) { }
+
+	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
 		Dialogue = dialogue;
 		Can_interact = can_interact;
 		Name = name;
 		Rep = rep;
 		DSource = source;
+		spawnChance = spc;
 	}
 }
