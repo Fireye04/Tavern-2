@@ -6,11 +6,15 @@ public partial class Tavern : Node2D {
 	[Export]
 	public DayUI day;
 
+	[Export]
+	public TableManager tabMan;
+
 	public void openTavern() {
 		// Order matters, nextstate upadtes based on value!
 		// this is stupid but so am i
 		GameState.currentState = State.open;
 		day.nextState();
+		tabMan.spawn();
 	}
 
 	public void closeTavern() {
@@ -18,6 +22,7 @@ public partial class Tavern : Node2D {
 		// this is stupid but so am i
 		GameState.currentState = State.closed_afternoon;
 		day.nextState();
+		tabMan.clear();
 	}
 
 

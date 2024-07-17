@@ -13,9 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://51tbxqo6uuv0" path="res://Scenes/Entities/objects/InsideDoor.tscn" id="11_46p04"]
 [ext_resource type="PackedScene" uid="uid://c5w6lt1uovwle" path="res://Scenes/Entities/objects/bed.tscn" id="12_wrjxu"]
 
-[node name="Tavern" type="Node2D" node_paths=PackedStringArray("day")]
+[node name="Tavern" type="Node2D" node_paths=PackedStringArray("day", "tabMan")]
 script = ExtResource("1_tfvbr")
 day = NodePath("CanvasLayer/DayUI")
+tabMan = NodePath("TableManager")
 
 [node name="Player" parent="." node_paths=PackedStringArray("invUI", "menUI") instance=ExtResource("1_1tmq0")]
 position = Vector2(201, 366)

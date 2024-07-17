@@ -39,7 +39,10 @@ public partial class Table : StaticBody2D {
 		AddChild(npc);
 		npc.init(target, bItem);
 		npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
+	}
 
-
+	public void clearNpc() {
+		manager.npcFree(npc.stats);
+		npc.QueueFree();
 	}
 }
