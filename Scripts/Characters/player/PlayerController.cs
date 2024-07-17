@@ -22,6 +22,7 @@ public partial class PlayerController : CharacterBody2D {
 	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
 		{"wine", 0},
 		{"ale", 0},
+		{"rum", 0},
 	};
 
 	private Godot.Vector2 _player_in = new();

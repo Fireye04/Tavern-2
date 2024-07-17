@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bukwus8ib5akw"]
+[gd_scene load_steps=5 format=3 uid="uid://bukwus8ib5akw"]
 
 [ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="1_6jpbs"]
+[ext_resource type="Script" path="res://Scripts/Table.cs" id="1_t7y57"]
+[ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="4_dys3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeqt0"]
 size = Vector2(131, 131)
 
 [node name="Table" type="StaticBody2D" groups=["Tables"]]
+script = ExtResource("1_t7y57")
+pnpc = ExtResource("4_dys3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)

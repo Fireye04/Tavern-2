@@ -10,7 +10,8 @@ public partial class barter : Control {
 
 	public Dictionary<string, int> resourceVals = new Dictionary<string, int>(){
 		{"wine", 5},
-		{"ale", 1}
+		{"ale", 1},
+		{"rum", 3}
 	};
 
 

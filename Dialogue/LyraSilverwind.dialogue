@@ -28,6 +28,8 @@ else
 	do Deal("wine")
 - Ale
 	do Deal("ale")
+- Rum
+	do Deal("rum")
 - Quit
 	if npc_Resource.Rep > 1
 		Lyra: Pleasure doing business
