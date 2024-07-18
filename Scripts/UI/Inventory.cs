@@ -8,8 +8,8 @@ public partial class Inventory : Control {
 	public VBoxContainer invBox;
 
 
-	public void activate(Dictionary<string, int> inv) {
-		foreach (var item in inv) {
+	public void activate() {
+		foreach (var item in GameState.inventory) {
 			var rtl = new Label {
 				CustomMinimumSize = new Vector2(100, 25),
 				Text = item.Key + "- " + item.Value.ToString()

@@ -8,16 +8,6 @@ using System.ComponentModel;
 
 public partial class barter : Control {
 
-	public Dictionary<string, int> resourceVals = new Dictionary<string, int>(){
-		{"wine", 5},
-		{"ale", 1},
-		{"rum", 3}
-	};
-
-
-	[Export]
-	public PlayerController pc;
-
 	public Node target;
 
 	[Export]
@@ -32,7 +22,7 @@ public partial class barter : Control {
 	public static bool started = false;
 
 	public override void _Ready() {
-		goldLabel.Text = "Gold: " + pc.gold.ToString();
+		goldLabel.Text = "Gold: " + GameState.gold.ToString();
 	}
 
 	public LineEdit startStuff(NPC_Resource npcr) {
@@ -55,7 +45,7 @@ public partial class barter : Control {
 	}
 
 	public void goldUpdate() {
-		goldLabel.Text = "Gold: " + pc.gold.ToString();
+		goldLabel.Text = "Gold: " + GameState.gold.ToString();
 	}
 
 }

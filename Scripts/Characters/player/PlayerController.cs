@@ -9,9 +9,6 @@ public partial class PlayerController : CharacterBody2D {
 	public int Speed { get; set; } = 400;
 
 	[Export]
-	public int gold = 100;
-
-	[Export]
 	public Inventory invUI;
 
 	[Export]
@@ -19,11 +16,7 @@ public partial class PlayerController : CharacterBody2D {
 
 	public string UIActive = "";
 
-	public Dictionary<string, int> inventory = new Dictionary<string, int>(){
-		{"wine", 0},
-		{"ale", 0},
-		{"rum", 0},
-	};
+
 
 	private Godot.Vector2 _player_in = new();
 
@@ -94,7 +87,7 @@ public partial class PlayerController : CharacterBody2D {
 				invUI.deactivate();
 				UIActive = "";
 			} else if (UIActive == "") {
-				invUI.activate(inventory);
+				invUI.activate();
 				UIActive = "inventory";
 			}
 		}

@@ -1,13 +1,14 @@
 using Godot;
 using System;
 
-public partial class Jack : Node, IDialogueSource, IBarter, INPC {
+public partial class Jack : Node, IDialogueSource, INPC {
 
 	public int spawnChance = 1;
 
 	private int convoCount = 0;
 
 	private barter barterItem;
+	private static NPC dad;
 
 	private NPC_Resource npc_Resource;
 
@@ -23,6 +24,10 @@ public partial class Jack : Node, IDialogueSource, IBarter, INPC {
 
 	public NPC_Resource GetResource() {
 		return npc_Resource;
+	}
+
+	public void leaveT() {
+		dad.leave();
 	}
 
 	public string getConversation() {
@@ -41,5 +46,9 @@ public partial class Jack : Node, IDialogueSource, IBarter, INPC {
 
 	public int getSpawnChance() {
 		return spawnChance;
+	}
+
+	public void init(NPC obj) {
+		dad = obj;
 	}
 }

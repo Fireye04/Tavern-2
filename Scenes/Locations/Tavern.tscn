@@ -30,8 +30,7 @@ menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_yol5k")]
 
-[node name="Barter" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("3_fw7qm")]
-pc = NodePath("../../Player")
+[node name="Barter" parent="CanvasLayer" instance=ExtResource("3_fw7qm")]
 
 [node name="DayUI" parent="CanvasLayer" instance=ExtResource("2_rguoj")]
 

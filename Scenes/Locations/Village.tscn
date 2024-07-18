@@ -19,8 +19,7 @@ menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Barter" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("2_gx458")]
-pc = NodePath("../../Player")
+[node name="Barter" parent="CanvasLayer" instance=ExtResource("2_gx458")]
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_7li1e")]
 

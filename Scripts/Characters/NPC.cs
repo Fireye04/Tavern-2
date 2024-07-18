@@ -16,12 +16,16 @@ public partial class NPC : CharacterBody2D, IInteractable {
 		var newNode = stats.DSource.Instantiate();
 		AddChild(newNode);
 
-		var bSource = (IBarter)newNode;
+		var bSource = (INPC)newNode;
+		bSource.init(this);
 
 		bSource.setUI(bItem);
 		iSource = (IDialogueSource)newNode;
 	}
 
+	public void leave() {
+		QueueFree();
+	}
 
 	public bool canInteract() {
 		return stats.Can_interact;
