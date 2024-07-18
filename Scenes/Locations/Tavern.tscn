@@ -1,33 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://fp1i7swpxc8x"]
+[gd_scene load_steps=13 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
+[ext_resource type="Script" path="res://Scripts/Tavern.cs" id="1_tfvbr"]
 [ext_resource type="PackedScene" uid="uid://dnmk2u4es7k30" path="res://Scenes/UI/DayUI.tscn" id="2_rguoj"]
 [ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="3_fw7qm"]
 [ext_resource type="PackedScene" uid="uid://c8pbmnyy4gike" path="res://Scenes/UI/inventory.tscn" id="4_yol5k"]
 [ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="5_tckeo"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="6_0oc6x"]
-[ext_resource type="Script" path="res://Scripts/TableManager.cs" id="6_208rq"]
+[ext_resource type="Script" path="res://Scripts/objects/TableManager.cs" id="6_208rq"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="7_kn145"]
 [ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="8_aksfb"]
+[ext_resource type="PackedScene" uid="uid://51tbxqo6uuv0" path="res://Scenes/Entities/objects/InsideDoor.tscn" id="11_46p04"]
+[ext_resource type="PackedScene" uid="uid://c5w6lt1uovwle" path="res://Scenes/Entities/objects/bed.tscn" id="12_wrjxu"]
 
-[node name="Tavern" type="Node2D"]
+[node name="Tavern" type="Node2D" node_paths=PackedStringArray("mu", "day", "tabMan")]
+script = ExtResource("1_tfvbr")
+mu = NodePath("CanvasLayer/Menu")
+day = NodePath("CanvasLayer/DayUI")
+tabMan = NodePath("TableManager")
 
 [node name="Player" parent="." node_paths=PackedStringArray("invUI", "menUI") instance=ExtResource("1_1tmq0")]
-position = Vector2(149, 131)
+position = Vector2(201, 366)
 invUI = NodePath("../CanvasLayer/Inventory")
 menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="DayUI" parent="CanvasLayer" node_paths=PackedStringArray("tm") instance=ExtResource("2_rguoj")]
-tm = NodePath("../../TableManager")
-
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("5_tckeo")]
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_yol5k")]
 
-[node name="Barter" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("3_fw7qm")]
-pc = NodePath("../../Player")
+[node name="Barter" parent="CanvasLayer" instance=ExtResource("3_fw7qm")]
+
+[node name="DayUI" parent="CanvasLayer" instance=ExtResource("2_rguoj")]
 
 [node name="TableManager" type="Node2D" parent="."]
 script = ExtResource("6_208rq")
@@ -41,3 +46,11 @@ bItem = NodePath("../../CanvasLayer/Barter")
 [node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
 position = Vector2(616, 367)
 bItem = NodePath("../../CanvasLayer/Barter")
+
+[node name="Inside Door" parent="." instance=ExtResource("11_46p04")]
+position = Vector2(198, 508)
+targetPath = "res://Scenes/Locations/Village.tscn"
+
+[node name="Bed" parent="." node_paths=PackedStringArray("tav") instance=ExtResource("12_wrjxu")]
+position = Vector2(-279, 340)
+tav = NodePath("..")

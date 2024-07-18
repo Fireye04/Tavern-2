@@ -5,20 +5,18 @@ public partial class DayUI : Control {
 	public int currentDay = 0;
 
 	[Export]
-	public Button dButton;
+	public dayLabel dl;
 
-	[Export] TableManager tm;
+	[Export]
+	public StatusLabel sl;
 
-	public void dayOver() {
-		dButton.Disabled = false;
+	public void nextDay() {
+		currentDay += 1;
+		dl.dayUpdate();
+		sl.stateUpdate();
 	}
 
-	public void dayStart() {
-		dButton.Disabled = true;
-
-		tm.spawn();
-
+	public void nextState() {
+		sl.stateUpdate();
 	}
-
-
 }

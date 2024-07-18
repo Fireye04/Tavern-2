@@ -40,9 +40,6 @@ public partial class TableManager : Node2D {
 	public void npcTaken(NPC_Resource taken) {
 		npcList.Remove(taken);
 		takenList.Add(taken);
-		foreach (var item in npcList) {
-			GD.Print(item.Name + " Remains");
-		}
 	}
 
 	public void npcFree(NPC_Resource freed) {
@@ -56,5 +53,10 @@ public partial class TableManager : Node2D {
 		}
 	}
 
+	public void clear() {
+		foreach (var tab in tables) {
+			tab.clearNpc();
+		}
+	}
 
 }

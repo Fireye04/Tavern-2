@@ -4,7 +4,7 @@ using DialogueManagerRuntime;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
+public partial class Lyra : Node, IDialogueSource, INPC {
 
 	public int spawnChance = 1;
 
@@ -27,6 +27,8 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 
 	private NPC_Resource npc_Resource;
 
+	private static NPC dad;
+
 
 	public override void _Ready() {
 		npc_Resource = GD.Load<NPC_Resource>("res://Resources/Lyra_Silverwind.tres");
@@ -39,13 +41,13 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 
 		offerItem = barterItem.startStuff(npc_Resource);
 
-		var value = barterItem.resourceVals[resource.ToLower()];
+		var value = GameState.resourceVals[resource.ToLower()];
 		item = new Tuple<string, int>(resource, value);
 		offerItem.GrabFocus();
 		await ToSignal(offerItem, "text_submitted");
 		try {
 			offerAmount = offerItem.Text.ToInt();
-			if (barterItem.pc.gold < offerAmount) {
+			if (GameState.gold < offerAmount) {
 				offerItem.Text = "";
 				offerItem.PlaceholderText = "funds";
 				await Deal(resource);
@@ -65,7 +67,7 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 
 	public void transaction() {
 		removeGold(offerAmount);
-		barterItem.pc.inventory[item.Item1] += 1;
+		GameState.inventory[item.Item1] += 1;
 	}
 
 
@@ -74,12 +76,12 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 	}
 
 	public void addGold(int val) {
-		barterItem.pc.gold -= val;
+		GameState.gold -= val;
 		barterItem.goldUpdate();
 	}
 
 	public void removeGold(int val) {
-		barterItem.pc.gold -= val;
+		GameState.gold -= val;
 		barterItem.goldUpdate();
 	}
 
@@ -93,11 +95,20 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 		barterItem.repUpdate(npc_Resource);
 	}
 
+	public void leaveT() {
+		dad.leave();
+	}
+
 
 	public string getConversation() {
 		convoCount += 1;
 		if (convoCount == 1) {
-			return "convo1";
+			if (GameState.currentState == State.open) {
+				return "convo1_inside";
+			} else {
+				return "convo1_outside";
+			}
+
 		} else {
 			return "catchall";
 		}
@@ -111,5 +122,9 @@ public partial class Lyra : Node, IDialogueSource, IBarter, INPC {
 
 	public int getSpawnChance() {
 		return spawnChance;
+	}
+
+	public void init(NPC obj) {
+		dad = obj;
 	}
 }

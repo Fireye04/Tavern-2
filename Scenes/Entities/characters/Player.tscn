@@ -26,7 +26,12 @@ position = Vector2(-1.75, -0.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
 position = Vector2(-0.25, -0.75)
+scale = Vector2(1.25, 1.25)
 shape = SubResource("RectangleShape2D_eqj4r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.675, 0.675)
+position_smoothing_enabled = true
 
 [connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]
 [connection signal="body_exited" from="InteractionRange" to="." method="_on_interaction_range_body_exited"]

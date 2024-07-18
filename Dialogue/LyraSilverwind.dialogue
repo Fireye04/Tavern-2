@@ -1,6 +1,28 @@
-~ convo1
+~ convo1_inside
 
-Lyra: Hello. I am {{npc_Resource.Name}}. It is good to meet you.
+Lyra: Hello. I am Lyra Silverwind. 
+Lyra: This is a fine establishment you've come into ownership of.
+Lyra: For your sake, I hope you do its history justice.
+- I hope so too.
+	Lyra: Good
+	do leaveT()
+- Interesting, anyway, what can I get you?
+	Lyra: Nothing. I simply came to observe the premises. Goodbye.
+	do leaveT()
+- It's my place now, and I'll do with it as I please.
+	Lyra: Hmmm...
+	Lyra: I think I like you.
+	Lyra: Do take care of the place; I'll be back.
+	do leaveT()
+	
+	
+	
+	
+=> END
+
+~ convo1_outside
+
+Lyra: Hello. I am Lyra Silverwind. It is good to meet you.
 - Goodbye
 	Lyra: Adieu
 - Barter with me
@@ -8,7 +30,15 @@ Lyra: Hello. I am {{npc_Resource.Name}}. It is good to meet you.
 
 => END
 
-~ catchall
+~ catchall_inside
+
+Lyra: I hope to see you around.
+- Goodbye
+	Lyra: Adieu
+
+=> END
+
+~ catchall_outside
 
 Lyra: I hope to see you around.
 - Goodbye
