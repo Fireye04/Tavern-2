@@ -4,6 +4,9 @@ using System;
 public partial class Tavern : Node2D {
 
 	[Export]
+	public menu mu;
+
+	[Export]
 	public DayUI day;
 
 	[Export]
@@ -14,7 +17,9 @@ public partial class Tavern : Node2D {
 		// this is stupid but so am i
 		GameState.currentState = State.open;
 		day.nextState();
+		mu.stopEdits();
 		tabMan.spawn();
+
 	}
 
 	public void closeTavern() {
@@ -22,6 +27,7 @@ public partial class Tavern : Node2D {
 		// this is stupid but so am i
 		GameState.currentState = State.closed_afternoon;
 		day.nextState();
+		mu.allowEdits();
 		tabMan.clear();
 	}
 

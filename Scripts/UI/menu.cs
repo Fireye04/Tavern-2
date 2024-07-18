@@ -1,52 +1,60 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public partial class menu : Control {
+
 	[Export]
 	public VBoxContainer mList;
 
 	public List<menu_slot> menuSlots = new List<menu_slot>();
 
-	public static List<string> recipies = new List<string> {
-		"wine",
-		"ale",
-		"rum"
-	};
-
-	public Dictionary<string, bool> availableRecipies = new Dictionary<string, bool>();
+	[Export]
+	public PackedScene mslot;
 
 
 	//for finalized recipies
-	public Dictionary<string, int> menuList = new Dictionary<string, int>();
+	public List<(string, int)> menuList = new List<(string, int)>();
 
 
 	public override void _Ready() {
-		foreach (var item in mList.GetChildren()) {
-			menuSlots.Add((menu_slot)item);
+		menuList = GameState.currentMenu;
+
+		foreach (var item in menuList) {
+
+			menu_slot slot = (menu_slot)mslot.Instantiate();
+			mList.AddChild(slot);
+			menuSlots.Add(slot);
+			slot.initOptions(this, item.Item1, item.Item2);
 		}
 
-		foreach (var recipie in recipies) {
-			availableRecipies.Add(recipie, true);
-		}
+	}
 
 
+	public void stopEdits() {
 		foreach (var slot in menuSlots) {
-			slot.initOptions();
+			slot.stopEdit();
+		}
+	}
+
+	public void allowEdits() {
+		foreach (var slot in menuSlots) {
+			slot.allowEdit();
 		}
 	}
 
 	public void updateRecipies(string prev, string cur) {
 		if (cur != "none") {
-			availableRecipies[cur] = false;
+			GameState.availableRecipies[cur] = false;
 		}
 
-		if (prev != "none") {
-			availableRecipies[prev] = true;
-		}
+		GameState.availableRecipies[prev] = true;
 
+
+		GD.Print(prev + " -> " + cur);
 		foreach (var slot in menuSlots) {
-			slot.updateOptions(availableRecipies);
+			slot.updateOptions();
 		}
 	}
 
@@ -56,16 +64,15 @@ public partial class menu : Control {
 
 	public void deactivate() {
 		Visible = false;
-		foreach (var slot in menuSlots) {
-			if (slot.slotRecipie.Item1 != "none") {
 
-				menuList[slot.slotRecipie.Item1] = slot.finalValue();
-				GD.Print(slot.slotRecipie.Item1 + " - " + menuList[slot.slotRecipie.Item1]);
-			} else {
-				slot.finalValue();
-			}
+		for (int i = 0; i < menuSlots.Count; i++) {
 
+			menuList[i] = menuSlots[i].finalValue();
+			GD.Print(menuSlots[i].slotRecipie.Item1 + " - " + menuList[i]);
 		}
+
+		GameState.currentMenu = menuList;
+
 	}
 
 

@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_77gwg")
 mList = NodePath("MarginContainer/MarginContainer/mList")
+mslot = ExtResource("2_tb10y")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -44,11 +45,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
-
-[node name="Menu Slot" parent="MarginContainer/MarginContainer/mList" node_paths=PackedStringArray("menuItem") instance=ExtResource("2_tb10y")]
-layout_mode = 2
-menuItem = NodePath("../../../..")
-
-[node name="Menu Slot2" parent="MarginContainer/MarginContainer/mList" node_paths=PackedStringArray("menuItem") instance=ExtResource("2_tb10y")]
-layout_mode = 2
-menuItem = NodePath("../../../..")
