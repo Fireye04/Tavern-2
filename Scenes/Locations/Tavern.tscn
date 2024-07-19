@@ -36,7 +36,8 @@ menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="DayUI" parent="CanvasLayer" instance=ExtResource("2_rguoj")]
 
-[node name="Cooking" parent="CanvasLayer" instance=ExtResource("7_p3is8")]
+[node name="Cooking" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("7_p3is8")]
+pc = NodePath("../../Player")
 
 [node name="TableManager" type="Node2D" parent="."]
 script = ExtResource("6_208rq")

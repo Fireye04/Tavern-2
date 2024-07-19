@@ -28,7 +28,8 @@ menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="DayUI" parent="CanvasLayer" instance=ExtResource("5_vihgc")]
 
-[node name="Cooking" parent="CanvasLayer" instance=ExtResource("6_85xvg")]
+[node name="Cooking" parent="CanvasLayer" node_paths=PackedStringArray("pc") instance=ExtResource("6_85xvg")]
+pc = NodePath("../../Player")
 
 [node name="Door" parent="." instance=ExtResource("7_wtqcd")]
 position = Vector2(148, -86)

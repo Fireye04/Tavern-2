@@ -96,7 +96,7 @@ public partial class PlayerController : CharacterBody2D {
 			if (UIActive == "menu") {
 				menUI.deactivate();
 				UIActive = "";
-			} else {
+			} else if (UIActive == "") {
 				menUI.activate();
 				UIActive = "menu";
 			}
@@ -114,7 +114,14 @@ public partial class PlayerController : CharacterBody2D {
 						_player_in = new Godot.Vector2();
 						return;
 					} else {
-						DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
+						// Only show rejection text on npcs
+						try {
+							INPC tar = (INPC)target;
+
+							DialogueManager.ShowExampleDialogueBalloon(rejectionText, "start");
+						} catch {
+
+						}
 					}
 				} else {
 					GD.Print("None in Range");
