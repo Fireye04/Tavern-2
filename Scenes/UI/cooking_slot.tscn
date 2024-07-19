@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://coy3lqw1nkile"]
+
+[ext_resource type="Script" path="res://Scripts/UI/cooking_slot.cs" id="1_5trln"]
+[ext_resource type="PackedScene" uid="uid://dyex42imfnl3b" path="res://Scenes/UI/ingredent.tscn" id="2_knmrc"]
+
+[node name="Cooking Slot" type="MarginContainer" node_paths=PackedStringArray("itemName", "spawnloc")]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 300.0
+offset_bottom = 55.0
+script = ExtResource("1_5trln")
+ingred = ExtResource("2_knmrc")
+itemName = NodePath("VBoxContainer/HBoxContainer/Label")
+spawnloc = NodePath("VBoxContainer/MarginContainer/Spawn loc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cook!"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Item name goes here"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="Spawn loc" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2

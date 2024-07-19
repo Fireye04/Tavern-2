@@ -8,20 +8,26 @@ public partial class GameState : Node {
     //Actual game state
     public static State currentState = State.closed_morning;
 
-
+    //Resources
     public static Dictionary<string, int> resourceVals = new Dictionary<string, int>(){
         {"wine", 5},
         {"ale", 1},
         {"rum", 3}
     };
 
+    public static Dictionary<string, List<(string, int)>> Recipies = new Dictionary<string, List<(string, int)>>(){
+        {"wine", new List<(string, int)>{("wine", 1)}},
+        {"ale", new List<(string, int)>{("ale", 1)}},
+        {"rum", new List<(string, int)>{("rum", 1)}}
+    };
+
     //Player posessions
     public static int gold = 100;
 
     public static Dictionary<string, int> inventory = new Dictionary<string, int>(){
-        {"wine", 0},
-        {"ale", 0},
-        {"rum", 0},
+        {"wine", 5},
+        {"ale", 5},
+        {"rum", 5},
     };
 
     //Menu persistence
