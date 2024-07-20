@@ -15,7 +15,7 @@ public partial class GameState : Node {
         {"rum", 3}
     };
 
-    public static Dictionary<string, List<(string, int)>> Recipies = new Dictionary<string, List<(string, int)>>(){
+    public static Dictionary<string, List<(string, int)>> RecipiesIngredients = new Dictionary<string, List<(string, int)>>(){
         {"wine", new List<(string, int)>{("wine", 1)}},
         {"ale", new List<(string, int)>{("ale", 1)}},
         {"rum", new List<(string, int)>{("rum", 1)}}
@@ -29,6 +29,8 @@ public partial class GameState : Node {
         {"ale", 5},
         {"rum", 5},
     };
+
+    public static string held = "Nothing";
 
     //Menu persistence
     public static List<(string, int)> currentMenu = new List<(string, int)>(){

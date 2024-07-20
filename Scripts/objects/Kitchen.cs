@@ -11,6 +11,9 @@ public partial class Kitchen : StaticBody2D, IInteractable {
 	}
 
 	public void interact() {
-		cookUI.activate();
+		if (GameState.currentState == State.open) {
+			cookUI.activate();
+		}
+
 	}
 }
