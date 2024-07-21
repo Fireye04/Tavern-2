@@ -21,6 +21,13 @@ public partial class cooking : Control {
 	[Export]
 	public DayUI dui;
 
+	public void updateInv() {
+		foreach (Label chi in invspawn.GetChildren()) {
+			var tex = chi.Text.Split("- ");
+			chi.Text = tex[0] + "- " + GameState.inventory[tex[0]].ToString();
+		}
+	}
+
 
 	public void activate() {
 		pc.UIActive = "cook";
@@ -85,6 +92,7 @@ public partial class cooking : Control {
 			}
 			GameState.held = item;
 			dui.updateHeld(GameState.held);
+			updateInv();
 		}
 
 	}
