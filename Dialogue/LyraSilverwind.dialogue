@@ -1,22 +1,9 @@
 ~ convo1_inside
 
-Lyra: Hello. I am Lyra Silverwind. 
-Lyra: This is a fine establishment you've come into ownership of.
-Lyra: For your sake, I hope you do its history justice.
-- I hope so too.
-	Lyra: Good
-	do leaveT()
-- Interesting, anyway, what can I get you?
-	Lyra: Nothing. I simply came to observe the premises. Goodbye.
-	do leaveT()
-- It's my place now, and I'll do with it as I please.
-	Lyra: Hmmm...
-	Lyra: I think I like you.
-	Lyra: Do take care of the place; I'll be back.
-	do leaveT()
-	
-	
-	
+Narrator: An elven woman, bearing a few notable scars sits at the table.
+- Hi! What can I get for you?
+	Lyra: Hmm, 
+- 
 	
 => END
 
