@@ -22,6 +22,8 @@ public partial class NPC_Resource : Resource {
 	[Export]
 	public int spawnChance { get; set; }
 
+	public int convoCount { get; set; }
+
 	public NPC_Resource() : this(null, false, null, 0, null, 0) { }
 
 	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
@@ -31,5 +33,6 @@ public partial class NPC_Resource : Resource {
 		Rep = rep;
 		DSource = source;
 		spawnChance = spc;
+		convoCount = 0;
 	}
 }

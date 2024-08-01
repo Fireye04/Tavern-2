@@ -1,0 +1,88 @@
+~ convo1_inside
+
+N: Hello. I am N. I am here for a suitable meal for my daughter. 
+N: Is this something you offer?
+ 
+	
+=> END
+
+~ convo1_outside
+
+N: Hello. You are unfamiliar.
+
+=> END
+
+~ catchall_inside
+
+N: I would like to request the usual.
+
+=> END
+
+~ catchall_outside
+
+N: Hello. Would you like to purchase something?
+- No
+	N: Understood.
+- Sure
+	=> startDeal
+
+=> END
+
+~ startDeal
+if not N.repeatedDeal
+	N: I got beef.
+else
+	N: ...
+
+- Wine
+	do N.Deal("wine")
+- Ale
+	do N.Deal("ale")
+- Rum
+	do N.Deal("rum")
+- Bread
+	do N.Deal("bread")
+- Beef
+	do N.Deal("beef")
+- Corn
+	do N.Deal("corn")
+- Cheese
+	do N.Deal("cheese")
+- Milk
+	do N.Deal("milk")
+- Quit
+	if N.npc_Resource.Rep > 1
+		N: Goodbye.
+	else 
+		N: If you have no further business please exit the premeses.
+	=> END
+=> checks
+
+=> END
+
+~ checks
+
+if N.happiness > 1
+	N: This is a profitable outcome. 
+	do N.addRep(1)
+	do N.transaction()
+elif 0 <= N.happiness and N.happiness <= 1
+	N: Accepted.
+	do transaction()
+elif -1 <= N.happiness and N.happiness < 0
+	N: This is an unfavorable outcome. Very well.
+	do N.removeRep(1)
+	do N.transaction()
+else
+	N: Negative. No deal.
+	- New Deal!
+		set N.repeatedDeal = true
+		=> startDeal
+	- Whatever
+if N.npc_Resource.Rep > 1
+	N: Goodbye.
+else 
+	N: If you have no further business please exit the premeses.
+
+do N.endDeal()
+=> END

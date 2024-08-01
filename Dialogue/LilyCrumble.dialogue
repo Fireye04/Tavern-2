@@ -1,0 +1,72 @@
+~ convo1_inside
+
+Lily: Hiya! I think it's so cool that you just fixed up the old tavern!  
+ 
+=> END
+
+~ convo1_outside
+
+Lily: Hi! Welcome to the crumble bakery! What can I getcha?!
+
+=> END
+
+~ catchall_inside
+
+Lily: What you got for me today tavernkeeper?
+
+=> END
+
+~ catchall_outside
+
+Lily: Welcome back! What can I getcha?!
+- Nothing, just browsing
+	Lily: Cool! Browse away!!
+- What do you have?
+	=> startDeal
+
+=> END
+
+~ startDeal
+if not Lily.repeatedDeal
+	Lily: Bread! We have bread.
+else
+	Lily: :)
+
+- Bread
+	do Lily.Deal("bread")
+- Quit
+	if Lily.npc_Resource.Rep > 1
+		Lily: Seeya next time!
+	else 
+		Lily: Byeee
+	=> END
+=> checks
+
+=> END
+
+~ checks
+
+if Lily.happiness > 1
+	Lily: Wow, you sure? I mean, I'll take it, thanks!
+	do Lily.addRep(1)
+	do Lily.transaction()
+elif 0 <= Lily.happiness and Lily.happiness <= 1
+	Lily: Cool!
+	do Lily.transaction()
+elif -1 <= Lily.happiness and Lily.happiness < 0
+	Lily: You drive a hard bargain, alright.
+	do Lily.removeRep(1)
+	do Lily.transaction()
+else
+	Lily: Can't do that, sorry!
+	- New Deal!
+		set Lily.repeatedDeal = true
+		=> startDeal
+	- Ok
+if Lily.npc_Resource.Rep > 1
+	Lily: Seeya next time!
+else 
+	Lily: Byeee
+
+do Lily.endDeal()
+=> END

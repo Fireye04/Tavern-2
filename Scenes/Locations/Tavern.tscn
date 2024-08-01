@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://fp1i7swpxc8x"]
+[gd_scene load_steps=18 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
 [ext_resource type="Script" path="res://Scripts/Tavern.cs" id="1_tfvbr"]
@@ -10,9 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/objects/TableManager.cs" id="6_208rq"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="7_kn145"]
 [ext_resource type="PackedScene" uid="uid://c6eoorkqshxrw" path="res://Scenes/UI/cooking.tscn" id="7_p3is8"]
-[ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="8_aksfb"]
+[ext_resource type="Resource" uid="uid://dlu05eabxlshg" path="res://Resources/Carver.tres" id="10_ntr2s"]
 [ext_resource type="PackedScene" uid="uid://51tbxqo6uuv0" path="res://Scenes/Entities/objects/InsideDoor.tscn" id="11_46p04"]
+[ext_resource type="Resource" uid="uid://s6ilc653fbgv" path="res://Resources/Lily_Crumble.tres" id="11_lscnb"]
+[ext_resource type="Resource" uid="uid://g2oaafc7ljj" path="res://Resources/Lucian_Barnes.tres" id="12_h2drm"]
 [ext_resource type="PackedScene" uid="uid://c5w6lt1uovwle" path="res://Scenes/Entities/objects/bed.tscn" id="12_wrjxu"]
+[ext_resource type="Resource" uid="uid://ceits7xel71wd" path="res://Resources/N_Ref.tres" id="13_got0i"]
 [ext_resource type="PackedScene" uid="uid://dyu8wmgo0q3ne" path="res://Scenes/Entities/objects/Kitchen.tscn" id="14_rqf5i"]
 
 [node name="Tavern" type="Node2D" node_paths=PackedStringArray("mu", "day", "tabMan")]
@@ -43,7 +46,10 @@ dui = NodePath("../DayUI")
 [node name="TableManager" type="Node2D" parent="."]
 script = ExtResource("6_208rq")
 npc1 = ExtResource("7_kn145")
-npc2 = ExtResource("8_aksfb")
+npc2 = ExtResource("10_ntr2s")
+npc3 = ExtResource("11_lscnb")
+npc4 = ExtResource("12_h2drm")
+npc5 = ExtResource("13_got0i")
 
 [node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
 position = Vector2(983, 368)

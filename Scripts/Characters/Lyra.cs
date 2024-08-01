@@ -23,8 +23,6 @@ public partial class Lyra : Node, IDialogueSource, INPC {
 
 	public static Tuple<string, int> item;
 
-	private int convoCount = 0;
-
 	private NPC_Resource npc_Resource;
 
 	private static NPC dad;
@@ -88,6 +86,7 @@ public partial class Lyra : Node, IDialogueSource, INPC {
 	public void addRep(int val) {
 		npc_Resource.Rep += val;
 		barterItem.repUpdate(npc_Resource);
+
 	}
 
 	public void removeRep(int val) {
@@ -101,8 +100,8 @@ public partial class Lyra : Node, IDialogueSource, INPC {
 
 
 	public string getConversation() {
-		convoCount += 1;
-		if (convoCount == 1) {
+		npc_Resource.convoCount += 1;
+		if (npc_Resource.convoCount == 1) {
 			if (GameState.currentState == State.open) {
 				return "convo1_inside";
 			} else {
@@ -110,7 +109,11 @@ public partial class Lyra : Node, IDialogueSource, INPC {
 			}
 
 		} else {
-			return "catchall";
+			if (GameState.currentState == State.open) {
+				return "catchall_inside";
+			} else {
+				return "catchall_outside";
+			}
 		}
 
 	}

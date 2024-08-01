@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://g2oaafc7ljj"]
+
+[ext_resource type="PackedScene" uid="uid://t80673yvogxl" path="res://Scenes/Entities/characters/Lucian.tscn" id="1_7pu6c"]
+[ext_resource type="Script" path="res://Resources/NPC_Resource.cs" id="1_7x2sf"]
+[ext_resource type="Resource" uid="uid://cfqmnng3bhukn" path="res://Dialogue/LucianBarnes.dialogue" id="1_j1ks4"]
+
+[resource]
+script = ExtResource("1_7x2sf")
+Dialogue = ExtResource("1_j1ks4")
+Can_interact = true
+Name = "Lucian Barnes"
+Rep = 1
+DSource = ExtResource("1_7pu6c")
+spawnChance = 1

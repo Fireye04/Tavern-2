@@ -12,6 +12,15 @@ public partial class TableManager : Node2D {
 	[Export]
 	public NPC_Resource npc2;
 
+	[Export]
+	public NPC_Resource npc3;
+
+	[Export]
+	public NPC_Resource npc4;
+
+	[Export]
+	public NPC_Resource npc5;
+
 	public static List<NPC_Resource> npcList;
 
 	public static List<NPC_Resource> takenList;
@@ -20,7 +29,10 @@ public partial class TableManager : Node2D {
 
 		npcList = new List<NPC_Resource>{
 			npc1,
-			npc2
+			npc2,
+			npc3,
+			npc4,
+			npc5,
 		};
 
 		takenList = new List<NPC_Resource>();

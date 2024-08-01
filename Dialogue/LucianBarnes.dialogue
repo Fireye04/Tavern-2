@@ -1,0 +1,77 @@
+~ convo1_inside
+
+Lucian: Hi! What's on the menu?
+ 
+	
+=> END
+
+~ convo1_outside
+
+Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts. Who're you?
+
+=> END
+
+~ catchall_inside
+
+Lucian: Hey there tavernkeeper! What do you have cooking today?
+
+=> END
+
+~ catchall_outside
+
+Lucian: Howdy! Interested in some fresh produce?
+- No thanks.
+	Lucian: ALrighty, let me know if you change your mind!
+- Sure
+	=> startDeal
+
+=> END
+
+~ startDeal
+if not Lucian.repeatedDeal
+	Lucian: I have corn, cheese and milk.
+else
+	Lucian: The corn, the cheese or the milk?
+
+- Corn
+	do Lucian.Deal("corn")
+- Cheese
+	do Lucian.Deal("Cheese")
+- Milk
+	do Lucian.Deal("milk")
+- Quit
+	if Lucian.npc_Resource.Rep > 1
+		Lucian: Thanks! Seeya around!
+	else 
+		Lucian: Alright
+	=> END
+=> checks
+
+=> END
+
+~ checks
+
+if Lucian.happiness > 1
+	Lucian: Awesome, thanks!
+	do addRep(1)
+	do transaction()
+elif 0 <= Lucian.happiness and Lucian.happiness <= 1
+	Lucian: That's a deal.
+	do transaction()
+elif -1 <= Lucian.happiness and Lucian.happiness < 0
+	Lucian: If you insist.
+	do removeRep(1)
+	do transaction()
+else
+	Lucian: Not gonna happen, sorry.
+	- New Deal!
+		set Lucian.repeatedDeal = true
+		=> startDeal
+	- Whatever
+if Lucian.npc_Resource.Rep > 1
+	Lucian: Thanks! Seeya around!
+else 
+	Lucian: Alright
+
+do Lucian.endDeal()
+=> END

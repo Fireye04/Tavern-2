@@ -11,4 +11,4 @@ Can_interact = true
 Name = "Lyra Silverwind"
 Rep = 1
 DSource = ExtResource("1_255p5")
-spawnChance = 2
+spawnChance = 1

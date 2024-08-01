@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7nsgc6grdx1x"]
+[gd_scene load_steps=16 format=3 uid="uid://7nsgc6grdx1x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_otpmk"]
 [ext_resource type="PackedScene" uid="uid://brywx0kdybbec" path="res://Scenes/UI/barter.tscn" id="2_gx458"]
@@ -9,7 +9,159 @@
 [ext_resource type="PackedScene" uid="uid://dccfbvid1tvqn" path="res://Scenes/Entities/objects/NPCSpawner.tscn" id="7_6vyn2"]
 [ext_resource type="PackedScene" uid="uid://dukvf553dglb8" path="res://Scenes/Entities/objects/door.tscn" id="7_wtqcd"]
 [ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="8_aq30v"]
-[ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="9_xmil1"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="10_i0vxw"]
+[ext_resource type="Script" path="res://Resources/NPC_Resource.cs" id="11_gpvj5"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_yx8ut"]
+script/source = "using Godot;
+using System;
+
+public partial class Jack : Node, IDialogueSource, INPC {
+
+	public int spawnChance = 1;
+
+	private int convoCount = 0;
+
+	private barter barterItem;
+	private static NPC dad;
+
+	private NPC_Resource npc_Resource;
+
+	public override void _Ready() {
+		npc_Resource = GD.Load<NPC_Resource>(\"res://Resources/Lyra_Silverwind.tres\");
+
+	}
+
+	public void barter() {
+
+
+	}
+
+	public NPC_Resource GetResource() {
+		return npc_Resource;
+	}
+
+	public void leaveT() {
+		dad.leave();
+	}
+
+	public string getConversation() {
+		convoCount += 1;
+		if (convoCount == 1) {
+			return \"convo1\";
+		} else {
+			return \"catchall\";
+		}
+
+	}
+
+	public void setUI(barter bItem) {
+		barterItem = bItem;
+	}
+
+	public int getSpawnChance() {
+		return spawnChance;
+	}
+
+	public void init(NPC obj) {
+		dad = obj;
+	}
+}
+"
+
+[sub_resource type="PackedScene" id="PackedScene_wyrsr"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Jack", "Node2D", "script"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0),
+"variants": [SubResource("CSharpScript_yx8ut")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_8ovnl"]
+script = ExtResource("10_i0vxw")
+using_states = PackedStringArray()
+titles = {
+"catchall": "9",
+"convo1": "3"
+}
+character_names = PackedStringArray("Jack")
+first_title = "3"
+lines = {
+"1": {
+"id": "1",
+"next_id": "3",
+"text": "convo1",
+"type": &"title"
+},
+"11": {
+"id": "11",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+},
+"3": {
+"character": "Jack",
+"character_replacements": Array[Dictionary]([]),
+"id": "3",
+"next_id": "5",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "Hey, I'm Jack.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hey, I'm Jack.",
+"type": &"dialogue"
+},
+"5": {
+"id": "5",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+},
+"7": {
+"id": "7",
+"next_id": "9",
+"text": "catchall",
+"type": &"title"
+},
+"9": {
+"character": "Jack",
+"character_replacements": Array[Dictionary]([]),
+"id": "9",
+"next_id": "11",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "Later!",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Later!",
+"type": &"dialogue"
+}
+}
+raw_text = "~ convo1
+
+Jack: Hey, I'm Jack. 
+
+=> END
+
+~ catchall
+
+Jack: Later!
+
+=> END"
+metadata/dialogue_manager_version = "2.39.1"
+
+[sub_resource type="Resource" id="Resource_pgeqd"]
+script = ExtResource("11_gpvj5")
+Dialogue = SubResource("Resource_8ovnl")
+Can_interact = true
+Name = "Jack Vinewood"
+Rep = 1
+DSource = SubResource("PackedScene_wyrsr")
+spawnChance = 2
 
 [node name="Village" type="Node2D"]
 
@@ -43,5 +195,5 @@ bItem = NodePath("../CanvasLayer/Barter")
 
 [node name="NPCSpawner2" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("7_6vyn2")]
 position = Vector2(592, 229)
-npcr = ExtResource("9_xmil1")
+npcr = SubResource("Resource_pgeqd")
 bItem = NodePath("../CanvasLayer/Barter")

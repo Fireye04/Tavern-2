@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxpqisxrcupio"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Lily.cs" id="1_oso6w"]
+
+[node name="Lily" type="Node2D"]
+script = ExtResource("1_oso6w")

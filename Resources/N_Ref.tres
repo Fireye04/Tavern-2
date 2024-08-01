@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ceits7xel71wd"]
+
+[ext_resource type="Script" path="res://Resources/NPC_Resource.cs" id="1_ljmpt"]
+[ext_resource type="Resource" uid="uid://8q20nost8gx1" path="res://Dialogue/NRef.dialogue" id="1_sveyp"]
+[ext_resource type="PackedScene" uid="uid://0l7dwfvy5pb6" path="res://Scenes/Entities/characters/N.tscn" id="1_vi3o5"]
+
+[resource]
+script = ExtResource("1_ljmpt")
+Dialogue = ExtResource("1_sveyp")
+Can_interact = true
+Name = "N Ref"
+Rep = 1
+DSource = ExtResource("1_vi3o5")
+spawnChance = 1

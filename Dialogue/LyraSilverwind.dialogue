@@ -36,19 +36,19 @@ Lyra: I hope to see you around.
 => END
 
 ~ startDeal
-if not repeatedDeal
+if not Lyra.repeatedDeal
 	Lyra: I sell fine wines and ale. What is it you wish to purchase?
 else
 	Lyra: The wine or the ale?
 
 - Wine
-	do Deal("wine")
+	do Lyra.Deal("wine")
 - Ale
-	do Deal("ale")
+	do Lyra.Deal("ale")
 - Rum
-	do Deal("rum")
+	do Lyra.Deal("rum")
 - Quit
-	if npc_Resource.Rep > 1
+	if Lyra.npc_Resource.Rep > 1
 		Lyra: Pleasure doing business
 	else 
 		Lyra: Very well.
@@ -59,27 +59,27 @@ else
 
 ~ checks
 
-if happiness > 1
+if Lyra.happiness > 1
 	Lyra: Dear goodess! Deal!
-	do addRep(1)
-	do transaction()
-elif 0 <= happiness and happiness <= 1
+	do Lyra.addRep(1)
+	do Lyra.transaction()
+elif 0 <= Lyra.happiness and Lyra.happiness <= 1
 	Lyra: Deal.
-	do transaction()
-elif -1 <= happiness and happiness < 0
+	do Lyra.transaction()
+elif -1 <= Lyra.happiness and Lyra.happiness < 0
 	Lyra: Fine. 
-	do removeRep(1)
-	do transaction()
+	do Lyra.removeRep(1)
+	do Lyra.transaction()
 else
 	Lyra: No deal.
 	- New Deal!
-		set repeatedDeal = true
+		set Lyra.repeatedDeal = true
 		=> startDeal
 	- Very well.
-if npc_Resource.Rep > 1
+if Lyra.npc_Resource.Rep > 1
 	Lyra: Pleasure doing business
 else 
 	Lyra: Goodbye.
 
-do endDeal()
+do Lyra.endDeal()
 => END
