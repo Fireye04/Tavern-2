@@ -119,7 +119,7 @@ public partial class Lucian : Node, IDialogueSource, INPC {
 
 	}
 
-	public void setUI(barter bItem) {
+	public void setUI(barter bItem, DayUI dui) {
 
 		barterItem = bItem;
 	}

@@ -188,12 +188,14 @@ dui = NodePath("../DayUI")
 position = Vector2(148, -86)
 targetPath = "res://Scenes/Locations/Tavern.tscn"
 
-[node name="NPCSpawner" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("7_6vyn2")]
+[node name="NPCSpawner" parent="." node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("7_6vyn2")]
 position = Vector2(331, 235)
 npcr = ExtResource("8_aq30v")
 bItem = NodePath("../CanvasLayer/Barter")
+dUI = NodePath("../CanvasLayer/DayUI")
 
-[node name="NPCSpawner2" parent="." node_paths=PackedStringArray("bItem") instance=ExtResource("7_6vyn2")]
+[node name="NPCSpawner2" parent="." node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("7_6vyn2")]
 position = Vector2(592, 229)
 npcr = SubResource("Resource_pgeqd")
 bItem = NodePath("../CanvasLayer/Barter")
+dUI = NodePath("../CanvasLayer/DayUI")

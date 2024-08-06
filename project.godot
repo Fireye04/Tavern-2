@@ -27,6 +27,7 @@ N="*res://Scripts/Characters/N.cs"
 [dialogue_manager]
 
 general/uses_dotnet=true
+general/states=["Lyra", "Carver", "Lily", "Lucian", "N"]
 
 [dotnet]
 

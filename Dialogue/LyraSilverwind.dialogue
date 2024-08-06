@@ -1,10 +1,26 @@
+using Lyra
+
 ~ convo1_inside
 
 Narrator: An elven woman, bearing a few notable scars sits at the table.
 - Hi! What can I get for you?
-	Lyra: Hmm, 
-- 
+	do getOrder()
+	Lyra: I'll have the {{orderItem[0]}}
+
 	
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lyra: Thank you.
+else
+	Lyra: ... This isn't my {{orderItem.Item1}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lyra stands, somewhat peeved, and leaves the tavern.
+	do removeRep(1)
+	do LeaveT()
+
 => END
 
 ~ convo1_outside
@@ -36,19 +52,19 @@ Lyra: I hope to see you around.
 => END
 
 ~ startDeal
-if not Lyra.repeatedDeal
+if not repeatedDeal
 	Lyra: I sell fine wines and ale. What is it you wish to purchase?
 else
 	Lyra: The wine or the ale?
 
 - Wine
-	do Lyra.Deal("wine")
+	do Deal("wine")
 - Ale
-	do Lyra.Deal("ale")
+	do Deal("ale")
 - Rum
-	do Lyra.Deal("rum")
+	do Deal("rum")
 - Quit
-	if Lyra.npc_Resource.Rep > 1
+	if npc_Resource.Rep > 1
 		Lyra: Pleasure doing business
 	else 
 		Lyra: Very well.
@@ -59,27 +75,27 @@ else
 
 ~ checks
 
-if Lyra.happiness > 1
+if happiness > 1
 	Lyra: Dear goodess! Deal!
-	do Lyra.addRep(1)
-	do Lyra.transaction()
-elif 0 <= Lyra.happiness and Lyra.happiness <= 1
+	do addRep(1)
+	do transaction()
+elif 0 <= happiness and happiness <= 1
 	Lyra: Deal.
-	do Lyra.transaction()
-elif -1 <= Lyra.happiness and Lyra.happiness < 0
+	do transaction()
+elif -1 <= happiness and happiness < 0
 	Lyra: Fine. 
-	do Lyra.removeRep(1)
-	do Lyra.transaction()
+	do removeRep(1)
+	do transaction()
 else
 	Lyra: No deal.
 	- New Deal!
-		set Lyra.repeatedDeal = true
+		set repeatedDeal = true
 		=> startDeal
 	- Very well.
-if Lyra.npc_Resource.Rep > 1
+if npc_Resource.Rep > 1
 	Lyra: Pleasure doing business
 else 
 	Lyra: Goodbye.
 
-do Lyra.endDeal()
+do endDeal()
 => END

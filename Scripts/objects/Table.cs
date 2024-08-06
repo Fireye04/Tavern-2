@@ -11,6 +11,9 @@ public partial class Table : StaticBody2D {
 	public barter bItem { get; set; }
 
 	[Export]
+	public DayUI dUI { get; set; }
+
+	[Export]
 	public PackedScene pnpc;
 
 	public NPC npc;
@@ -37,7 +40,7 @@ public partial class Table : StaticBody2D {
 		GD.Print("spawning " + target.Name);
 		npc = (NPC)pnpc.Instantiate();
 		AddChild(npc);
-		npc.init(target, bItem);
+		npc.init(target, bItem, dUI);
 		npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
 	}
 

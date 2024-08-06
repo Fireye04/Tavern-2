@@ -51,13 +51,15 @@ npc3 = ExtResource("11_lscnb")
 npc4 = ExtResource("12_h2drm")
 npc5 = ExtResource("13_got0i")
 
-[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
+[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
 position = Vector2(983, 368)
 bItem = NodePath("../../CanvasLayer/Barter")
+dUI = NodePath("../../CanvasLayer/DayUI")
 
-[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
+[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
 position = Vector2(616, 367)
 bItem = NodePath("../../CanvasLayer/Barter")
+dUI = NodePath("../../CanvasLayer/DayUI")
 
 [node name="Inside Door" parent="." instance=ExtResource("11_46p04")]
 position = Vector2(198, 508)

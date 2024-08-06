@@ -8,18 +8,21 @@ public partial class NPC : CharacterBody2D, IInteractable {
 
 	public static barter bItem;
 
+	public static DayUI dui;
+
 	private IDialogueSource iSource;
 
-	public void init(NPC_Resource npc, barter b) {
+	public void init(NPC_Resource npc, barter b, DayUI duii) {
 		stats = npc;
 		bItem = b;
+		dui = duii;
 		var newNode = stats.DSource.Instantiate();
 		AddChild(newNode);
 
 		var bSource = (INPC)newNode;
 		bSource.init(this);
 
-		bSource.setUI(bItem);
+		bSource.setUI(bItem, dui);
 		iSource = (IDialogueSource)newNode;
 	}
 

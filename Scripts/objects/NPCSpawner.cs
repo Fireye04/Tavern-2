@@ -12,6 +12,9 @@ public partial class NPCSpawner : Node2D {
 	public barter bItem { get; set; }
 
 	[Export]
+	public DayUI dUI { get; set; }
+
+	[Export]
 	public PackedScene pnpc;
 
 	public NPC npc;
@@ -24,7 +27,7 @@ public partial class NPCSpawner : Node2D {
 		GD.Print("spawning " + npcr.Name);
 		npc = (NPC)pnpc.Instantiate();
 		AddChild(npc);
-		npc.init(npcr, bItem);
+		npc.init(npcr, bItem, dUI);
 		npc.Position = Position;
 
 

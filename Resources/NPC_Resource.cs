@@ -1,7 +1,9 @@
 using DialogueManagerRuntime;
 using Godot;
 using System;
+using System.Collections.Generic;
 
+[GlobalClass]
 public partial class NPC_Resource : Resource {
 
 	[Export]
@@ -24,6 +26,9 @@ public partial class NPC_Resource : Resource {
 
 	public int convoCount { get; set; }
 
+	public HashSet<string> completedConvos { get; set; }
+
+
 	public NPC_Resource() : this(null, false, null, 0, null, 0) { }
 
 	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
@@ -34,5 +39,6 @@ public partial class NPC_Resource : Resource {
 		DSource = source;
 		spawnChance = spc;
 		convoCount = 0;
+		completedConvos = new HashSet<string>();
 	}
 }
