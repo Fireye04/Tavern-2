@@ -1,8 +1,25 @@
+using Carver
+
 ~ convo1_inside
 
-Carver: Oi you, what you got on the menu?
- 
-	
+Carver: Oi tavernkeeper!
+- Hi! What can I get for you?
+	do getOrder()
+	Carver: Get me a {{orderItem[0]}}, if you could.
+
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Carver: Awesome, thanks!
+else
+	Carver: ... That doesn't look like a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Carver leaves with a sigh.
+	do removeRep(1)
+	do LeaveT()
+
 => END
 
 ~ convo1_outside
@@ -28,15 +45,15 @@ Carver: Hey, looking to buy?
 => END
 
 ~ startDeal
-if not Carver.repeatedDeal
+if not repeatedDeal
 	Carver: I got beef.
 else
 	Carver: ...
 
 - Beef
-	do Carver.Deal("beef")
+	do Deal("beef")
 - Quit
-	if Carver.npc_Resource.Rep > 1
+	if npc_Resource.Rep > 1
 		Carver: Good doing business
 	else 
 		Carver: Cool.
@@ -47,27 +64,27 @@ else
 
 ~ checks
 
-if Carver.happiness > 1
+if happiness > 1
 	Carver: Nice! Deal!
-	do Carver.addRep(1)
-	do Carver.transaction()
-elif 0 <= Carver.happiness and Carver.happiness <= 1
+	do addRep(1)
+	do transaction()
+elif 0 <= happiness and happiness <= 1
 	Carver: Alright.
-	do Carver.transaction()
-elif -1 <= Carver.happiness and Carver.happiness < 0
+	do transaction()
+elif -1 <= happiness and happiness < 0
 	Carver: Ugh, you're annoying; Fine.
-	do Carver.removeRep(1)
-	do Carver.transaction()
+	do removeRep(1)
+	do transaction()
 else
 	Carver: Hah! You're funny.
 	- New Deal!
-		set Carver.repeatedDeal = true
+		set repeatedDeal = true
 		=> startDeal
 	- Whatever
-if Carver.npc_Resource.Rep > 1
+if npc_Resource.Rep > 1
 	Carver: Seeya!
 else 
 	Carver: ...
 
-do Carver.endDeal()
+do endDeal()
 => END

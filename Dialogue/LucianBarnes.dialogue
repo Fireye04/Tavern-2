@@ -1,8 +1,25 @@
+using Lucian
+
 ~ convo1_inside
 
 Lucian: Hi! What's on the menu?
- 
-	
+- Hi! What can I get for you?
+	do getOrder()
+	Lucian: Get me a {{orderItem[0]}}, if you wouldn't mind!
+
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lucian: Awesome, thanks!
+else
+	Lucian: That doesn't look like a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lucian tips his hat and heads out
+	do removeRep(1)
+	do LeaveT()
+
 => END
 
 ~ convo1_outside
@@ -28,19 +45,19 @@ Lucian: Howdy! Interested in some fresh produce?
 => END
 
 ~ startDeal
-if not Lucian.repeatedDeal
+if not repeatedDeal
 	Lucian: I have corn, cheese and milk.
 else
 	Lucian: The corn, the cheese or the milk?
 
 - Corn
-	do Lucian.Deal("corn")
+	do Deal("corn")
 - Cheese
-	do Lucian.Deal("Cheese")
+	do Deal("Cheese")
 - Milk
-	do Lucian.Deal("milk")
+	do Deal("milk")
 - Quit
-	if Lucian.npc_Resource.Rep > 1
+	if npc_Resource.Rep > 1
 		Lucian: Thanks! Seeya around!
 	else 
 		Lucian: Alright
@@ -51,27 +68,27 @@ else
 
 ~ checks
 
-if Lucian.happiness > 1
+if happiness > 1
 	Lucian: Awesome, thanks!
 	do addRep(1)
 	do transaction()
-elif 0 <= Lucian.happiness and Lucian.happiness <= 1
+elif 0 <= happiness and happiness <= 1
 	Lucian: That's a deal.
 	do transaction()
-elif -1 <= Lucian.happiness and Lucian.happiness < 0
+elif -1 <= happiness and happiness < 0
 	Lucian: If you insist.
 	do removeRep(1)
 	do transaction()
 else
 	Lucian: Not gonna happen, sorry.
 	- New Deal!
-		set Lucian.repeatedDeal = true
+		set repeatedDeal = true
 		=> startDeal
 	- Whatever
-if Lucian.npc_Resource.Rep > 1
+if npc_Resource.Rep > 1
 	Lucian: Thanks! Seeya around!
 else 
 	Lucian: Alright
 
-do Lucian.endDeal()
+do endDeal()
 => END

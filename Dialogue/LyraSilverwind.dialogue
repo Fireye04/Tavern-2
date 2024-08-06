@@ -15,7 +15,7 @@ do recieveOrder()
 if orderCorrect
 	Lyra: Thank you.
 else
-	Lyra: ... This isn't my {{orderItem.Item1}}.
+	Lyra: ... This isn't my {{orderItem[0]}}.
 	# TODO: give player another chance vs leave based on rep
 	Narrator: Lyra stands, somewhat peeved, and leaves the tavern.
 	do removeRep(1)

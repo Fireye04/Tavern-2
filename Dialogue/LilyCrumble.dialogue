@@ -1,7 +1,25 @@
+using Lily
+
 ~ convo1_inside
 
 Lily: Hiya! I think it's so cool that you just fixed up the old tavern!  
- 
+- Hi! What can I get for you?
+	do getOrder()
+	Lily: I'll have a {{orderItem[0]}} please!!
+
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lily: That's looks so yummy! Thanks!
+else
+	Lily: I ordered a {{orderItem[0]}}, not that... Sorry!
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lily hops off her seat and leaves.
+	do removeRep(1)
+	do LeaveT()
+
 => END
 
 ~ convo1_outside
@@ -27,15 +45,15 @@ Lily: Welcome back! What can I getcha?!
 => END
 
 ~ startDeal
-if not Lily.repeatedDeal
+if not repeatedDeal
 	Lily: Bread! We have bread.
 else
 	Lily: :)
 
 - Bread
-	do Lily.Deal("bread")
+	do Deal("bread")
 - Quit
-	if Lily.npc_Resource.Rep > 1
+	if npc_Resource.Rep > 1
 		Lily: Seeya next time!
 	else 
 		Lily: Byeee
@@ -46,27 +64,27 @@ else
 
 ~ checks
 
-if Lily.happiness > 1
+if happiness > 1
 	Lily: Wow, you sure? I mean, I'll take it, thanks!
-	do Lily.addRep(1)
-	do Lily.transaction()
-elif 0 <= Lily.happiness and Lily.happiness <= 1
+	do addRep(1)
+	do transaction()
+elif 0 <= happiness and happiness <= 1
 	Lily: Cool!
-	do Lily.transaction()
-elif -1 <= Lily.happiness and Lily.happiness < 0
+	do transaction()
+elif -1 <= happiness and happiness < 0
 	Lily: You drive a hard bargain, alright.
-	do Lily.removeRep(1)
-	do Lily.transaction()
+	do removeRep(1)
+	do transaction()
 else
 	Lily: Can't do that, sorry!
 	- New Deal!
-		set Lily.repeatedDeal = true
+		set repeatedDeal = true
 		=> startDeal
 	- Ok
-if Lily.npc_Resource.Rep > 1
+if npc_Resource.Rep > 1
 	Lily: Seeya next time!
 else 
 	Lily: Byeee
 
-do Lily.endDeal()
+do endDeal()
 => END

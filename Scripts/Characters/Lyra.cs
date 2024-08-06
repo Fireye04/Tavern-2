@@ -33,7 +33,11 @@ public partial class Lyra : Node, IDialogueSource, INPC {
 	private static NPC dad;
 
 	[Export]
-	public Godot.Collections.Array orderItem = new Godot.Collections.Array();
+	public Godot.Collections.Array orderItem = new Godot.Collections.Array(){
+		"Nothing",
+		0
+	};
+
 
 	public bool orderCorrect = false;
 
