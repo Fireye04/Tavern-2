@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyu8wmgo0q3ne"]
 
 [ext_resource type="Script" path="res://Scripts/objects/Kitchen.cs" id="1_cnaat"]
-[ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="2_gy6m4"]
+[ext_resource type="Texture2D" uid="uid://dgs452mn7jqya" path="res://Assets/kitchenfloor_1.png" id="2_sc3br"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld3r2"]
+size = Vector2(32, 32)
 
 [node name="Kitchen" type="StaticBody2D"]
 script = ExtResource("1_cnaat")
@@ -12,5 +13,4 @@ script = ExtResource("1_cnaat")
 shape = SubResource("RectangleShape2D_ld3r2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_gy6m4")
+texture = ExtResource("2_sc3br")

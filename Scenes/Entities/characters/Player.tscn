@@ -12,25 +12,26 @@ size = Vector2(286, 266)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1b6t6")
+Speed = 200
 rejectionText = ExtResource("2_xbdhf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_pl5fb")
 
 [node name="CollisionBounds" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -1)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_o4hab")
 
 [node name="InteractionRange" type="Area2D" parent="."]
 position = Vector2(-1.75, -0.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
-position = Vector2(-0.25, -0.75)
-scale = Vector2(1.25, 1.25)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_eqj4r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.675, 0.675)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]

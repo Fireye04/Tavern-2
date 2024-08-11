@@ -52,12 +52,12 @@ npc4 = ExtResource("12_h2drm")
 npc5 = ExtResource("13_got0i")
 
 [node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
-position = Vector2(983, 368)
+position = Vector2(426, 460)
 bItem = NodePath("../../CanvasLayer/Barter")
 dUI = NodePath("../../CanvasLayer/DayUI")
 
 [node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
-position = Vector2(616, 367)
+position = Vector2(318, 459)
 bItem = NodePath("../../CanvasLayer/Barter")
 dUI = NodePath("../../CanvasLayer/DayUI")
 
@@ -66,9 +66,9 @@ position = Vector2(198, 508)
 targetPath = "res://Scenes/Locations/Village.tscn"
 
 [node name="Bed" parent="." node_paths=PackedStringArray("tav") instance=ExtResource("12_wrjxu")]
-position = Vector2(-279, 340)
+position = Vector2(25, 373)
 tav = NodePath("..")
 
 [node name="Kitchen" parent="." node_paths=PackedStringArray("cookUI") instance=ExtResource("14_rqf5i")]
-position = Vector2(383, 46)
+position = Vector2(314, 259)
 cookUI = NodePath("../CanvasLayer/Cooking")

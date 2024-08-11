@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="2_j2ka8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnawa"]
-size = Vector2(129, 22)
+size = Vector2(63, 22)
 
 [node name="NPC" type="CharacterBody2D"]
 script = ExtResource("1_22e8e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_j2ka8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 56)
+position = Vector2(0.5, 21)
 shape = SubResource("RectangleShape2D_hnawa")

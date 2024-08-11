@@ -13,11 +13,13 @@ pnpc = ExtResource("4_dys3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_eeqt0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.999999, 0.569811, 0.447836, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_6jpbs")
 
 [node name="Spawn Location" type="Node2D" parent="."]
-position = Vector2(1, -157)
+position = Vector2(0, -85)
