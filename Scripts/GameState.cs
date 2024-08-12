@@ -57,6 +57,32 @@ public partial class GameState : Node {
         ("none", 0)
     };
 
+    private static int getItemValue(string Item) {
+        var total = 0;
+        foreach (var ing in RecipiesIngredients[Item]) {
+            total += resourceVals[ing.Item1] * ing.Item2;
+        }
+
+        return total;
+    }
+
+    private static int getPrices() {
+        var total = 0;
+        foreach (var item in currentMenu) {
+            if (item.Item1 == "none") {
+                continue;
+            }
+
+            total += item.Item2 - getItemValue(item.Item1);
+        }
+        return total;
+    }
+
+    public static int prices {
+        get { return getPrices(); }
+        set { prices = value; }
+    }
+
     public static List<string> recipies = new List<string> {
         "wine",
         "ale",

@@ -36,7 +36,7 @@ public partial class Table : StaticBody2D {
 	}
 
 	public void clearNpc() {
-		manager.npcFree(npc.stats);
+		manager.npcFree(npc.stats, this);
 		npc.QueueFree();
 	}
 }

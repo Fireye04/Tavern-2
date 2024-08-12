@@ -18,7 +18,7 @@ public partial class Tavern : Node2D {
 		GameState.currentState = State.open;
 		day.nextState();
 		mu.stopEdits();
-		tabMan.spawn();
+		tabMan.open();
 
 	}
 

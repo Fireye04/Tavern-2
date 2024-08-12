@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public partial class travelers : Resource {
 
 	[Export]
-	public SpriteFrames cSprites { get; set; }
+	public SpriteFrames cSprite { get; set; }
 
 	[Export]
 	public Godot.Collections.Array<string> Names;
@@ -15,7 +15,7 @@ public partial class travelers : Resource {
 	public travelers() : this(null, null) { }
 
 	public travelers(SpriteFrames sprites, Godot.Collections.Array<string> names) {
-		cSprites = sprites;
+		cSprite = sprites;
 		Names = names;
 	}
 }
