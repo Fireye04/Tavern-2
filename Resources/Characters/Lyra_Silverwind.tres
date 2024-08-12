@@ -11,6 +11,5 @@ cSprite = ExtResource("3_qdj4g")
 Dialogue = ExtResource("1_t8pog")
 Can_interact = true
 Name = "Lyra Silverwind"
-Rep = 1
+Rep = 0
 DSource = ExtResource("1_255p5")
-spawnChance = 1

@@ -11,6 +11,5 @@ cSprite = ExtResource("3_htdqu")
 Dialogue = ExtResource("1_t28ep")
 Can_interact = true
 Name = "Carver"
-Rep = 1
+Rep = 0
 DSource = ExtResource("1_2qqjg")
-spawnChance = 1

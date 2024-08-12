@@ -13,13 +13,12 @@ public partial class TableManager : Node2D {
 	[Export]
 	public Traveler_Resource tRepo;
 
-	public Godot.Collections.Array<NPC_Resource> Customers;
+	public Godot.Collections.Array<NPC_Resource> Customers = new Godot.Collections.Array<NPC_Resource>();
 
 
 	public static List<NPC_Resource> takenList;
 
 	public override void _Ready() {
-		GD.Print("gothere");
 		takenList = new List<NPC_Resource>();
 
 		foreach (var tab in GetChildren()) {
@@ -98,6 +97,7 @@ public partial class TableManager : Node2D {
 
 	public void open() {
 		setCustomers();
+		GD.Print(Customers.Count);
 
 		if (Customers.Count > tables.Count) {
 			foreach (var tab in tables) {

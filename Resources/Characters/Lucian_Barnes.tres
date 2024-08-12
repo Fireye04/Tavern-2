@@ -11,6 +11,5 @@ cSprite = ExtResource("3_6bdgt")
 Dialogue = ExtResource("1_j1ks4")
 Can_interact = true
 Name = "Lucian Barnes"
-Rep = 1
+Rep = 0
 DSource = ExtResource("1_7pu6c")
-spawnChance = 1

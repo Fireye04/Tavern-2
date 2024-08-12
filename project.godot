@@ -24,10 +24,6 @@ Lily="*res://Scripts/Characters/Lily.cs"
 Lucian="*res://Scripts/Characters/Lucian.cs"
 N="*res://Scripts/Characters/N.cs"
 
-[debug]
-
-settings/stdout/verbose_stdout=true
-
 [dialogue_manager]
 
 general/uses_dotnet=true
