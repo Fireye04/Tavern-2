@@ -6,43 +6,43 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class NPC_Resource : Resource {
 
-	[Export]
-	public Texture2D cSprite { get; set; }
+    [Export]
+    public SpriteFrames cSprite { get; set; }
 
-	[Export]
-	public Resource Dialogue { get; set; }
+    [Export]
+    public Resource Dialogue { get; set; }
 
-	[Export]
-	public bool Can_interact { get; set; }
+    [Export]
+    public bool Can_interact { get; set; }
 
-	[Export]
-	public string Name { get; set; }
+    [Export]
+    public string Name { get; set; }
 
-	[Export]
-	public int Rep { get; set; }
+    [Export]
+    public int Rep { get; set; }
 
-	[Export]
-	public PackedScene DSource { get; set; }
+    [Export]
+    public PackedScene DSource { get; set; }
 
-	[Export]
-	public int spawnChance { get; set; }
+    [Export]
+    public int spawnChance { get; set; }
 
-	public int convoCount { get; set; }
+    public int convoCount { get; set; }
 
-	public HashSet<string> completedConvos { get; set; }
+    public HashSet<string> completedConvos { get; set; }
 
 
-	public NPC_Resource() : this(null, null, false, null, 0, null, 0) { }
+    public NPC_Resource() : this(null, null, false, null, 0, null, 0) { }
 
-	public NPC_Resource(Texture2D text, Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
-		cSprite = text;
-		Dialogue = dialogue;
-		Can_interact = can_interact;
-		Name = name;
-		Rep = rep;
-		DSource = source;
-		spawnChance = spc;
-		convoCount = 0;
-		completedConvos = new HashSet<string>();
-	}
+    public NPC_Resource(SpriteFrames sprite, Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
+        cSprite = sprite;
+        Dialogue = dialogue;
+        Can_interact = can_interact;
+        Name = name;
+        Rep = rep;
+        DSource = source;
+        spawnChance = spc;
+        convoCount = 0;
+        completedConvos = new HashSet<string>();
+    }
 }

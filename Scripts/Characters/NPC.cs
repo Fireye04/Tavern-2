@@ -16,6 +16,8 @@ public partial class NPC : CharacterBody2D, IInteractable {
 		stats = npc;
 		bItem = b;
 		dui = duii;
+		var asp = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
+		asp.SpriteFrames = npc.cSprite;
 		var newNode = stats.DSource.Instantiate();
 		AddChild(newNode);
 

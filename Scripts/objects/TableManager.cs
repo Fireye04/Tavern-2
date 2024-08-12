@@ -7,12 +7,13 @@ public partial class TableManager : Node2D {
     public List<Table> tables = new List<Table>();
 
     [Export]
-    public Godot.Collections.Array<NPC_Resource> NPCs;
+    public Godot.Collections.Array<NPC_Resource> npcList;
 
     [Export]
-    public Traveler tRepo;
+    public Traveler_Resource tRepo;
 
-    public static List<NPC_Resource> npcList;
+    public Godot.Collections.Array Customers;
+
 
     public static List<NPC_Resource> takenList;
 
@@ -31,6 +32,14 @@ public partial class TableManager : Node2D {
         }
     }
 
+    public void setCustomers() {
+
+    }
+
+    public void generateTraveler() {
+
+    }
+
 
     public void npcTaken(NPC_Resource taken) {
         npcList.Remove(taken);
@@ -43,8 +52,22 @@ public partial class TableManager : Node2D {
     }
 
     public void spawn() {
+        setCustomers();
+
         foreach (var tab in tables) {
-            tab.spawnNpc(npcList);
+
+
+            Random rand = new Random();
+            var spawns = new Godot.Collections.Array<NPC_Resource>();
+            foreach (var npc in npcList) {
+                for (var i = 0; i < npc.spawnChance; i++) {
+                    spawns.Add(npc);
+                }
+            }
+            var target = spawns[rand.Next(spawns.Count)];
+            npcTaken(target);
+
+            tab.spawnNpc(target);
         }
     }
 
