@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://b60r8fo0qnm28"
+path="res://.godot/imported/Traveler.dialogue-cfe1ca8de4ee36bdaaa0daf584dd2482.tres"
+
+[deps]
+
+source_file="res://Dialogue/Traveler.dialogue"
+dest_files=["res://.godot/imported/Traveler.dialogue-cfe1ca8de4ee36bdaaa0daf584dd2482.tres"]
+
+[params]
+
+defaults=true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bukwus8ib5akw"]
 
-[ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/icon.svg" id="1_6jpbs"]
+[ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/art/icon.svg" id="1_6jpbs"]
 [ext_resource type="Script" path="res://Scripts/objects/Table.cs" id="1_q7288"]
 [ext_resource type="PackedScene" uid="uid://b6vxsjee7t8o0" path="res://Scenes/Entities/characters/NPC.tscn" id="4_dys3g"]
 

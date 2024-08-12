@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public partial class NPC_Resource : Resource {
 
 	[Export]
+	public Texture2D cSprite { get; set; }
+
+	[Export]
 	public Resource Dialogue { get; set; }
 
 	[Export]
@@ -29,9 +32,10 @@ public partial class NPC_Resource : Resource {
 	public HashSet<string> completedConvos { get; set; }
 
 
-	public NPC_Resource() : this(null, false, null, 0, null, 0) { }
+	public NPC_Resource() : this(null, null, false, null, 0, null, 0) { }
 
-	public NPC_Resource(Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
+	public NPC_Resource(Texture2D text, Resource dialogue, bool can_interact, string name, int rep, PackedScene source, int spc) {
+		cSprite = text;
 		Dialogue = dialogue;
 		Can_interact = can_interact;
 		Name = name;

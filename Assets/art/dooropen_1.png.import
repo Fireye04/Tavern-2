@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtyvn8y4yl0xm"
-path="res://.godot/imported/floortile_1.png-684c4b979b4d96f2a45a218b268ff4ee.ctex"
+uid="uid://b1jmc426tmrh0"
+path="res://.godot/imported/dooropen_1.png-0d8e0d5bf38b23131f0b47552970ee2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/floortile_1.png"
-dest_files=["res://.godot/imported/floortile_1.png-684c4b979b4d96f2a45a218b268ff4ee.ctex"]
+source_file="res://Assets/art/dooropen_1.png"
+dest_files=["res://.godot/imported/dooropen_1.png-0d8e0d5bf38b23131f0b47552970ee2f.ctex"]
 
 [params]
 

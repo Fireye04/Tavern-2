@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Traveler_Resource" load_steps=9 format=3 uid="uid://dysiyf0iyrn5j"]
+
+[ext_resource type="PackedScene" uid="uid://2asdje1hnpb6" path="res://Scenes/Entities/characters/Traveler.tscn" id="1_f40o2"]
+[ext_resource type="Resource" uid="uid://b60r8fo0qnm28" path="res://Dialogue/Traveler.dialogue" id="2_4c2rv"]
+[ext_resource type="Resource" uid="uid://bbc3qbbqbt4b" path="res://Resources/traveler/Trav1.tres" id="3_gl14y"]
+[ext_resource type="Script" path="res://Resources/Characters/Traveler_Resource.cs" id="3_hp4kt"]
+[ext_resource type="Resource" uid="uid://bcldea0ug5x1q" path="res://Resources/traveler/Trav2.tres" id="4_2dnpc"]
+[ext_resource type="Resource" uid="uid://bc8qgwgi7dk83" path="res://Resources/traveler/Trav3.tres" id="5_0fl52"]
+[ext_resource type="Resource" uid="uid://cmp54q8to1x7b" path="res://Resources/traveler/Trav4.tres" id="6_6rkwr"]
+[ext_resource type="Resource" uid="uid://prlyfh5rt7f3" path="res://Resources/traveler/Trav5.tres" id="7_lyw7f"]
+
+[resource]
+script = ExtResource("3_hp4kt")
+cSprites = Array[Object]([ExtResource("3_gl14y"), ExtResource("4_2dnpc"), ExtResource("5_0fl52"), ExtResource("6_6rkwr"), ExtResource("7_lyw7f")])
+Dialogue = ExtResource("2_4c2rv")
+DSource = ExtResource("1_f40o2")

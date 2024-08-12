@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c6eoorkqshxrw" path="res://Scenes/UI/cooking.tscn" id="6_85xvg"]
 [ext_resource type="PackedScene" uid="uid://dccfbvid1tvqn" path="res://Scenes/Entities/objects/NPCSpawner.tscn" id="7_6vyn2"]
 [ext_resource type="PackedScene" uid="uid://dukvf553dglb8" path="res://Scenes/Entities/objects/door.tscn" id="7_wtqcd"]
-[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="8_aq30v"]
-[ext_resource type="Resource" uid="uid://dlu05eabxlshg" path="res://Resources/Carver.tres" id="9_k3ocu"]
-[ext_resource type="Resource" uid="uid://s6ilc653fbgv" path="res://Resources/Lily_Crumble.tres" id="10_2qgqn"]
-[ext_resource type="Resource" uid="uid://g2oaafc7ljj" path="res://Resources/Lucian_Barnes.tres" id="10_frgiw"]
-[ext_resource type="Resource" uid="uid://ceits7xel71wd" path="res://Resources/N_Ref.tres" id="10_gotcq"]
+[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Characters/Lyra_Silverwind.tres" id="8_aq30v"]
+[ext_resource type="Resource" uid="uid://dlu05eabxlshg" path="res://Resources/Characters/Carver.tres" id="9_k3ocu"]
+[ext_resource type="Resource" uid="uid://s6ilc653fbgv" path="res://Resources/Characters/Lily_Crumble.tres" id="10_2qgqn"]
+[ext_resource type="Resource" uid="uid://g2oaafc7ljj" path="res://Resources/Characters/Lucian_Barnes.tres" id="10_frgiw"]
+[ext_resource type="Resource" uid="uid://ceits7xel71wd" path="res://Resources/Characters/N_Ref.tres" id="10_gotcq"]
 
 [node name="Village" type="Node2D"]
 

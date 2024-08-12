@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2asdje1hnpb6"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Traveler.cs" id="1_wt0nl"]
+
+[node name="Traveler" type="Node2D"]
+script = ExtResource("1_wt0nl")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ul2glpvcgba"
-path="res://.godot/imported/NPC4_1.png-4b084bb16e53af5f7322a0ab3703b19b.ctex"
+uid="uid://dtyvn8y4yl0xm"
+path="res://.godot/imported/floortile_1.png-3fda3b28b73437eac238d20006ea65ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NPC4_1.png"
-dest_files=["res://.godot/imported/NPC4_1.png-4b084bb16e53af5f7322a0ab3703b19b.ctex"]
+source_file="res://Assets/art/floortile_1.png"
+dest_files=["res://.godot/imported/floortile_1.png-3fda3b28b73437eac238d20006ea65ca.ctex"]
 
 [params]
 

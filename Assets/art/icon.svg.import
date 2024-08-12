@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qeaqhsik4gin"
-path="res://.godot/imported/door_1.png-d401dbe98cdeac4e50eba0c303b9fdd2.ctex"
+uid="uid://bpwwtl3ak763s"
+path="res://.godot/imported/icon.svg-65d912a8ad2038b0c9252e538856d0ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/door_1.png"
-dest_files=["res://.godot/imported/door_1.png-d401dbe98cdeac4e50eba0c303b9fdd2.ctex"]
+source_file="res://Assets/art/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-65d912a8ad2038b0c9252e538856d0ce.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
