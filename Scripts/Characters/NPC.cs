@@ -20,14 +20,11 @@ public partial class NPC : CharacterBody2D, IInteractable {
         asp.SpriteFrames = npc.cSprite;
         var newNode = stats.DSource.Instantiate();
         AddChild(newNode);
-        try {
-            var bSource = (INPC)newNode;
-            bSource.init(this);
+        var bSource = (INPC)newNode;
+        bSource.init(this);
 
-            bSource.setUI(bItem, dui);
-        } catch {
+        bSource.setUI(bItem, dui);
 
-        }
 
         iSource = (IDialogueSource)newNode;
     }

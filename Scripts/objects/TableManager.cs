@@ -29,6 +29,12 @@ public partial class TableManager : Node2D {
             tabl.setManager(this);
         }
     }
+    public void pCustomers() {
+        GD.Print("Customers:");
+        foreach (var item in Customers) {
+            GD.Print(item.Name);
+        }
+    }
 
     public void setCustomers() {
         var rand = new Random();
@@ -85,9 +91,9 @@ public partial class TableManager : Node2D {
         takenList.Add(taken);
     }
 
-    public void npcFree(NPC_Resource freed, Table tar) {
-        npcList.Add(freed);
-        takenList.Remove(freed);
+    public void npcFree(NPC freed, Table tar) {
+        npcList.Add(freed.stats);
+        takenList.Remove(freed.stats);
         // actually useful:
 
         if (Customers.Count > 0) {
@@ -105,7 +111,7 @@ public partial class TableManager : Node2D {
 
     public void open() {
         setCustomers();
-
+        pCustomers();
         if (Customers.Count > tables.Count) {
             foreach (var tab in tables) {
 
@@ -121,9 +127,11 @@ public partial class TableManager : Node2D {
     }
 
     public void clear() {
+        Customers.Clear();
         foreach (var tab in tables) {
             tab.clearNpc();
         }
+
     }
 
 }

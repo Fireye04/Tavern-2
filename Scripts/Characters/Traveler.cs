@@ -4,7 +4,7 @@ using DialogueManagerRuntime;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-public partial class Traveler : Node, IDialogueSource {
+public partial class Traveler : Node, IDialogueSource, INPC {
 
     public int spawnChance = 1;
 

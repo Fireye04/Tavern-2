@@ -24,11 +24,12 @@ Lily="*res://Scripts/Characters/Lily.cs"
 Lucian="*res://Scripts/Characters/Lucian.cs"
 N="*res://Scripts/Characters/N.cs"
 GameState="*res://Scripts/GameState.cs"
+Traveler="*res://Scripts/Characters/Traveler.cs"
 
 [dialogue_manager]
 
 general/uses_dotnet=true
-general/states=["Lyra", "Carver", "Lily", "Lucian", "N"]
+general/states=["Lyra", "Carver", "Lily", "Lucian", "N", "Traveler", "GameState"]
 
 [dotnet]
 

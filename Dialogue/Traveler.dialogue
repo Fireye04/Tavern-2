@@ -1,3 +1,4 @@
+using Traveler
 ~ default
 
 Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
@@ -6,8 +7,6 @@ Nathan: Here are some choices.
 	Nathan: You picked the first one.
 - Second one
 	Nathan: You picked the second one.
-- Start again => default
-- End the conversation => END
-Nathan: For more information see the online documentation.
+do LeaveT()
 
 => END
