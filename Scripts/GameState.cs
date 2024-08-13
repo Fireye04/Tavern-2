@@ -68,7 +68,6 @@ public partial class GameState : Node {
     }
 
     public static int getPrices() {
-        GD.Print("here I am");
         var total = 0;
         foreach (var item in currentMenu) {
             if (item.Item1 == "none") {

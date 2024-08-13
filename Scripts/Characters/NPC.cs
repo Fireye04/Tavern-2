@@ -4,42 +4,46 @@ using System;
 
 public partial class NPC : CharacterBody2D, IInteractable {
 
-	public NPC_Resource stats;
+    public NPC_Resource stats;
 
-	public static barter bItem;
+    public static barter bItem;
 
-	public static DayUI dui;
+    public static DayUI dui;
 
-	private IDialogueSource iSource;
+    private IDialogueSource iSource;
 
-	public void init(NPC_Resource npc, barter b, DayUI duii) {
-		stats = npc;
-		bItem = b;
-		dui = duii;
-		var asp = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
-		asp.SpriteFrames = npc.cSprite;
-		var newNode = stats.DSource.Instantiate();
-		AddChild(newNode);
+    public void init(NPC_Resource npc, barter b, DayUI duii) {
+        stats = npc;
+        bItem = b;
+        dui = duii;
+        var asp = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
+        asp.SpriteFrames = npc.cSprite;
+        var newNode = stats.DSource.Instantiate();
+        AddChild(newNode);
+        try {
+            var bSource = (INPC)newNode;
+            bSource.init(this);
 
-		var bSource = (INPC)newNode;
-		bSource.init(this);
+            bSource.setUI(bItem, dui);
+        } catch {
 
-		bSource.setUI(bItem, dui);
-		iSource = (IDialogueSource)newNode;
-	}
+        }
 
-	public void leave() {
-		QueueFree();
-	}
+        iSource = (IDialogueSource)newNode;
+    }
 
-	public bool canInteract() {
-		return stats.Can_interact;
-	}
+    public void leave() {
+        QueueFree();
+    }
 
-	public void interact() {
-		DialogueManager.ShowExampleDialogueBalloon(stats.Dialogue, iSource.getConversation());
+    public bool canInteract() {
+        return stats.Can_interact;
+    }
 
-	}
+    public void interact() {
+        DialogueManager.ShowExampleDialogueBalloon(stats.Dialogue, iSource.getConversation());
+
+    }
 
 
 }

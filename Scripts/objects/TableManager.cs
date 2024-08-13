@@ -2,125 +2,128 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 
 public partial class TableManager : Node2D {
 
-	public List<Table> tables = new List<Table>();
+    public List<Table> tables = new List<Table>();
 
-	[Export]
-	public Godot.Collections.Array<NPC_Resource> npcList;
+    [Export]
+    public Godot.Collections.Array<NPC_Resource> npcList;
 
-	[Export]
-	public Traveler_Resource tRepo;
+    [Export]
+    public Traveler_Resource tRepo;
 
-	public static Godot.Collections.Array<NPC_Resource> Customers;
-
-
-	public static List<NPC_Resource> takenList;
-
-	public override void _Ready() {
-		Customers = new Godot.Collections.Array<NPC_Resource>();
-		takenList = new List<NPC_Resource>();
-
-		foreach (var tab in GetChildren()) {
-			var tabl = (Table)tab;
-			tables.Add(tabl);
-			tabl.setManager(this);
-		}
-	}
-
-	public void setCustomers() {
-		var rand = new Random();
-		int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
-
-		foreach (NPC_Resource npc in npcList) {
-			if (rand.Next(100) <= npc.spawnChance) {
-				Customers.Add(npc);
-			}
-		}
-
-		for (int i = 0; i < numTravelers; i++) {
-			Customers.Add(generateTraveler());
-		}
+    public static Godot.Collections.Array<NPC_Resource> Customers;
 
 
-		GD.Print(Customers.Count);
-	}
+    public static List<NPC_Resource> takenList;
 
-	public NPC_Resource generateTraveler() {
-		var rand = new Random();
+    public override void _Ready() {
+        Customers = new Godot.Collections.Array<NPC_Resource>();
+        takenList = new List<NPC_Resource>();
 
-		bool full = true;
-		foreach (var item in tRepo.cSprites) {
-			if (!tRepo.usedTravelers.Contains(item)) {
-				full = false;
-			}
-		}
+        foreach (var tab in GetChildren()) {
+            var tabl = (Table)tab;
+            tables.Add(tabl);
+            tabl.setManager(this);
+        }
+    }
 
-		if (full) {
-			tRepo.usedTravelers.Clear();
-		}
+    public void setCustomers() {
+        var rand = new Random();
+        int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
 
-		travelers spr = null;
+        foreach (NPC_Resource npc in npcList) {
+            if (rand.Next(100) <= npc.spawnChance) {
+                Customers.Add(npc);
+            }
+        }
 
-		while (!tRepo.usedTravelers.Contains(spr)) {
-			GD.Print("F");
-			spr = tRepo.cSprites[rand.Next(tRepo.cSprites.Count)];
-		}
+        for (int i = 0; i < numTravelers; i++) {
+            Customers.Add(generateTraveler());
+        }
 
-		string na = spr.Names[rand.Next(spr.Names.Count)];
-		tRepo.usedTravelers.Add(spr);
+    }
 
-		return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
-	}
+    public NPC_Resource generateTraveler() {
+        var rand = new Random();
+
+        bool full = true;
+        foreach (var item in tRepo.cSprites) {
+            if (!tRepo.usedTravelers.Contains(item)) {
+                full = false;
+            }
+        }
+
+        if (full) {
+            tRepo.usedTravelers.Clear();
+        }
+
+        travelers spr = getnewT(tRepo.cSprites[rand.Next(tRepo.cSprites.Count)], rand);
+
+        GD.Print(spr.cSprite.ResourceName);
+
+        string na = spr.Names[rand.Next(spr.Names.Count)];
+        tRepo.usedTravelers.Add(spr);
+
+        return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
+    }
+
+    public travelers getnewT(travelers spr, Random rand) {
+        if (tRepo.usedTravelers.Contains(spr)) {
+            spr = tRepo.cSprites[rand.Next(tRepo.cSprites.Count)];
+            return getnewT(spr, rand);
+        }
+
+        return spr;
+    }
 
 
-	public void npcTaken(NPC_Resource taken) {
-		npcList.Remove(taken);
-		takenList.Add(taken);
-	}
+    public void npcTaken(NPC_Resource taken) {
+        npcList.Remove(taken);
+        takenList.Add(taken);
+    }
 
-	public void npcFree(NPC_Resource freed, Table tar) {
-		npcList.Add(freed);
-		takenList.Remove(freed);
-		// actually useful:
+    public void npcFree(NPC_Resource freed, Table tar) {
+        npcList.Add(freed);
+        takenList.Remove(freed);
+        // actually useful:
 
-		if (Customers.Count > 0) {
-			spawn(tar);
-		}
-	}
+        if (Customers.Count > 0) {
+            spawn(tar);
+        }
+    }
 
-	public void spawn(Table tab) {
-		NPC_Resource target = Customers[0];
-		Customers.RemoveAt(0);
-		npcTaken(target);
+    public void spawn(Table tab) {
+        NPC_Resource target = Customers[0];
+        Customers.RemoveAt(0);
+        npcTaken(target);
 
-		tab.spawnNpc(target);
-	}
+        tab.spawnNpc(target);
+    }
 
-	public void open() {
-		GD.Print("open");
-		setCustomers();
-		GD.Print(Customers.Count);
+    public void open() {
+        setCustomers();
 
-		if (Customers.Count > tables.Count) {
-			foreach (var tab in tables) {
+        if (Customers.Count > tables.Count) {
+            foreach (var tab in tables) {
 
-				spawn(tab);
+                spawn(tab);
 
-			}
-		} else {
-			for (int i = 0; i < Customers.Count; i++) {
-				spawn(tables[i]);
-			}
-		}
+            }
+        } else {
+            for (int i = 0; i < Customers.Count; i++) {
+                spawn(tables[i]);
+            }
+        }
 
-	}
+    }
 
-	public void clear() {
-		foreach (var tab in tables) {
-			tab.clearNpc();
-		}
-	}
+    public void clear() {
+        foreach (var tab in tables) {
+            tab.clearNpc();
+        }
+    }
 
 }
