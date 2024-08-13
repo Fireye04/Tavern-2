@@ -18,7 +18,7 @@ else
 	# TODO: give player another chance vs leave based on rep
 	Narrator: Lucian tips his hat and heads out
 	do removeRep(1)
-	do LeaveT()
+do leaveT()
 
 => END
 
@@ -31,6 +31,7 @@ Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts. Who're
 ~ catchall_inside
 
 Lucian: Hey there tavernkeeper! What do you have cooking today?
+do leaveT()
 
 => END
 

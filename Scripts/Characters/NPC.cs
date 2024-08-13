@@ -10,12 +10,15 @@ public partial class NPC : CharacterBody2D, IInteractable {
 
     public static DayUI dui;
 
+    public Table table;
+
     private IDialogueSource iSource;
 
-    public void init(NPC_Resource npc, barter b, DayUI duii) {
+    public void init(NPC_Resource npc, barter b, DayUI duii, Table tab) {
         stats = npc;
         bItem = b;
         dui = duii;
+        table = tab;
         var asp = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
         asp.SpriteFrames = npc.cSprite;
         var newNode = stats.DSource.Instantiate();
@@ -30,7 +33,12 @@ public partial class NPC : CharacterBody2D, IInteractable {
     }
 
     public void leave() {
-        QueueFree();
+        if (table is not null) {
+            table.clearNpc();
+        } else {
+            QueueFree();
+        }
+
     }
 
     public bool canInteract() {

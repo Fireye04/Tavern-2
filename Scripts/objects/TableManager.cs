@@ -40,15 +40,17 @@ public partial class TableManager : Node2D {
         var rand = new Random();
         int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
 
+        for (int i = 0; i < numTravelers; i++) {
+            Customers.Add(generateTraveler());
+        }
+
         foreach (NPC_Resource npc in npcList) {
             if (rand.Next(100) <= npc.spawnChance) {
                 Customers.Add(npc);
             }
         }
 
-        for (int i = 0; i < numTravelers; i++) {
-            Customers.Add(generateTraveler());
-        }
+
 
     }
 
@@ -96,6 +98,7 @@ public partial class TableManager : Node2D {
         takenList.Remove(freed.stats);
         // actually useful:
 
+        freed.QueueFree();
         if (Customers.Count > 0) {
             spawn(tar);
         }
@@ -104,6 +107,7 @@ public partial class TableManager : Node2D {
     public void spawn(Table tab) {
         NPC_Resource target = Customers[0];
         Customers.RemoveAt(0);
+        pCustomers();
         npcTaken(target);
 
         tab.spawnNpc(target);

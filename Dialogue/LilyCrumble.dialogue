@@ -18,7 +18,7 @@ else
 	# TODO: give player another chance vs leave based on rep
 	Narrator: Lily hops off her seat and leaves.
 	do removeRep(1)
-	do LeaveT()
+do leaveT()
 
 => END
 
@@ -31,6 +31,7 @@ Lily: Hi! Welcome to the crumble bakery! What can I getcha?!
 ~ catchall_inside
 
 Lily: What you got for me today tavernkeeper?
+do leaveT()
 
 => END
 

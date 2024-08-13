@@ -19,7 +19,7 @@ else
 	# TODO: give player another chance vs leave based on rep
 	Narrator: Lyra stands, somewhat peeved, and leaves the tavern.
 	do removeRep(1)
-	do LeaveT()
+do leaveT()
 
 => END
 
@@ -38,6 +38,7 @@ Lyra: Hello. I am Lyra Silverwind. It is good to meet you.
 Lyra: I hope to see you around.
 - Goodbye
 	Lyra: Adieu
+do leaveT()
 
 => END
 

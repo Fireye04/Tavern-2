@@ -31,12 +31,11 @@ public partial class Table : StaticBody2D {
         GD.Print("spawning " + target.Name);
         npc = (NPC)pnpc.Instantiate();
         AddChild(npc);
-        npc.init(target, bItem, dUI);
+        npc.init(target, bItem, dUI, this);
         npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
     }
 
     public void clearNpc() {
         manager.npcFree(npc, this);
-        npc.QueueFree();
     }
 }

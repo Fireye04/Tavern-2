@@ -18,7 +18,7 @@ else
 	# TODO: give player another chance vs leave based on rep
 	Narrator: N stands and leaves.
 	do removeRep(1)
-	do LeaveT()
+do leaveT()
 
 => END
 
@@ -31,6 +31,7 @@ N: Hello. You are unfamiliar.
 ~ catchall_inside
 
 N: I would like to request the usual.
+do leaveT()
 
 => END
 
