@@ -57,6 +57,7 @@ public partial class GameState : Node {
         ("none", 0)
     };
 
+
     private static int getItemValue(string Item) {
         var total = 0;
         foreach (var ing in RecipiesIngredients[Item]) {
@@ -66,21 +67,17 @@ public partial class GameState : Node {
         return total;
     }
 
-    private static int getPrices() {
+    public static int getPrices() {
+        GD.Print("here I am");
         var total = 0;
         foreach (var item in currentMenu) {
             if (item.Item1 == "none") {
                 continue;
             }
 
-            total += item.Item2 - getItemValue(item.Item1);
+            total += getItemValue(item.Item1) - item.Item2;
         }
         return total;
-    }
-
-    public static int prices {
-        get { return getPrices(); }
-        set { prices = value; }
     }
 
     public static List<string> recipies = new List<string> {

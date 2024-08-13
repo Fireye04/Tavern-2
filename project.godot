@@ -23,6 +23,11 @@ Carver="*res://Scripts/Characters/Carver.cs"
 Lily="*res://Scripts/Characters/Lily.cs"
 Lucian="*res://Scripts/Characters/Lucian.cs"
 N="*res://Scripts/Characters/N.cs"
+GameState="*res://Scripts/GameState.cs"
+
+[debug]
+
+settings/stdout/verbose_stdout=true
 
 [dialogue_manager]
 

@@ -81,7 +81,6 @@ public partial class PlayerController : CharacterBody2D {
 
 
 	public override void _UnhandledInput(InputEvent @event) {
-
 		if (@event.IsActionPressed("inventory")) {
 			if (UIActive == "inventory") {
 				invUI.deactivate();
@@ -104,12 +103,14 @@ public partial class PlayerController : CharacterBody2D {
 
 		if (UIActive == "") {
 			if (@event.IsActionPressed("interact")) {
+				GD.Print("why god");
 				Node2D target = find_nearest_interactable();
 
 				if (target != null) {
 
 					IInteractable iTarget = (IInteractable)target;
 					if (iTarget.canInteract()) {
+						
 						iTarget.interact();
 						_player_in = new Godot.Vector2();
 						return;
@@ -140,4 +141,7 @@ public partial class PlayerController : CharacterBody2D {
 		MoveAndSlide();
 	}
 }
+
+
+
 

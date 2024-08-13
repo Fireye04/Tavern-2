@@ -30,7 +30,7 @@ public partial class NPC_Resource : Resource {
 			return 100;
 		}
 
-		int final = (GameState.prices * 10) + (Rep * 9);
+		int final = (GameState.getPrices() * 10) + (Rep * 9);
 		if (final < 0) {
 			return 0;
 		} else if (final > 100) {

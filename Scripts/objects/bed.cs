@@ -12,6 +12,7 @@ public partial class bed : StaticBody2D, IInteractable {
     }
 
     public void interact() {
+
         if (GameState.currentState == State.closed_afternoon) {
             tav.endDay();
         } else if (GameState.currentState == State.open) {

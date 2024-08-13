@@ -13,12 +13,13 @@ public partial class TableManager : Node2D {
 	[Export]
 	public Traveler_Resource tRepo;
 
-	public Godot.Collections.Array<NPC_Resource> Customers = new Godot.Collections.Array<NPC_Resource>();
+	public static Godot.Collections.Array<NPC_Resource> Customers;
 
 
 	public static List<NPC_Resource> takenList;
 
 	public override void _Ready() {
+		Customers = new Godot.Collections.Array<NPC_Resource>();
 		takenList = new List<NPC_Resource>();
 
 		foreach (var tab in GetChildren()) {
@@ -30,17 +31,20 @@ public partial class TableManager : Node2D {
 
 	public void setCustomers() {
 		var rand = new Random();
-		int numTravelers = 1 + GameState.prices + (GameState.tavernRep * 2);
+		int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
+
+		foreach (NPC_Resource npc in npcList) {
+			if (rand.Next(100) <= npc.spawnChance) {
+				Customers.Add(npc);
+			}
+		}
 
 		for (int i = 0; i < numTravelers; i++) {
 			Customers.Add(generateTraveler());
 		}
 
-		foreach (var npc in npcList) {
-			if (rand.Next(100) <= npc.spawnChance) {
-				Customers.Add(npc);
-			}
-		}
+
+		GD.Print(Customers.Count);
 	}
 
 	public NPC_Resource generateTraveler() {
@@ -60,15 +64,14 @@ public partial class TableManager : Node2D {
 		travelers spr = null;
 
 		while (!tRepo.usedTravelers.Contains(spr)) {
+			GD.Print("F");
 			spr = tRepo.cSprites[rand.Next(tRepo.cSprites.Count)];
 		}
 
 		string na = spr.Names[rand.Next(spr.Names.Count)];
 		tRepo.usedTravelers.Add(spr);
 
-		NPC_Resource trav = new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
-
-		return trav;
+		return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
 	}
 
 
@@ -96,6 +99,7 @@ public partial class TableManager : Node2D {
 	}
 
 	public void open() {
+		GD.Print("open");
 		setCustomers();
 		GD.Print(Customers.Count);
 
