@@ -11,5 +11,5 @@ cSprite = ExtResource("3_vd3f1")
 Dialogue = ExtResource("1_sveyp")
 Can_interact = true
 Name = "N-Ref"
-Rep = 0
+Rep = 1
 DSource = ExtResource("1_vi3o5")

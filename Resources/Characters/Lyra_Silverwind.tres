@@ -11,5 +11,5 @@ cSprite = ExtResource("3_qdj4g")
 Dialogue = ExtResource("1_t8pog")
 Can_interact = true
 Name = "Lyra Silverwind"
-Rep = 0
+Rep = 1
 DSource = ExtResource("1_255p5")

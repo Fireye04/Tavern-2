@@ -23,12 +23,7 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     private static PlayerController player;
 
-    [Export]
-    public Godot.Collections.Array orderItem = new Godot.Collections.Array(){
-        "Nothing",
-        0
-    };
-
+    private static NPC dad;
 
     public bool orderCorrect = false;
 
@@ -50,16 +45,16 @@ public partial class Traveler : Node, IDialogueSource, INPC {
             }
         }
 
-        orderItem = new Godot.Collections.Array(){
+        getStats().orderItem = new Godot.Collections.Array(){
             selec.Item1,
             selec.Item2
         };
     }
 
     public void recieveOrder() {
-        if (GameState.held == orderItem[0].ToString()) {
+        if (GameState.held == getStats().orderItem[0].ToString()) {
             changeHeld("Nothing");
-            addGold((int)orderItem[1]);
+            addGold((int)getStats().orderItem[1]);
 
             orderCorrect = true;
         } else {
@@ -95,7 +90,26 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
 
     public string getConversation() {
-        return "default";
+        var s = getStats();
+        s.convoCount += 1;
+        if (s.convoCount == 1) {
+            // make this procedure a function as well
+            s.completedConvos.Add("convo1_inside");
+            return "convo1_inside";
+
+        } else {
+            //TODO: make this easier to write, as I'm gonna have to do that a lot
+            if (
+                s.completedConvos.Contains("convo1_inside") &&
+                !s.completedConvos.Contains("convo1_inside_recieve_order")
+                ) {
+                s.completedConvos.Add("convo1_inside_recieve_order");
+                return "convo1_inside_recieve_order";
+            } else {
+                s.completedConvos.Add("catchall_inside");
+                return "catchall_inside";
+            }
+        }
 
     }
 
@@ -107,6 +121,11 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     public int getSpawnChance() {
         return spawnChance;
+    }
+
+    public static NPC_Resource getStats() {
+        dad = (NPC)player.find_nearest_interactable();
+        return dad.stats;
     }
 
     public void init(NPC obj, PlayerController pc) {

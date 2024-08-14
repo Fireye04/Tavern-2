@@ -11,5 +11,5 @@ cSprite = ExtResource("3_u4unb")
 Dialogue = ExtResource("1_omvt8")
 Can_interact = true
 Name = "Lily Crumble"
-Rep = 0
+Rep = 1
 DSource = ExtResource("1_j7ets")

@@ -11,5 +11,5 @@ cSprite = ExtResource("3_6bdgt")
 Dialogue = ExtResource("1_j1ks4")
 Can_interact = true
 Name = "Lucian Barnes"
-Rep = 0
+Rep = 1
 DSource = ExtResource("1_7pu6c")

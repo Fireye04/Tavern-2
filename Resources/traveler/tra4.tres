@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_bxbxp")
 cSprite = ExtResource("1_fh6ri")
-Names = Array[String](["n1", "n2", "n3"])
+Names = Array[String](["Raya", "Sylonia", "Livie"])
