@@ -6,5 +6,5 @@ public interface INPC {
 
     void setUI(barter bItem, DayUI dui);
 
-    void init(NPC obj);
+    void init(NPC obj, PlayerController pc);
 }

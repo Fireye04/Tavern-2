@@ -19,6 +19,9 @@ public partial class NPCSpawner : Node2D {
 
     public NPC npc;
 
+    [Export]
+    public PlayerController pc;
+
     public override void _Ready() {
         spawnNpc();
     }
@@ -27,7 +30,7 @@ public partial class NPCSpawner : Node2D {
         GD.Print("spawning " + npcr.Name);
         npc = (NPC)pnpc.Instantiate();
         AddChild(npc);
-        npc.init(npcr, bItem, dUI, null);
+        npc.init(npcr, bItem, dUI, null, pc);
         npc.Position = Position;
 
 

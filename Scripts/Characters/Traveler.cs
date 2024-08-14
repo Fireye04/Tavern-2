@@ -3,6 +3,7 @@ using System;
 using DialogueManagerRuntime;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 public partial class Traveler : Node, IDialogueSource, INPC {
 
@@ -17,12 +18,10 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     private int offerAmount;
 
-    public static Tuple<string, int> item;
-
     [Export]
     private Traveler_Resource npc_Resource;
 
-    private static NPC dad;
+    private static PlayerController player;
 
     [Export]
     public Godot.Collections.Array orderItem = new Godot.Collections.Array(){
@@ -37,6 +36,7 @@ public partial class Traveler : Node, IDialogueSource, INPC {
         npc_Resource = GD.Load<Traveler_Resource>("res://Resources/Characters/Traveler.tres");
 
     }
+
 
     public void getOrder() {
         // Note: breaks if the menu is empty
@@ -89,7 +89,8 @@ public partial class Traveler : Node, IDialogueSource, INPC {
     }
 
     public void leaveT() {
-        dad.leave();
+        var thing = (NPC)player.find_nearest_interactable();
+        thing.leave();
     }
 
 
@@ -108,7 +109,7 @@ public partial class Traveler : Node, IDialogueSource, INPC {
         return spawnChance;
     }
 
-    public void init(NPC obj) {
-        dad = obj;
+    public void init(NPC obj, PlayerController pc) {
+        player = pc;
     }
 }

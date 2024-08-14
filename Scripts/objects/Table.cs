@@ -18,6 +18,9 @@ public partial class Table : StaticBody2D {
 
     public NPC npc;
 
+    [Export]
+    public PlayerController pc;
+
     public override void _Ready() {
 
     }
@@ -31,7 +34,7 @@ public partial class Table : StaticBody2D {
         GD.Print("spawning " + target.Name);
         npc = (NPC)pnpc.Instantiate();
         AddChild(npc);
-        npc.init(target, bItem, dUI, this);
+        npc.init(target, bItem, dUI, this, pc);
         npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
     }
 

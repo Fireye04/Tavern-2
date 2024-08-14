@@ -30,10 +30,11 @@ public partial class TableManager : Node2D {
         }
     }
     public void pCustomers() {
-        GD.Print("Customers:");
+        GD.Print("\nCustomers:");
         foreach (var item in Customers) {
             GD.Print(item.Name);
         }
+        GD.Print(" ");
     }
 
     public void setCustomers() {
@@ -50,8 +51,17 @@ public partial class TableManager : Node2D {
             }
         }
 
+        // shuffle the list stolen from
+        // https://stackoverflow.com/questions/273313/randomize-a-listt
+        int n = Customers.Count;
+        while (n > 1) {
+            n--;
+            int k = rand.Next(n + 1);
+            NPC_Resource value = Customers[k];
+            Customers[k] = Customers[n];
+            Customers[n] = value;
 
-
+        }
     }
 
     public NPC_Resource generateTraveler() {
@@ -69,8 +79,6 @@ public partial class TableManager : Node2D {
         }
 
         travelers spr = getnewT(tRepo.cSprites[rand.Next(tRepo.cSprites.Count)], rand);
-
-        GD.Print(spr.cSprite.ResourceName);
 
         string na = spr.Names[rand.Next(spr.Names.Count)];
         tRepo.usedTravelers.Add(spr);
@@ -107,7 +115,7 @@ public partial class TableManager : Node2D {
     public void spawn(Table tab) {
         NPC_Resource target = Customers[0];
         Customers.RemoveAt(0);
-        pCustomers();
+        // pCustomers();
         npcTaken(target);
 
         tab.spawnNpc(target);
@@ -133,7 +141,10 @@ public partial class TableManager : Node2D {
     public void clear() {
         Customers.Clear();
         foreach (var tab in tables) {
-            tab.clearNpc();
+            try {
+                tab.clearNpc();
+            } catch (System.ObjectDisposedException) { }
+
         }
 
     }

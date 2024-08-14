@@ -189,7 +189,7 @@ public partial class Lily : Node, IDialogueSource, INPC {
         return spawnChance;
     }
 
-    public void init(NPC obj) {
+    public void init(NPC obj, PlayerController pc) {
         dad = obj;
     }
 }

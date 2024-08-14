@@ -49,15 +49,17 @@ script = ExtResource("6_208rq")
 npcList = Array[Object]([ExtResource("9_8fi4a"), ExtResource("10_mm8on"), ExtResource("13_u221v"), ExtResource("11_aj888"), ExtResource("12_oe7y5")])
 tRepo = ExtResource("14_sjm5x")
 
-[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
+[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]
 position = Vector2(426, 460)
 bItem = NodePath("../../CanvasLayer/Barter")
 dUI = NodePath("../../CanvasLayer/DayUI")
+pc = NodePath("../../Player")
 
-[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI") instance=ExtResource("6_0oc6x")]
+[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]
 position = Vector2(318, 459)
 bItem = NodePath("../../CanvasLayer/Barter")
 dUI = NodePath("../../CanvasLayer/DayUI")
+pc = NodePath("../../Player")
 
 [node name="Inside Door" parent="." instance=ExtResource("11_46p04")]
 position = Vector2(198, 508)
