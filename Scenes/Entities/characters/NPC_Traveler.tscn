@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://ibhd2uv8vrie"]
+
+[ext_resource type="SpriteFrames" uid="uid://c8intfxd8n6hj" path="res://Assets/anims/null.tres" id="2_g1a8q"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ia3ys"]
+script/source = "using DialogueManagerRuntime;
+using Godot;
+using System;
+
+public partial class NPC : CharacterBody2D, IInteractable {
+
+    public NPC_Resource stats;
+
+    public static barter bItem;
+
+    public static DayUI dui;
+
+    private IDialogueSource iSource;
+
+    public void init(NPC_Resource npc, barter b, DayUI duii) {
+        stats = npc;
+        bItem = b;
+        dui = duii;
+        var asp = (AnimatedSprite2D)GetNode(\"AnimatedSprite2D\");
+        asp.SpriteFrames = npc.cSprite;
+        var newNode = stats.DSource.Instantiate();
+        AddChild(newNode);
+
+        var bSource = (INPC)newNode;
+        bSource.init(this);
+
+        bSource.setUI(bItem, dui);
+        iSource = (IDialogueSource)newNode;
+    }
+
+    public void leave() {
+        QueueFree();
+    }
+
+    public bool canInteract() {
+        return stats.Can_interact;
+    }
+
+    public void interact() {
+        DialogueManager.ShowExampleDialogueBalloon(stats.Dialogue, iSource.getConversation());
+
+    }
+
+
+}
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnawa"]
+size = Vector2(18, 15)
+
+[node name="NPC" type="CharacterBody2D"]
+script = SubResource("CSharpScript_ia3ys")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, 6.5)
+scale = Vector2(0.148437, 0.382812)
+sprite_frames = ExtResource("2_g1a8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 24.5)
+shape = SubResource("RectangleShape2D_hnawa")

@@ -1,0 +1,26 @@
+using Traveler
+
+~ convo1_inside
+do getOrder()
+{{getStats().Name}}: Get me a {{getStats().orderItem[0]}}.
+
+=> END
+
+~ convo1_inside_recieve_order
+
+do recieveOrder()
+if orderCorrect
+	{{getStats().Name}}: Nice!
+else
+	{{getStats().Name}}: FUCK
+	
+do leaveT()
+
+=> END
+
+~ catchall_inside
+
+{{getStats().Name}}: a
+do leaveT()
+
+=> END

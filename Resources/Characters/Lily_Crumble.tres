@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="NPC_Resource" load_steps=5 format=3 uid="uid://s6ilc653fbgv"]
+
+[ext_resource type="Script" path="res://Resources/Characters/NPC_Resource.cs" id="1_g4loh"]
+[ext_resource type="PackedScene" uid="uid://dxpqisxrcupio" path="res://Scenes/Entities/characters/Lily.tscn" id="1_j7ets"]
+[ext_resource type="Resource" uid="uid://bytweas2wirjt" path="res://Dialogue/LilyCrumble.dialogue" id="1_omvt8"]
+[ext_resource type="SpriteFrames" uid="uid://c8intfxd8n6hj" path="res://Assets/anims/null.tres" id="3_u4unb"]
+
+[resource]
+script = ExtResource("1_g4loh")
+cSprite = ExtResource("3_u4unb")
+Dialogue = ExtResource("1_omvt8")
+Can_interact = true
+Name = "Lily Crumble"
+Rep = 1
+DSource = ExtResource("1_j7ets")

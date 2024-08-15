@@ -1,0 +1,95 @@
+using Lucian
+
+~ convo1_inside
+
+Lucian: Hi! What's on the menu?
+- Hi! What can I get for you?
+	do getOrder()
+	Lucian: Get me a {{orderItem[0]}}, if you wouldn't mind!
+
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lucian: Awesome, thanks!
+else
+	Lucian: That doesn't look like a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lucian tips his hat and heads out
+	do removeRep(1)
+do leaveT()
+
+=> END
+
+~ convo1_outside
+
+Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts. Who're you?
+
+=> END
+
+~ catchall_inside
+
+Lucian: Hey there tavernkeeper! What do you have cooking today?
+do leaveT()
+
+=> END
+
+~ catchall_outside
+
+Lucian: Howdy! Interested in some fresh produce?
+- No thanks.
+	Lucian: ALrighty, let me know if you change your mind!
+- Sure
+	=> startDeal
+
+=> END
+
+~ startDeal
+if not repeatedDeal
+	Lucian: I have corn, cheese and milk.
+else
+	Lucian: The corn, the cheese or the milk?
+
+- Corn
+	do Deal("corn")
+- Cheese
+	do Deal("Cheese")
+- Milk
+	do Deal("milk")
+- Quit
+	if npc_Resource.Rep > 1
+		Lucian: Thanks! Seeya around!
+	else 
+		Lucian: Alright
+	=> END
+=> checks
+
+=> END
+
+~ checks
+
+if happiness > 1
+	Lucian: Awesome, thanks!
+	do addRep(1)
+	do transaction()
+elif 0 <= happiness and happiness <= 1
+	Lucian: That's a deal.
+	do transaction()
+elif -1 <= happiness and happiness < 0
+	Lucian: If you insist.
+	do removeRep(1)
+	do transaction()
+else
+	Lucian: Not gonna happen, sorry.
+	- New Deal!
+		set repeatedDeal = true
+		=> startDeal
+	- Whatever
+if npc_Resource.Rep > 1
+	Lucian: Thanks! Seeya around!
+else 
+	Lucian: Alright
+
+do endDeal()
+=> END

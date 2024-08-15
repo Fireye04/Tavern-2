@@ -10,6 +10,9 @@ public partial class DayUI : Control {
 	[Export]
 	public StatusLabel sl;
 
+	[Export]
+	public Label held;
+
 	public void nextDay() {
 		currentDay += 1;
 		dl.dayUpdate();
@@ -18,5 +21,9 @@ public partial class DayUI : Control {
 
 	public void nextState() {
 		sl.stateUpdate();
+	}
+
+	public void updateHeld(string item) {
+		held.Text = "Holding: " + item;
 	}
 }

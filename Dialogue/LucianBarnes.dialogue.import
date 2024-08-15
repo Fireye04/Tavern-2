@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cfqmnng3bhukn"
+path="res://.godot/imported/LucianBarnes.dialogue-eff96702c0bd9939b2ff3db85638da5a.tres"
+
+[deps]
+
+source_file="res://Dialogue/LucianBarnes.dialogue"
+dest_files=["res://.godot/imported/LucianBarnes.dialogue-eff96702c0bd9939b2ff3db85638da5a.tres"]
+
+[params]
+
+defaults=true

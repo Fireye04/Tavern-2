@@ -1,0 +1,105 @@
+using N
+
+~ convo1_inside
+
+N: Hello.
+- Hi! What can I get for you?
+	do getOrder()
+	N: My daughter would like a {{orderItem[0]}}. I cannot eat.
+
+=> END	
+
+~ convo1_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	N: The result is satisfactory.
+else
+	N: This is incorrect. I requested a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: N stands and leaves.
+	do removeRep(1)
+do leaveT()
+
+=> END
+
+~ convo1_outside
+
+N: Hello. You are unfamiliar.
+
+=> END
+
+~ catchall_inside
+
+N: I would like to request the usual.
+do leaveT()
+
+=> END
+
+~ catchall_outside
+
+N: Hello. Would you like to purchase something?
+- No
+	N: Understood.
+- Sure
+	=> startDeal
+
+=> END
+
+~ startDeal
+if not repeatedDeal
+	N: I got beef.
+else
+	N: ...
+
+- Wine
+	do Deal("wine")
+- Ale
+	do Deal("ale")
+- Rum
+	do Deal("rum")
+- Bread
+	do Deal("bread")
+- Beef
+	do Deal("beef")
+- Corn
+	do Deal("corn")
+- Cheese
+	do Deal("cheese")
+- Milk
+	do Deal("milk")
+- Quit
+	if npc_Resource.Rep > 1
+		N: Goodbye.
+	else 
+		N: If you have no further business please exit the premeses.
+	=> END
+=> checks
+
+=> END
+
+~ checks
+
+if happiness > 1
+	N: This is a profitable outcome. 
+	do addRep(1)
+	do transaction()
+elif 0 <= happiness and happiness <= 1
+	N: Accepted.
+	do transaction()
+elif -1 <= happiness and happiness < 0
+	N: This is an unfavorable outcome. Very well.
+	do removeRep(1)
+	do transaction()
+else
+	N: Negative. No deal.
+	- New Deal!
+		set repeatedDeal = true
+		=> startDeal
+	- Whatever
+if npc_Resource.Rep > 1
+	N: Goodbye.
+else 
+	N: If you have no further business please exit the premeses.
+
+do endDeal()
+=> END

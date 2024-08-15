@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cqt3yu18477rc"
+path="res://.godot/imported/Carver.dialogue-d697203e20f6c7540501d03f5d41953e.tres"
+
+[deps]
+
+source_file="res://Dialogue/Carver.dialogue"
+dest_files=["res://.godot/imported/Carver.dialogue-d697203e20f6c7540501d03f5d41953e.tres"]
+
+[params]
+
+defaults=true

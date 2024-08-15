@@ -5,44 +5,39 @@ using System.Text;
 
 public partial class Table : StaticBody2D {
 
-	public static TableManager manager;
+    public static TableManager manager;
 
-	[Export]
-	public barter bItem { get; set; }
+    [Export]
+    public barter bItem { get; set; }
 
-	[Export]
-	public PackedScene pnpc;
+    [Export]
+    public DayUI dUI { get; set; }
 
-	public NPC npc;
+    [Export]
+    public PackedScene pnpc;
 
-	public override void _Ready() {
+    public NPC npc;
 
-	}
+    [Export]
+    public PlayerController pc;
 
-	public void setManager(TableManager man) {
-		manager = man;
-	}
+    public override void _Ready() {
+    }
 
-	public void spawnNpc(List<NPC_Resource> available) {
+    public void setManager(TableManager man) {
+        manager = man;
+    }
 
-		Random rand = new Random();
-		var spawns = new List<NPC_Resource>();
-		foreach (var npc in available) {
-			for (var i = 0; i < npc.spawnChance; i++) {
-				spawns.Add(npc);
-			}
-		}
-		var target = spawns[rand.Next(spawns.Count)];
-		manager.npcTaken(target);
-		GD.Print("spawning " + target.Name);
-		npc = (NPC)pnpc.Instantiate();
-		AddChild(npc);
-		npc.init(target, bItem);
-		npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
-	}
+    public void spawnNpc(NPC_Resource target) {
 
-	public void clearNpc() {
-		manager.npcFree(npc.stats);
-		npc.QueueFree();
-	}
+        GD.Print("spawning " + target.Name);
+        npc = (NPC)pnpc.Instantiate();
+        AddChild(npc);
+        npc.init(target, bItem, dUI, this, pc);
+        npc.Position = ((Node2D)GetNode("Spawn Location")).Position;
+    }
+
+    public void clearNpc() {
+        manager.npcFree(npc, this);
+    }
 }

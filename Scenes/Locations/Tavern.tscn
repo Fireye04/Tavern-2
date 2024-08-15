@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fp1i7swpxc8x"]
+[gd_scene load_steps=19 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
 [ext_resource type="Script" path="res://Scripts/Tavern.cs" id="1_tfvbr"]
@@ -8,10 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://ugotmi2j8brj" path="res://Scenes/UI/menu.tscn" id="5_tckeo"]
 [ext_resource type="PackedScene" uid="uid://bukwus8ib5akw" path="res://Scenes/Entities/objects/table.tscn" id="6_0oc6x"]
 [ext_resource type="Script" path="res://Scripts/objects/TableManager.cs" id="6_208rq"]
-[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Lyra_Silverwind.tres" id="7_kn145"]
-[ext_resource type="Resource" uid="uid://bmq1a0hjq5xul" path="res://Resources/Jack_Vinewood.tres" id="8_aksfb"]
+[ext_resource type="PackedScene" uid="uid://c6eoorkqshxrw" path="res://Scenes/UI/cooking.tscn" id="7_p3is8"]
+[ext_resource type="Resource" uid="uid://dlu05eabxlshg" path="res://Resources/Characters/Carver.tres" id="9_8fi4a"]
+[ext_resource type="Resource" uid="uid://s6ilc653fbgv" path="res://Resources/Characters/Lily_Crumble.tres" id="10_mm8on"]
 [ext_resource type="PackedScene" uid="uid://51tbxqo6uuv0" path="res://Scenes/Entities/objects/InsideDoor.tscn" id="11_46p04"]
+[ext_resource type="Resource" uid="uid://dpaxse5xa3ww5" path="res://Resources/Characters/Lyra_Silverwind.tres" id="11_aj888"]
+[ext_resource type="Resource" uid="uid://ceits7xel71wd" path="res://Resources/Characters/N_Ref.tres" id="12_oe7y5"]
 [ext_resource type="PackedScene" uid="uid://c5w6lt1uovwle" path="res://Scenes/Entities/objects/bed.tscn" id="12_wrjxu"]
+[ext_resource type="Resource" uid="uid://g2oaafc7ljj" path="res://Resources/Characters/Lucian_Barnes.tres" id="13_u221v"]
+[ext_resource type="PackedScene" uid="uid://dyu8wmgo0q3ne" path="res://Scenes/Entities/objects/Kitchen.tscn" id="14_rqf5i"]
+[ext_resource type="Resource" uid="uid://dysiyf0iyrn5j" path="res://Resources/Characters/Traveler.tres" id="14_sjm5x"]
 
 [node name="Tavern" type="Node2D" node_paths=PackedStringArray("mu", "day", "tabMan")]
 script = ExtResource("1_tfvbr")
@@ -34,23 +40,36 @@ menUI = NodePath("../CanvasLayer/Menu")
 
 [node name="DayUI" parent="CanvasLayer" instance=ExtResource("2_rguoj")]
 
-[node name="TableManager" type="Node2D" parent="."]
+[node name="Cooking" parent="CanvasLayer" node_paths=PackedStringArray("pc", "dui") instance=ExtResource("7_p3is8")]
+pc = NodePath("../../Player")
+dui = NodePath("../DayUI")
+
+[node name="TableManager" type="Node2D" parent="." node_paths=PackedStringArray("tavernObject")]
 script = ExtResource("6_208rq")
-npc1 = ExtResource("7_kn145")
-npc2 = ExtResource("8_aksfb")
+npcList = Array[Object]([ExtResource("9_8fi4a"), ExtResource("10_mm8on"), ExtResource("13_u221v"), ExtResource("11_aj888"), ExtResource("12_oe7y5")])
+tRepo = ExtResource("14_sjm5x")
+tavernObject = NodePath("..")
 
-[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
-position = Vector2(983, 368)
+[node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]
+position = Vector2(426, 460)
 bItem = NodePath("../../CanvasLayer/Barter")
+dUI = NodePath("../../CanvasLayer/DayUI")
+pc = NodePath("../../Player")
 
-[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem") instance=ExtResource("6_0oc6x")]
-position = Vector2(616, 367)
+[node name="Table2" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]
+position = Vector2(318, 459)
 bItem = NodePath("../../CanvasLayer/Barter")
+dUI = NodePath("../../CanvasLayer/DayUI")
+pc = NodePath("../../Player")
 
 [node name="Inside Door" parent="." instance=ExtResource("11_46p04")]
 position = Vector2(198, 508)
 targetPath = "res://Scenes/Locations/Village.tscn"
 
 [node name="Bed" parent="." node_paths=PackedStringArray("tav") instance=ExtResource("12_wrjxu")]
-position = Vector2(-279, 340)
+position = Vector2(25, 373)
 tav = NodePath("..")
+
+[node name="Kitchen" parent="." node_paths=PackedStringArray("cookUI") instance=ExtResource("14_rqf5i")]
+position = Vector2(314, 259)
+cookUI = NodePath("../CanvasLayer/Cooking")

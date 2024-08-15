@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://bytweas2wirjt"
+path="res://.godot/imported/LilyCrumble.dialogue-96f6524670c2a152ea1b41079736936c.tres"
+
+[deps]
+
+source_file="res://Dialogue/LilyCrumble.dialogue"
+dest_files=["res://.godot/imported/LilyCrumble.dialogue-96f6524670c2a152ea1b41079736936c.tres"]
+
+[params]
+
+defaults=true

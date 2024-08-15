@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cq0uxb3vrg4dj"]
+
+[ext_resource type="Texture2D" uid="uid://ex6aumpt7qaa" path="res://Assets/art/NPC1_1.png" id="1_tyke3"]
+[ext_resource type="Texture2D" uid="uid://bu84nlgotkfr6" path="res://Assets/art/NPC1_2.png" id="2_8club"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tyke3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8club")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

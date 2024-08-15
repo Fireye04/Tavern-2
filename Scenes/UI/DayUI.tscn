@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/dayLabel.cs" id="3_eb4lt"]
 [ext_resource type="Script" path="res://Scripts/UI/StatusLabel.cs" id="3_ewxsg"]
 
-[node name="DayUI" type="Control" node_paths=PackedStringArray("dl", "sl")]
+[node name="DayUI" type="Control" node_paths=PackedStringArray("dl", "sl", "held")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ mouse_filter = 2
 script = ExtResource("1_luysc")
 dl = NodePath("HBoxContainer2/VBoxContainer/dayLabel")
 sl = NodePath("HBoxContainer2/VBoxContainer/StatusLabel")
+held = NodePath("HBoxContainer2/VBoxContainer/Label")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -44,3 +45,7 @@ mouse_filter = 1
 text = "Closed (morning)"
 fit_content = true
 script = ExtResource("3_ewxsg")
+
+[node name="Label" type="Label" parent="HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Holding: Nothing"

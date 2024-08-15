@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="travelers" load_steps=3 format=3 uid="uid://con0ymj5yds5f"]
+
+[ext_resource type="SpriteFrames" uid="uid://b1m8jurq3fage" path="res://Assets/anims/trav2.tres" id="1_lxoxp"]
+[ext_resource type="Script" path="res://Resources/traveler/travelers.cs" id="2_57v5c"]
+
+[resource]
+script = ExtResource("2_57v5c")
+cSprite = ExtResource("1_lxoxp")
+Names = Array[String](["Wilbur", "Ricky", "Vik"])

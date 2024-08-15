@@ -18,7 +18,7 @@ public partial class Tavern : Node2D {
 		GameState.currentState = State.open;
 		day.nextState();
 		mu.stopEdits();
-		tabMan.spawn();
+		tabMan.open();
 
 	}
 
@@ -26,6 +26,7 @@ public partial class Tavern : Node2D {
 		// Order matters, nextstate upadtes based on value!
 		// this is stupid but so am i
 		GameState.currentState = State.closed_afternoon;
+		GameState.held = "Nothing";
 		day.nextState();
 		mu.allowEdits();
 		tabMan.clear();

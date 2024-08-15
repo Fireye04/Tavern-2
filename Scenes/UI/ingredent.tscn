@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyex42imfnl3b"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ingredent.cs" id="1_3w8hl"]
+
+[node name="Ingredent" type="MarginContainer" node_paths=PackedStringArray("iName", "iCount")]
+offset_right = 131.0
+offset_bottom = 23.0
+script = ExtResource("1_3w8hl")
+iName = NodePath("MarginContainer/HBoxContainer/Label")
+iCount = NodePath("MarginContainer/HBoxContainer/Label2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ingredient Name"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "count"
