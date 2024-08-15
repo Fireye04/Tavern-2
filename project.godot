@@ -29,7 +29,7 @@ Traveler="*res://Scripts/Characters/Traveler.cs"
 [dialogue_manager]
 
 general/uses_dotnet=true
-general/states=["Lyra", "Carver", "Lily", "Lucian", "N", "Traveler", "GameState"]
+general/states=["GameState"]
 
 [dotnet]
 

@@ -3,6 +3,8 @@ using System;
 using DialogueManagerRuntime;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Net.NetworkInformation;
+using System.Collections.Generic;
 
 public partial class Lucian : Node, IDialogueSource, INPC {
 
@@ -21,7 +23,10 @@ public partial class Lucian : Node, IDialogueSource, INPC {
     [Export]
     public LineEdit offerItem;
 
-    private int offerAmount;
+    public LineEdit countItem;
+
+    private int _offerAmount;
+    private int _countAmount;
 
     public static Tuple<string, int> item;
 
@@ -78,35 +83,57 @@ public partial class Lucian : Node, IDialogueSource, INPC {
 
     public async Task Deal(string resource) {
 
-        offerItem = barterItem.startStuff(npc_Resource);
+        (offerItem, countItem) = barterItem.startStuff(npc_Resource, resource);
 
         var value = GameState.resourceVals[resource.ToLower()];
         item = new Tuple<string, int>(resource, value);
         offerItem.GrabFocus();
-        await ToSignal(offerItem, "text_submitted");
+        await ToSignal(barterItem.confirm, "pressed");
+
         try {
-            offerAmount = offerItem.Text.ToInt();
-            if (GameState.gold < offerAmount) {
+            _offerAmount = offerItem.Text.ToInt();
+            _countAmount = countItem.Text.ToInt();
+            if (_offerAmount < 0 || _countAmount < 0) {
+                throw new ArgumentException();
+            }
+            if (GameState.gold < _offerAmount * _countAmount) {
                 offerItem.Text = "";
                 offerItem.PlaceholderText = "funds";
+                countItem.Text = "";
+                countItem.PlaceholderText = "funds";
                 await Deal(resource);
             }
-            happiness = offerAmount - value;
+            if (_countAmount > 0) {
+                happiness = _offerAmount - value;
+            } else {
+                happiness = 0;
+            }
+
             offerItem.Text = "";
+            countItem.Text = "";
             offerItem.PlaceholderText = "Offer";
+            countItem.PlaceholderText = "Quantity";
 
         } catch (FormatException) {
+            countItem.Text = "";
+            countItem.PlaceholderText = "int only";
             offerItem.Text = "";
             offerItem.PlaceholderText = "int only";
             await Deal(resource);
 
+        } catch (ArgumentException) {
+            countItem.Text = "";
+            countItem.PlaceholderText = ">0 only";
+            offerItem.Text = "";
+            offerItem.PlaceholderText = ">0 only";
+            await Deal(resource);
         }
 
     }
 
     public void transaction() {
-        removeGold(offerAmount);
-        GameState.inventory[item.Item1] += 1;
+        removeGold(_offerAmount * _countAmount);
+        GameState.inventory[item.Item1] += _countAmount;
     }
 
 

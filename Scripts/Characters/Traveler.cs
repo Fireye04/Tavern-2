@@ -63,10 +63,6 @@ public partial class Traveler : Node, IDialogueSource, INPC {
     }
 
 
-    public void endDeal() {
-        barterItem.endStuff();
-    }
-
     // TODO: Move global edits to GameState
     public void changeHeld(string newitem) {
         GameState.held = newitem;
@@ -125,6 +121,7 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     public static NPC_Resource getStats() {
         dad = (NPC)player.find_nearest_interactable();
+        GD.Print(dad.stats.convoCount);
         return dad.stats;
     }
 

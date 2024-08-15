@@ -42,6 +42,7 @@ public partial class TableManager : Node2D {
     }
 
     public void setCustomers() {
+        tRepo.usedTravelers.Clear();
         var rand = new Random();
         int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
 
@@ -55,7 +56,7 @@ public partial class TableManager : Node2D {
             }
         }
 
-        // shuffle the list stolen from
+        // shuffle the list; stolen from
         // https://stackoverflow.com/questions/273313/randomize-a-listt
         int n = Customers.Count;
         while (n > 1) {
@@ -82,21 +83,26 @@ public partial class TableManager : Node2D {
             tRepo.usedTravelers.Clear();
         }
 
-        travelers spr = getnewT(tRepo.cSprites[rand.Next(tRepo.cSprites.Count)], rand);
+        travelers spr = getnewT(rand);
 
         string na = spr.Names[rand.Next(spr.Names.Count)];
         tRepo.usedTravelers.Add(spr);
 
+
         return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
     }
 
-    public travelers getnewT(travelers spr, Random rand) {
-        if (tRepo.usedTravelers.Contains(spr)) {
-            spr = tRepo.cSprites[rand.Next(tRepo.cSprites.Count)];
-            return getnewT(spr, rand);
-        }
+    public travelers getnewT(Random rand) {
+        var temp = new List<travelers>();
 
-        return spr;
+        foreach (var traveler in tRepo.cSprites) {
+            if (!tRepo.usedTravelers.Contains(traveler)) {
+                GD.Print("Adding" + traveler.Names[0]);
+                temp.Add(traveler);
+            }
+        }
+        return temp[rand.Next(temp.Count)];
+
     }
 
 
@@ -110,6 +116,7 @@ public partial class TableManager : Node2D {
         takenList.Remove(freed.stats);
         // actually useful:
 
+        freed.stats.convoCount = 0;
         freed.QueueFree();
 
         if (Customers.Count > 0) {

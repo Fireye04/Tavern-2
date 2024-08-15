@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/cooking_slot.cs" id="1_5trln"]
 [ext_resource type="PackedScene" uid="uid://dyex42imfnl3b" path="res://Scenes/UI/ingredent.tscn" id="2_knmrc"]
 
-[node name="Cooking Slot" type="MarginContainer" node_paths=PackedStringArray("itemName", "spawnloc")]
+[node name="Cooking Slot" type="MarginContainer" node_paths=PackedStringArray("itemName", "spawnloc", "cookButton")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 300.0
 offset_bottom = 55.0
@@ -11,6 +11,7 @@ script = ExtResource("1_5trln")
 ingred = ExtResource("2_knmrc")
 itemName = NodePath("VBoxContainer/HBoxContainer/Label")
 spawnloc = NodePath("VBoxContainer/MarginContainer/Spawn loc")
+cookButton = NodePath("VBoxContainer/HBoxContainer/Button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2

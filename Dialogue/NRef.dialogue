@@ -25,6 +25,7 @@ do leaveT()
 ~ convo1_outside
 
 N: Hello. You are unfamiliar.
+do debug(GameState.resourceVals)
 
 => END
 
@@ -47,7 +48,7 @@ N: Hello. Would you like to purchase something?
 
 ~ startDeal
 if not repeatedDeal
-	N: I got beef.
+	N: Here are your options.
 else
 	N: ...
 
@@ -79,12 +80,12 @@ else
 
 ~ checks
 
-if happiness > 1
+if happiness >= 1
 	N: This is a profitable outcome. 
 	do addRep(1)
 	do transaction()
-elif 0 <= happiness and happiness <= 1
-	N: Accepted.
+elif 0 == happiness
+	N: Accepted.f
 	do transaction()
 elif -1 <= happiness and happiness < 0
 	N: This is an unfavorable outcome. Very well.

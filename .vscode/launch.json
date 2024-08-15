@@ -1,38 +1,54 @@
 {
-  "version": "0.2.0",
+  "version": "2.0.0",
   "configurations": [
     {
       "name": "Launch",
       "type": "coreclr",
       "request": "launch",
-      "program": "flatpak",
       "preLaunchTask": "build",
-      "args": [
-        "run",
-        "org.godotengine.GodotSharp",
-        "--path",
-        "${workspaceRoot}"
-      ],
+      "program": "~/Godot/Godot_v4.2.2-stable_mono_linux.x86_64",
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
-      "stopAtEntry": false
+      "stopAtEntry": false,
+      "args": [
+        "--path",
+        "${workspaceRoot}"
+      ]
+    },
+    {
+      "name": "Launch (Select Scene)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "~/Godot/Godot_v4.2.2-stable_mono_linux.x86_64",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "args": [
+        "--path",
+        "${workspaceRoot}",
+        "${command:godot.csharp.getLaunchScene}"
+      ]
     },
     {
       "name": "Launch Editor",
       "type": "coreclr",
       "request": "launch",
-      "program": "flatpak",
       "preLaunchTask": "build",
+      "program": "~/Godot/Godot_v4.2.2-stable_mono_linux.x86_64",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
       "args": [
-        "run",
-        "org.godotengine.GodotSharp",
         "--path",
         "${workspaceRoot}",
         "--editor"
-      ],
-      "cwd": "${workspaceFolder}",
-      "console": "internalConsole",
-      "stopAtEntry": false
+      ]
     },
+    {
+      "name": "Attach to Process",
+      "type": "coreclr",
+      "request": "attach"
+    }
   ]
 }

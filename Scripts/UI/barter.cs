@@ -8,45 +8,59 @@ using System.ComponentModel;
 
 public partial class barter : Control {
 
-	public Node target;
+    public Node target;
 
-	[Export]
-	public RichTextLabel goldLabel;
+    [Export]
+    public RichTextLabel goldLabel;
 
-	[Export]
-	public RichTextLabel repLabel;
+    [Export]
+    public RichTextLabel repLabel;
 
-	[Export]
-	public LineEdit offer;
+    [Export]
+    public Control cont;
 
-	public static bool started = false;
+    [Export]
+    public LineEdit offer;
 
-	public override void _Ready() {
-		goldLabel.Text = "Gold: " + GameState.gold.ToString();
-	}
+    [Export]
+    public LineEdit count;
 
-	public LineEdit startStuff(NPC_Resource npcr) {
-		started = true;
-		repLabel.Visible = true;
-		offer.Visible = true;
-		repLabel.Text = "Rep: " + npcr.Rep.ToString();
+    [Export]
+    public Button confirm;
 
-		return offer;
-	}
+    [Export]
+    public Label Price;
 
-	public void endStuff() {
-		started = false;
-		repLabel.Visible = false;
-		offer.Visible = false;
-	}
+    public static bool started = false;
 
-	public void repUpdate(NPC_Resource npcr) {
-		repLabel.Text = "Rep: " + npcr.Rep.ToString();
-	}
+    public override void _Ready() {
+        goldLabel.Text = "Gold: " + GameState.gold.ToString();
+    }
 
-	public void goldUpdate() {
-		goldLabel.Text = "Gold: " + GameState.gold.ToString();
-	}
+    public (LineEdit, LineEdit) startStuff(NPC_Resource npcr, string res) {
+        started = true;
+        repLabel.Visible = true;
+        cont.Visible = true;
+        repLabel.Text = "Rep: " + npcr.Rep.ToString();
+        Price.Text = "Going Price: " + (npcr.Name != "N-Ref" ? GameState.resourceVals[res] : GameState.resourceVals[res] + 1) + " each";
+
+
+        return (offer, count);
+    }
+
+    public void endStuff() {
+        started = false;
+        repLabel.Visible = false;
+        cont.Visible = false;
+    }
+
+    public void repUpdate(NPC_Resource npcr) {
+        repLabel.Text = "Rep: " + npcr.Rep.ToString();
+    }
+
+    public void goldUpdate() {
+        goldLabel.Text = "Gold: " + GameState.gold.ToString();
+    }
 
 }
 

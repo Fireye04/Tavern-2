@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/barter.cs" id="1_pm8w2"]
 
-[node name="Barter" type="Control" node_paths=PackedStringArray("goldLabel", "repLabel", "offer")]
+[node name="Barter" type="Control" node_paths=PackedStringArray("goldLabel", "repLabel", "cont", "offer", "count", "confirm", "Price")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,11 @@ mouse_filter = 2
 script = ExtResource("1_pm8w2")
 goldLabel = NodePath("HBoxContainer/VBoxContainer/gold")
 repLabel = NodePath("HBoxContainer/VBoxContainer/rep")
-offer = NodePath("HBoxContainer2/LineEdit")
+cont = NodePath("VBoxContainer2")
+offer = NodePath("VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer/LineEdit")
+count = NodePath("VBoxContainer2/HBoxContainer2/VBoxContainer/LineEdit2")
+confirm = NodePath("VBoxContainer2/HBoxContainer2/Button")
+Price = NodePath("VBoxContainer2/Label")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -45,20 +49,48 @@ text = "rep: thing"
 fit_content = true
 autowrap_mode = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -33.5
-offset_right = 33.5
-offset_bottom = 40.0
+offset_left = -93.5
+offset_right = 93.5
+offset_bottom = 66.0
 grow_horizontal = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer2"]
-visible = false
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+placeholder_text = "Quantity"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 placeholder_text = "Offer"
 virtual_keyboard_type = 2
 
-[connection signal="text_submitted" from="HBoxContainer2/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " each"
+
+[node name="Button" type="Button" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Confirm"
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Going Price: NUMBER"
+
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer2/Button" to="." method="_on_button_pressed"]

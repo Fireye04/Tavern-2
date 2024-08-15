@@ -54,7 +54,7 @@ else
 - Corn
 	do Deal("corn")
 - Cheese
-	do Deal("Cheese")
+	do Deal("cheese")
 - Milk
 	do Deal("milk")
 - Quit

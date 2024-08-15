@@ -8,10 +8,11 @@ public partial class GameState : Node {
     //Actual game state
     public static State currentState = State.closed_morning;
 
-    public static int tavernRep = 1;
+    public static int tavernRep = 0;
 
     //Resources
-    public static Dictionary<string, int> resourceVals = new Dictionary<string, int>(){
+    [Export]
+    public static Godot.Collections.Dictionary<string, int> resourceVals = new(){
         {"wine", 5},
         {"ale", 1},
         {"rum", 3},

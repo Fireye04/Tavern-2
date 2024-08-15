@@ -14,4 +14,5 @@ shape = SubResource("RectangleShape2D_8tpht")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.476841, 0.644696, 1, 1)
+texture_filter = 1
 texture = ExtResource("2_m371p")
