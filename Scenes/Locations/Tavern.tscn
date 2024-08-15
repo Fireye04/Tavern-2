@@ -44,10 +44,11 @@ menUI = NodePath("../CanvasLayer/Menu")
 pc = NodePath("../../Player")
 dui = NodePath("../DayUI")
 
-[node name="TableManager" type="Node2D" parent="."]
+[node name="TableManager" type="Node2D" parent="." node_paths=PackedStringArray("tavernObject")]
 script = ExtResource("6_208rq")
 npcList = Array[Object]([ExtResource("9_8fi4a"), ExtResource("10_mm8on"), ExtResource("13_u221v"), ExtResource("11_aj888"), ExtResource("12_oe7y5")])
 tRepo = ExtResource("14_sjm5x")
+tavernObject = NodePath("..")
 
 [node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]
 position = Vector2(426, 460)

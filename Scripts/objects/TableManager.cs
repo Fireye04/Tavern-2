@@ -1,3 +1,4 @@
+using DialogueManagerRuntime;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ public partial class TableManager : Node2D {
 
     [Export]
     public Traveler_Resource tRepo;
+
+    [Export]
+    public Tavern tavernObject;
 
     public static Godot.Collections.Array<NPC_Resource> Customers;
 
@@ -107,8 +111,13 @@ public partial class TableManager : Node2D {
         // actually useful:
 
         freed.QueueFree();
+
         if (Customers.Count > 0) {
             spawn(tar);
+        } else {
+            if (takenList.Count == 0) {
+                tavernObject.closeTavern();
+            }
         }
     }
 
@@ -138,13 +147,16 @@ public partial class TableManager : Node2D {
 
     }
 
+
     public void clear() {
         Customers.Clear();
-        foreach (var tab in tables) {
-            try {
-                tab.clearNpc();
-            } catch (System.ObjectDisposedException) { }
+        if (takenList.Count > 0) {
+            foreach (var tab in tables) {
+                try {
+                    tab.clearNpc();
+                } catch (System.ObjectDisposedException) { }
 
+            }
         }
 
     }

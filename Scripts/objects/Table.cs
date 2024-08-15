@@ -22,7 +22,6 @@ public partial class Table : StaticBody2D {
     public PlayerController pc;
 
     public override void _Ready() {
-
     }
 
     public void setManager(TableManager man) {

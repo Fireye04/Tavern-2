@@ -13,4 +13,5 @@ script = ExtResource("1_cnaat")
 shape = SubResource("RectangleShape2D_ld3r2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_sc3br")

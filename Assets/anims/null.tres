@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c8intfxd8n6hj"]
 
-[ext_resource type="Texture2D" uid="uid://bpwwtl3ak763s" path="res://Assets/art/icon.svg" id="1_lv0kl"]
+[ext_resource type="Texture2D" uid="uid://bm3k3rllx3aqp" path="res://Assets/art/dennis.png" id="1_j3s2a"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_lv0kl")
+"texture": ExtResource("1_j3s2a")
 }],
 "loop": true,
 "name": &"default",
