@@ -19,10 +19,9 @@ public partial class NPC : CharacterBody2D, IInteractable {
         stats = npc;
         bItem = b;
         dui = duii;
-        if (tab is null) {
 
-        } else {
-            tablee = (Table)GetParent();
+        if (tab is not null) {
+            tablee = tab;
         }
 
         var asp = (AnimatedSprite2D)GetNode("AnimatedSprite2D");

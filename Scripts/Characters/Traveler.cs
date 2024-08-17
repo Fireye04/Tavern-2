@@ -13,13 +13,7 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     public static DayUI dayItem { get; set; }
 
-    [Export]
-    public LineEdit offerItem;
-
     private int offerAmount;
-
-    [Export]
-    private Traveler_Resource npc_Resource;
 
     private static PlayerController player;
 
@@ -28,8 +22,6 @@ public partial class Traveler : Node, IDialogueSource, INPC {
     public bool orderCorrect = false;
 
     public override void _Ready() {
-        npc_Resource = GD.Load<Traveler_Resource>("res://Resources/Characters/Traveler.tres");
-
     }
 
 

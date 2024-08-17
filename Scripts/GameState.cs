@@ -11,7 +11,6 @@ public partial class GameState : Node {
     public static int tavernRep = 0;
 
     //Resources
-    [Export]
     public static Godot.Collections.Dictionary<string, int> resourceVals = new(){
         {"wine", 5},
         {"ale", 1},

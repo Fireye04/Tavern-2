@@ -12,7 +12,6 @@ public partial class TableManager : Node2D {
     [Export]
     public Godot.Collections.Array<NPC_Resource> npcList;
 
-    [Export]
     public Traveler_Resource tRepo;
 
     [Export]
@@ -26,6 +25,7 @@ public partial class TableManager : Node2D {
     public override void _Ready() {
         Customers = new Godot.Collections.Array<NPC_Resource>();
         takenList = new List<NPC_Resource>();
+        tRepo = GD.Load<Traveler_Resource>("res://Resources/Characters/Traveler.tres");
 
         foreach (var tab in GetChildren()) {
             var tabl = (Table)tab;
@@ -74,7 +74,7 @@ public partial class TableManager : Node2D {
 
         bool full = true;
         foreach (var item in tRepo.cSprites) {
-            if (!tRepo.usedTravelers.Contains(item)) {
+            if (!tRepo.usedTravelers.Contains(item.ResourcePath)) {
                 full = false;
             }
         }
@@ -86,7 +86,7 @@ public partial class TableManager : Node2D {
         travelers spr = getnewT(rand);
 
         string na = spr.Names[rand.Next(spr.Names.Count)];
-        tRepo.usedTravelers.Add(spr);
+        tRepo.usedTravelers.Add(spr.ResourcePath);
 
 
         return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
@@ -96,8 +96,7 @@ public partial class TableManager : Node2D {
         var temp = new List<travelers>();
 
         foreach (var traveler in tRepo.cSprites) {
-            if (!tRepo.usedTravelers.Contains(traveler)) {
-                GD.Print("Adding" + traveler.Names[0]);
+            if (!tRepo.usedTravelers.Contains(traveler.ResourcePath)) {
                 temp.Add(traveler);
             }
         }
