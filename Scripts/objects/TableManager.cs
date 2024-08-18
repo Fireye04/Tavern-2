@@ -12,7 +12,9 @@ public partial class TableManager : Node2D {
     [Export]
     public Godot.Collections.Array<NPC_Resource> npcList;
 
-    public Traveler_Resource tRepo;
+    [Export]
+    public Godot.Collections.Array<NPC_Resource> travelerList;
+
 
     [Export]
     public Tavern tavernObject;
@@ -25,7 +27,6 @@ public partial class TableManager : Node2D {
     public override void _Ready() {
         Customers = new Godot.Collections.Array<NPC_Resource>();
         takenList = new List<NPC_Resource>();
-        tRepo = GD.Load<Traveler_Resource>("res://Resources/Characters/Traveler.tres");
 
         foreach (var tab in GetChildren()) {
             var tabl = (Table)tab;
@@ -36,13 +37,12 @@ public partial class TableManager : Node2D {
     public void pCustomers() {
         GD.Print("\nCustomers:");
         foreach (var item in Customers) {
-            GD.Print(item.Name);
+            GD.Print(item.getName());
         }
         GD.Print(" ");
     }
 
     public void setCustomers() {
-        tRepo.usedTravelers.Clear();
         var rand = new Random();
         int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
 
@@ -73,30 +73,29 @@ public partial class TableManager : Node2D {
         var rand = new Random();
 
         bool full = true;
-        foreach (var item in tRepo.cSprites) {
-            if (!tRepo.usedTravelers.Contains(item.ResourcePath)) {
+        foreach (var item in travelerList) {
+            if (!GameState.usedTravelers.Contains(item)) {
                 full = false;
             }
         }
 
         if (full) {
-            tRepo.usedTravelers.Clear();
+            GameState.usedTravelers.Clear();
         }
 
-        travelers spr = getnewT(rand);
+        NPC_Resource spr = getnewT(rand);
 
-        string na = spr.Names[rand.Next(spr.Names.Count)];
-        tRepo.usedTravelers.Add(spr.ResourcePath);
+        GameState.usedTravelers.Add(spr);
 
 
-        return new NPC_Resource(spr.cSprite, tRepo.Dialogue, true, na, 1, tRepo.DSource, true);
+        return spr;
     }
 
-    public travelers getnewT(Random rand) {
-        var temp = new List<travelers>();
+    public NPC_Resource getnewT(Random rand) {
+        var temp = new List<NPC_Resource>();
 
-        foreach (var traveler in tRepo.cSprites) {
-            if (!tRepo.usedTravelers.Contains(traveler.ResourcePath)) {
+        foreach (var traveler in travelerList) {
+            if (!GameState.usedTravelers.Contains(traveler)) {
                 temp.Add(traveler);
             }
         }
@@ -116,6 +115,7 @@ public partial class TableManager : Node2D {
         // actually useful:
 
         freed.stats.convoCount = 0;
+        freed.stats.completedConvos.Clear();
         freed.QueueFree();
 
         if (Customers.Count > 0) {

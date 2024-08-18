@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://fp1i7swpxc8x"]
+[gd_scene load_steps=23 format=3 uid="uid://fp1i7swpxc8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxi3561e8a1de" path="res://Scenes/Entities/characters/Player.tscn" id="1_1tmq0"]
 [ext_resource type="Script" path="res://Scripts/Tavern.cs" id="1_tfvbr"]
@@ -17,6 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://c5w6lt1uovwle" path="res://Scenes/Entities/objects/bed.tscn" id="12_wrjxu"]
 [ext_resource type="Resource" uid="uid://g2oaafc7ljj" path="res://Resources/Characters/Lucian_Barnes.tres" id="13_u221v"]
 [ext_resource type="PackedScene" uid="uid://dyu8wmgo0q3ne" path="res://Scenes/Entities/objects/Kitchen.tscn" id="14_rqf5i"]
+[ext_resource type="Resource" uid="uid://cg5ogf1df48ql" path="res://Resources/Characters/Traveler1.tres" id="14_uhphk"]
+[ext_resource type="Resource" uid="uid://uj0wt73vtof" path="res://Resources/Characters/Traveler2.tres" id="15_i2rek"]
+[ext_resource type="Resource" uid="uid://cx437my1jbm2p" path="res://Resources/Characters/Traveler3.tres" id="16_p5ulr"]
+[ext_resource type="Resource" uid="uid://bkqskyrl7ivyk" path="res://Resources/Characters/Traveler4.tres" id="17_edcef"]
+[ext_resource type="Resource" uid="uid://cr8x1h3trhvg" path="res://Resources/Characters/Traveler5.tres" id="18_hyujx"]
 
 [node name="Tavern" type="Node2D" node_paths=PackedStringArray("mu", "day", "tabMan")]
 script = ExtResource("1_tfvbr")
@@ -46,6 +51,7 @@ dui = NodePath("../DayUI")
 [node name="TableManager" type="Node2D" parent="." node_paths=PackedStringArray("tavernObject")]
 script = ExtResource("6_208rq")
 npcList = Array[Object]([ExtResource("9_8fi4a"), ExtResource("10_mm8on"), ExtResource("13_u221v"), ExtResource("11_aj888"), ExtResource("12_oe7y5")])
+travelerList = Array[Object]([ExtResource("14_uhphk"), ExtResource("15_i2rek"), ExtResource("16_p5ulr"), ExtResource("17_edcef"), ExtResource("18_hyujx")])
 tavernObject = NodePath("..")
 
 [node name="Table" parent="TableManager" node_paths=PackedStringArray("bItem", "dUI", "pc") instance=ExtResource("6_0oc6x")]

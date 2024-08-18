@@ -10,6 +10,6 @@ script = ExtResource("1_ljmpt")
 cSprite = ExtResource("3_vd3f1")
 Dialogue = ExtResource("1_sveyp")
 Can_interact = true
-Name = "N-Ref"
+Names = Array[String](["N-Ref"])
 Rep = 1
 DSource = ExtResource("1_vi3o5")

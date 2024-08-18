@@ -42,7 +42,7 @@ public partial class barter : Control {
         repLabel.Visible = true;
         cont.Visible = true;
         repLabel.Text = "Rep: " + npcr.Rep.ToString();
-        Price.Text = "Going Price: " + (npcr.Name != "N-Ref" ? GameState.resourceVals[res] : GameState.resourceVals[res] + 1) + " each";
+        Price.Text = "Going Price: " + (npcr.getName() != "N-Ref" ? GameState.resourceVals[res] : GameState.resourceVals[res] + 1) + " each";
 
 
         return (offer, count);

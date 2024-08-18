@@ -10,6 +10,6 @@ script = ExtResource("1_7x2sf")
 cSprite = ExtResource("3_6bdgt")
 Dialogue = ExtResource("1_j1ks4")
 Can_interact = true
-Name = "Lucian Barnes"
+Names = Array[String](["Lucian Barnes"])
 Rep = 1
 DSource = ExtResource("1_7pu6c")

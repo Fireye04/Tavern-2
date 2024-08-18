@@ -10,6 +10,8 @@ public partial class GameState : Node {
 
     public static int tavernRep = 0;
 
+    public static Godot.Collections.Array<NPC_Resource> usedTravelers = new();
+
     //Resources
     public static Godot.Collections.Dictionary<string, int> resourceVals = new(){
         {"wine", 5},

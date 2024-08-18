@@ -27,7 +27,7 @@ public partial class NPCSpawner : Node2D {
     }
 
     public void spawnNpc() {
-        GD.Print("spawning " + npcr.Name);
+        GD.Print("spawning " + npcr.getName());
         npc = (NPC)pnpc.Instantiate();
         AddChild(npc);
         npc.init(npcr, bItem, dUI, null, pc);

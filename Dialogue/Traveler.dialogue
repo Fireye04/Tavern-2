@@ -2,7 +2,7 @@ using Traveler
 
 ~ convo1_inside
 do getOrder()
-{{getStats().Name}}: Get me a {{getStats().orderItem[0]}}.
+{{getStats().getName()}}: Get me a {{getStats().orderItem[0]}}.
 
 => END
 
@@ -10,9 +10,9 @@ do getOrder()
 
 do recieveOrder()
 if orderCorrect
-	{{getStats().Name}}: Nice!
+	{{getStats().getName()}}: Nice!
 else
-	{{getStats().Name}}: FUCK
+	{{getStats().getName()}}: FUCK
 	
 do leaveT()
 
@@ -20,7 +20,7 @@ do leaveT()
 
 ~ catchall_inside
 
-{{getStats().Name}}: a
+{{getStats().getName()}}: a
 do leaveT()
 
 => END

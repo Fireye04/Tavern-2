@@ -10,6 +10,6 @@ script = ExtResource("1_g4loh")
 cSprite = ExtResource("3_u4unb")
 Dialogue = ExtResource("1_omvt8")
 Can_interact = true
-Name = "Lily Crumble"
+Names = Array[String](["Lily Crumble"])
 Rep = 1
 DSource = ExtResource("1_j7ets")

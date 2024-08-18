@@ -30,7 +30,7 @@ public partial class Table : StaticBody2D {
 
     public void spawnNpc(NPC_Resource target) {
 
-        GD.Print("spawning " + target.Name);
+        GD.Print("spawning " + target.getName());
         npc = (NPC)pnpc.Instantiate();
         AddChild(npc);
         npc.init(target, bItem, dUI, this, pc);

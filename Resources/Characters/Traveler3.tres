@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NPC_Resource" load_steps=5 format=3 uid="uid://cx437my1jbm2p"]
+
+[ext_resource type="Resource" uid="uid://b60r8fo0qnm28" path="res://Dialogue/Traveler.dialogue" id="1_1hdyk"]
+[ext_resource type="PackedScene" uid="uid://2asdje1hnpb6" path="res://Scenes/Entities/characters/Traveler.tscn" id="1_yu78n"]
+[ext_resource type="SpriteFrames" uid="uid://cq0uxb3vrg4dj" path="res://Assets/anims/trav1.tres" id="2_wvsi6"]
+[ext_resource type="Script" path="res://Resources/Characters/NPC_Resource.cs" id="3_yj1wc"]
+
+[resource]
+script = ExtResource("3_yj1wc")
+cSprite = ExtResource("2_wvsi6")
+Dialogue = ExtResource("1_1hdyk")
+Can_interact = true
+Names = Array[String](["npc3 name1", "npc3 name2", "npc3 name3"])
+Rep = 0
+DSource = ExtResource("1_yu78n")
+isTraveler = true
