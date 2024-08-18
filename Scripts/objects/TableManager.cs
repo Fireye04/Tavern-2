@@ -139,7 +139,7 @@ public partial class TableManager : Node2D {
     public void open() {
         setCustomers();
         pCustomers();
-        if (Customers.Count > tables.Count) {
+        if (Customers.Count >= tables.Count) {
             foreach (var tab in tables) {
 
                 spawn(tab);
