@@ -13,3 +13,4 @@ Can_interact = true
 Names = Array[String](["N-Ref"])
 Rep = 1
 DSource = ExtResource("1_vi3o5")
+isTraveler = false

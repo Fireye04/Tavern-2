@@ -13,3 +13,4 @@ Can_interact = true
 Names = Array[String](["Carver"])
 Rep = 1
 DSource = ExtResource("1_2qqjg")
+isTraveler = false

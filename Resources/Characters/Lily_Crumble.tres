@@ -13,3 +13,4 @@ Can_interact = true
 Names = Array[String](["Lily Crumble"])
 Rep = 1
 DSource = ExtResource("1_j7ets")
+isTraveler = false

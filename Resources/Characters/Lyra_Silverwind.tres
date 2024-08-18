@@ -13,3 +13,4 @@ Can_interact = true
 Names = Array[String](["Lyra Silverwind"])
 Rep = 1
 DSource = ExtResource("1_255p5")
+isTraveler = false
