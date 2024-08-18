@@ -7,15 +7,24 @@ do getOrder()
 => END
 
 ~ convo1_inside_recieve_order
-
-do recieveOrder()
-if orderCorrect
-	{{getStats().getName()}}: Nice!
-else
-	{{getStats().getName()}}: FUCK
+{{getStats().getName()}}: You got my {{getStats().orderItem[0]}}?
+- Yep!
+	do recieveOrder()
+	if orderCorrect
+		{{getStats().getName()}}: Nice!
+		set GameState.tavernRep = GameState.tavernRep + 0.1
+	else
+		{{getStats().getName()}}: FUCK
+		set GameState.tavernRep = GameState.tavernRep - 0.2
+		
+	do leaveT()
+- Not yet, sorry!
+	{{getStats().getName()}}: Alright
+- We're out sorry.
+	{{getStats().getName()}}: Aw dang
+	set GameState.tavernRep = GameState.tavernRep - 0.1
+	do leaveT()
 	
-do leaveT()
-
 => END
 
 ~ catchall_inside

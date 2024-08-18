@@ -44,7 +44,7 @@ public partial class TableManager : Node2D {
 
     public void setCustomers() {
         var rand = new Random();
-        int numTravelers = 1 + GameState.getPrices() + (GameState.tavernRep * 2);
+        int numTravelers = 1 + GameState.getPrices() + (GameState.getTRep() * 2);
 
         for (int i = 0; i < numTravelers; i++) {
             Customers.Add(generateTraveler());

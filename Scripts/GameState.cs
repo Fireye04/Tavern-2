@@ -8,7 +8,11 @@ public partial class GameState : Node {
     //Actual game state
     public static State currentState = State.closed_morning;
 
-    public static int tavernRep = 0;
+    public static int getTRep() {
+        return (int)Math.Ceiling(tavernRep);
+    }
+
+    public static float tavernRep = 0;
 
     public static Godot.Collections.Array<NPC_Resource> usedTravelers = new();
 
