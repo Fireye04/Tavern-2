@@ -11,6 +11,7 @@ N: Hello.
 
 ~ convo1_inside_recieve_order
 do recieveOrder()
+do npc_Resource.completedConvos.Remove("convo1_inside_recieve_order")
 if orderCorrect
 	N: The result is satisfactory.
 else
