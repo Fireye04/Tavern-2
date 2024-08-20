@@ -12,7 +12,7 @@ public partial class GameState : Node {
         return (int)Math.Ceiling(tavernRep);
     }
 
-    public static float tavernRep = 0f;
+    public static double tavernRep = 0;
 
     public static Godot.Collections.Array<NPC_Resource> usedTravelers = new();
 

@@ -12,17 +12,17 @@ do getOrder()
 	do recieveOrder()
 	if orderCorrect
 		{{getStats().getName()}}: Nice!
-		set GameState.tavernRep = GameState.tavernRep + 0.1
+		do addTRep(0.1)
 	else
 		{{getStats().getName()}}: FUCK
-		set GameState.tavernRep = GameState.tavernRep - 0.2
+		do removeTRep(0.2)
 		
 	do leaveT()
 - Not yet, sorry!
 	{{getStats().getName()}}: Alright
 - We're out sorry.
 	{{getStats().getName()}}: Aw dang
-	set GameState.tavernRep = GameState.tavernRep - 0.1
+	do removeTRep(0.1)
 	do leaveT()
 	
 => END

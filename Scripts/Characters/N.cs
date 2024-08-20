@@ -79,8 +79,6 @@ public partial class N : Node, IDialogueSource, INPC {
     }
 
 
-
-
     public async Task Deal(string resource) {
 
         (offerItem, countItem) = barterItem.startStuff(npc_Resource, resource);

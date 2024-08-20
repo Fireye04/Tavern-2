@@ -2,12 +2,12 @@
 
 [ext_resource type="Resource" uid="uid://b60r8fo0qnm28" path="res://Dialogue/Traveler.dialogue" id="1_1ouxj"]
 [ext_resource type="PackedScene" uid="uid://2asdje1hnpb6" path="res://Scenes/Entities/characters/Traveler.tscn" id="1_xhos8"]
-[ext_resource type="SpriteFrames" uid="uid://cq0uxb3vrg4dj" path="res://Assets/anims/trav1.tres" id="2_84xt7"]
 [ext_resource type="Script" path="res://Resources/Characters/NPC_Resource.cs" id="3_3c70e"]
+[ext_resource type="SpriteFrames" uid="uid://dytge41ilxat3" path="res://Assets/anims/trav4.tres" id="3_ti5pk"]
 
 [resource]
 script = ExtResource("3_3c70e")
-cSprite = ExtResource("2_84xt7")
+cSprite = ExtResource("3_ti5pk")
 Dialogue = ExtResource("1_1ouxj")
 Can_interact = true
 Names = Array[String](["npc4 name1", "npc4 name2", "npc4 name3"])

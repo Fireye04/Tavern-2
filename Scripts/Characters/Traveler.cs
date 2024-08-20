@@ -76,6 +76,14 @@ public partial class Traveler : Node, IDialogueSource, INPC {
         thing.leave();
     }
 
+    public void addTRep(double amt) {
+        GameState.tavernRep += amt;
+    }
+
+    public void removeTRep(double amt) {
+        GameState.tavernRep -= amt;
+    }
+
 
     public string getConversation() {
         var s = getStats();
