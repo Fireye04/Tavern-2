@@ -38,7 +38,12 @@ do leaveT()
 
 ~ convo1_outside
 
-Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts. Who're you?
+Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts.
+Lucian: Interested in some farmed goods?
+- No thanks.
+	Lucian: ALrighty, let me know if you change your mind!
+- Sure
+	=> startDeal
 
 => END
 

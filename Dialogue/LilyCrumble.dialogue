@@ -38,7 +38,12 @@ do leaveT()
 
 ~ convo1_outside
 
-Lily: Hi! Welcome to the crumble bakery! What can I getcha?!
+Lily: Hi new person! Welcome to the crumble bakery! What can I getcha?!
+- Nothing, just browsing
+	Lily: Cool! Browse away!!
+- What do you have?
+	=> startDeal
+
 
 => END
 
