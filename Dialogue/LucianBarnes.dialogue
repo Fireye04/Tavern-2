@@ -9,6 +9,20 @@ Lucian: Hi! What's on the menu?
 
 => END	
 
+~ convo1_inside_repeat
+
+Lucian: You got the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> convo1_inside_recieve_order
+- Not yet, sorry!
+	Lucian: Alrighty then!
+- We're out sorry.
+	Lucian: Well darn.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
 ~ convo1_inside_recieve_order
 do recieveOrder()
 if orderCorrect
@@ -30,7 +44,35 @@ Lucian: Hey, that's a new face! I'm Lucian, the farmer round these parts. Who're
 
 ~ catchall_inside
 
-Lucian: Hey there tavernkeeper! What do you have cooking today?
+do getOrder()
+Lucian: Hey there tavernkeeper! Can I get a {{orderItem[0]}}?
+
+=> END
+
+~ catchall_inside_repeat
+
+Lucian: You got the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> catchall_inside_recieve_order
+- Not yet, sorry!
+	Lucian: Oke doke!
+- We're out sorry.
+	Lucian: Well darn
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
+~ catchall_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lucian: Thanks!
+	do addRep(1)
+else
+	Lucian: This is not a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lucian stands and leaves.
+	do removeRep(1)
 do leaveT()
 
 => END

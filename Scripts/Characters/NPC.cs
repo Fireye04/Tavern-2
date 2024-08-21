@@ -14,9 +14,12 @@ public partial class NPC : CharacterBody2D, IInteractable {
 
     private IDialogueSource iSource;
 
+    public int interactionCount;
+
 
     public void init(NPC_Resource npc, barter b, DayUI duii, Table tab, PlayerController pc) {
         stats = npc;
+        stats.Can_interact = true;
         bItem = b;
         dui = duii;
 
@@ -35,6 +38,7 @@ public partial class NPC : CharacterBody2D, IInteractable {
 
 
         iSource = (IDialogueSource)newNode;
+        interactionCount = 0;
     }
 
     public void leave() {
@@ -51,6 +55,10 @@ public partial class NPC : CharacterBody2D, IInteractable {
     }
 
     public void interact() {
+        interactionCount += 1;
+        if (interactionCount == 1) {
+            stats.convoCount += 1;
+        }
         DialogueManager.ShowExampleDialogueBalloon(stats.Dialogue, iSource.getConversation());
 
     }

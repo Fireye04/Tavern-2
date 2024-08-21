@@ -172,35 +172,48 @@ public partial class Lucian : Node, IDialogueSource, INPC {
         dad.leave();
     }
 
+    public void addTRep(double amt) {
+        GameState.tavernRep += amt;
+    }
+
+    public void removeTRep(double amt) {
+        GameState.tavernRep -= amt;
+    }
+
+    public void addCompletedConvo(string convo) {
+        npc_Resource.completedConvos.Add(convo);
+    }
+
 
     public string getConversation() {
-        npc_Resource.convoCount += 1;
         if (npc_Resource.convoCount == 1) {
             if (GameState.currentState == State.open) {
                 // make this procedure a function as well
-                npc_Resource.completedConvos.Add("convo1_inside");
-                return "convo1_inside";
-            } else {
-                npc_Resource.completedConvos.Add("convo1_outside");
-                return "convo1_outside";
-            }
-
-        } else {
-            if (GameState.currentState == State.open) {
-                //TODO: make this easier to write, as I'm gonna have to do that a lot
-                if (
-                    npc_Resource.completedConvos.Contains("convo1_inside") &&
-                    !npc_Resource.completedConvos.Contains("convo1_inside_recieve_order")
-                    ) {
-                    npc_Resource.completedConvos.Add("convo1_inside_recieve_order");
-                    return "convo1_inside_recieve_order";
+                if (dad.interactionCount == 1) {
+                    return "convo1_inside";
                 } else {
-                    npc_Resource.completedConvos.Add("catchall_inside");
-                    return "catchall_inside";
+                    return "convo1_inside_repeat";
                 }
 
             } else {
-                npc_Resource.completedConvos.Add("catchall_outside");
+                npc_Resource.Can_interact = false;
+                return "convo1_outside";
+            }
+        } else {
+            if (GameState.currentState == State.open) {
+                //TODO: make this easier to write, as I'm gonna have to do that a lot
+                /*if (
+                    npc_Resource.completedConvos.Contains("convo1_inside") &&
+                    !npc_Resource.completedConvos.Contains("convo1_inside_recieve_order")
+                    ) {*/
+
+                if (dad.interactionCount == 1) {
+                    return "catchall_inside";
+                } else {
+                    return "catchall_inside_repeat";
+                }
+
+            } else {
                 return "catchall_outside";
             }
         }

@@ -9,6 +9,20 @@ Carver: Oi tavernkeeper!
 
 => END	
 
+~ convo1_inside_repeat
+
+Lily: That my {{orderItem[0]}}?
+- Yep! Here you go!
+	=> convo1_inside_recieve_order
+- Not yet, sorry!
+	Lily: Alright.
+- We're out sorry.
+	Lily: Hm.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
 ~ convo1_inside_recieve_order
 do recieveOrder()
 if orderCorrect
@@ -24,13 +38,45 @@ do leaveT()
 
 ~ convo1_outside
 
-Carver: Hey, you're new. 
+Carver: Hey, you're new. Looking to buy?
+- Nah
+	Carver: Alright, suit yourself
+- Sure
+	=> startDeal
 
 => END
 
 ~ catchall_inside
 
-Carver: What's on the menu today?
+do getOrder()
+Carver: Get me a {{orderitem[0]}}.
+
+=> END
+
+~ catchall_inside_repeat
+
+Carver: That my {{orderItem[0]}}?
+- Yep! Here you go!
+	=> catchall_inside_recieve_order
+- Not yet, sorry!
+	Carver: Hm..
+- We're out sorry.
+	Carver: I'll be headed out then.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
+~ catchall_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Carver: Nice.
+	do addRep(1)
+else
+	Carver: That's not the {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Carver stands and leaves.
+	do removeRep(1)
 do leaveT()
 
 => END

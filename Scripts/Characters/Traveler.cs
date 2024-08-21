@@ -84,27 +84,19 @@ public partial class Traveler : Node, IDialogueSource, INPC {
         GameState.tavernRep -= amt;
     }
 
+    public void addCompletedConvo(string convo) {
+        var s = getStats();
+        s.completedConvos.Add(convo);
+    }
+
 
     public string getConversation() {
-        var s = getStats();
-        s.convoCount += 1;
-        if (s.convoCount == 1) {
+        var thing = (NPC)player.find_nearest_interactable();
+        if (thing.interactionCount == 1) {
             // make this procedure a function as well
-            s.completedConvos.Add("convo1_inside");
-            return "convo1_inside";
-
+            return "convo1";
         } else {
-            //TODO: make this easier to write, as I'm gonna have to do that a lot
-            if (
-                s.completedConvos.Contains("convo1_inside") &&
-                !s.completedConvos.Contains("convo1_inside_recieve_order")
-                ) {
-                s.completedConvos.Add("convo1_inside_recieve_order");
-                return "convo1_inside_recieve_order";
-            } else {
-                s.completedConvos.Add("catchall_inside");
-                return "catchall_inside";
-            }
+            return "catchall";
         }
 
     }
@@ -121,7 +113,6 @@ public partial class Traveler : Node, IDialogueSource, INPC {
 
     public static NPC_Resource getStats() {
         dad = (NPC)player.find_nearest_interactable();
-        GD.Print(dad.stats.convoCount);
         return dad.stats;
     }
 

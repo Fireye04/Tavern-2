@@ -1,35 +1,34 @@
 using Traveler
 
-~ convo1_inside
+~ convo1
 do getOrder()
 {{getStats().getName()}}: Get me a {{getStats().orderItem[0]}}.
 
 => END
 
-~ convo1_inside_recieve_order
+~ convo1_recieve_order
+
+do recieveOrder()
+if orderCorrect
+	{{getStats().getName()}}: Nice!
+	do addTRep(0.1)
+else
+	{{getStats().getName()}}: FUCK
+	do removeTRep(0.2)
+	
+do leaveT()
+	
+=> END
+
+~ catchall
 {{getStats().getName()}}: You got my {{getStats().orderItem[0]}}?
-- Yep!
-	do recieveOrder()
-	if orderCorrect
-		{{getStats().getName()}}: Nice!
-		do addTRep(0.1)
-	else
-		{{getStats().getName()}}: FUCK
-		do removeTRep(0.2)
-		
-	do leaveT()
+- Yep! Here you go!
+	=> convo1_recieve_order
 - Not yet, sorry!
 	{{getStats().getName()}}: Alright
 - We're out sorry.
 	{{getStats().getName()}}: Aw dang
 	do removeTRep(0.1)
 	do leaveT()
-	
-=> END
-
-~ catchall_inside
-
-{{getStats().getName()}}: a
-do leaveT()
 
 => END

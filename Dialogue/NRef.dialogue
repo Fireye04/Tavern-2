@@ -9,11 +9,25 @@ N: Hello.
 
 => END	
 
+~ convo1_inside_repeat
+
+N: Do you have the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> convo1_inside_recieve_order
+- Not yet, sorry!
+	N: ...
+- We're out sorry.
+	N: Unfortunate.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
 ~ convo1_inside_recieve_order
 do recieveOrder()
-do npc_Resource.completedConvos.Remove("convo1_inside_recieve_order")
 if orderCorrect
 	N: The result is satisfactory.
+	do addRep(1)
 else
 	N: This is incorrect. I requested a {{orderItem[0]}}.
 	# TODO: give player another chance vs leave based on rep
@@ -26,13 +40,44 @@ do leaveT()
 ~ convo1_outside
 
 N: Hello. You are unfamiliar.
-do debug(GameState.resourceVals)
+N: Would you like to purchase something?
+- No
+	N: Understood.
+- Sure
+	=> startDeal
 
 => END
 
 ~ catchall_inside
-
+do getOrder()
 N: I would like to request the usual.
+
+=> END
+
+~ catchall_inside_repeat
+
+N: Do you have the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> catchall_inside_recieve_order
+- Not yet, sorry!
+	N: ...
+- We're out sorry.
+	N: Unfortunate.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
+~ catchall_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	N: Much appreciated.
+	do addRep(1)
+else
+	N: This is not a {{orderItem[0]}}. Goodbye.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: N stands and leaves.
+	do removeRep(1)
 do leaveT()
 
 => END

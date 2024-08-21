@@ -10,10 +10,25 @@ Narrator: An elven woman, bearing a few notable scars sits at the table.
 	
 => END	
 
+~ convo1_inside_repeat
+
+Lyra: Is this my {{orderItem[0]}}?
+- Yep! Here you go!
+	=> convo1_inside_recieve_order
+- Not yet, sorry!
+	Lyra: ...
+- We're out sorry.
+	Lyra: Unfortunate.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
 ~ convo1_inside_recieve_order
 do recieveOrder()
 if orderCorrect
 	Lyra: Thank you.
+	do addRep(1)
 else
 	Lyra: ... This isn't my {{orderItem[0]}}.
 	# TODO: give player another chance vs leave based on rep
@@ -34,17 +49,42 @@ Lyra: Hello. I am Lyra Silverwind. It is good to meet you.
 => END
 
 ~ catchall_inside
+do getOrder()
+Lyra: I'll have the {{orderItem[0]}}
 
-Lyra: I hope to see you around.
-- Goodbye
-	Lyra: Adieu
+=> END
+
+~ catchall_inside_repeat
+
+N: Do you have the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> catchall_inside_recieve_order
+- Not yet, sorry!
+	Lyra: Alright.
+- We're out sorry.
+	Lyra: Unfortunate.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
+~ catchall_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lyra: Much appreciated.
+	do addRep(1)
+else
+	Lyra: This is not a {{orderItem[0]}}.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lyra stands and leaves.
+	do removeRep(1)
 do leaveT()
 
 => END
 
 ~ catchall_outside
 
-Lyra: I hope to see you around.
+Lyra: Lovely day out.
 - Goodbye
 	Lyra: Adieu
 - Barter with me

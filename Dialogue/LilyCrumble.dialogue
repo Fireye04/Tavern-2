@@ -9,6 +9,20 @@ Lily: Hiya! I think it's so cool that you just fixed up the old tavern!
 
 => END	
 
+~ convo1_inside_repeat
+
+Lily: Hiya! You got the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> convo1_inside_recieve_order
+- Not yet, sorry!
+	Lily: No worries!
+- We're out sorry.
+	Lily: Aw.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
 ~ convo1_inside_recieve_order
 do recieveOrder()
 if orderCorrect
@@ -30,7 +44,36 @@ Lily: Hi! Welcome to the crumble bakery! What can I getcha?!
 
 ~ catchall_inside
 
-Lily: What you got for me today tavernkeeper?
+do getOrder()
+Lily: Lemme see... Can I get a {{orderItem[0]}}?
+
+
+=> END
+
+~ catchall_inside_repeat
+
+Lily: Is that the {{orderItem[0]}}?
+- Yep! Here you go!
+	=> catchall_inside_recieve_order
+- Not yet, sorry!
+	Lily: Oh ok! Lemme know when you got it :)
+- We're out sorry.
+	Lily: Darn! Better luck next time I guess.
+	do removeRep(1)
+	do leaveT()
+
+=> END
+
+~ catchall_inside_recieve_order
+do recieveOrder()
+if orderCorrect
+	Lily: Thanks a bunch!
+	do addRep(1)
+else
+	Lily: Sorry, that's not the {{orderItem[0]}} I ordered.
+	# TODO: give player another chance vs leave based on rep
+	Narrator: Lily stands and leaves.
+	do removeRep(1)
 do leaveT()
 
 => END
