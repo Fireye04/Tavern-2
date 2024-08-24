@@ -136,6 +136,9 @@ public partial class Lyra : Node, IDialogueSource, INPC {
         GameState.inventory[item.Item1] += _countAmount;
     }
 
+    public int rAdd(int min) {
+        return ((happiness - min) / 2) + 1;
+    }
 
     public void endDeal() {
         barterItem.endStuff();
@@ -196,8 +199,11 @@ public partial class Lyra : Node, IDialogueSource, INPC {
                 }
 
             } else {
-                npc_Resource.Can_interact = false;
-                return "convo1_outside";
+                if (dad.interactionCount == 1) {
+                    return "convo1_outside";
+                } else {
+                    return "catchall_outside";
+                }
             }
         } else {
             if (GameState.currentState == State.open) {

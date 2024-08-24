@@ -113,7 +113,7 @@ else
 
 if happiness > 1
 	Carver: Nice! Deal!
-	do addRep(1)
+	do addRep(rAdd(1))
 	do transaction()
 elif 0 <= happiness and happiness <= 1
 	Carver: Alright.

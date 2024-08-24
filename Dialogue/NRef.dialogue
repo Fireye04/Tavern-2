@@ -128,10 +128,10 @@ else
 
 if happiness >= 1
 	N: This is a profitable outcome. 
-	do addRep(1)
+	do addRep(rAdd(1))
 	do transaction()
 elif 0 == happiness
-	N: Accepted.f
+	N: Accepted.
 	do transaction()
 elif -1 <= happiness and happiness < 0
 	N: This is an unfavorable outcome. Very well.

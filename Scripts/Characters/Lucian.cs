@@ -183,6 +183,10 @@ public partial class Lucian : Node, IDialogueSource, INPC {
     public void addCompletedConvo(string convo) {
         npc_Resource.completedConvos.Add(convo);
     }
+    public int rAdd(int min) {
+        return ((happiness - min) / 2) + 1;
+    }
+
 
 
     public string getConversation() {
@@ -196,8 +200,11 @@ public partial class Lucian : Node, IDialogueSource, INPC {
                 }
 
             } else {
-                npc_Resource.Can_interact = false;
-                return "convo1_outside";
+                if (dad.interactionCount == 1) {
+                    return "convo1_outside";
+                } else {
+                    return "catchall_outside";
+                }
             }
         } else {
             if (GameState.currentState == State.open) {
